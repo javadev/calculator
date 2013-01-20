@@ -37,6 +37,7 @@ public class Calc extends javax.swing.JFrame {
     private BigDecimal savedValue = BigDecimal.ZERO;
     private boolean initValue;
     private boolean doInitValue = true;
+    private char commandCode = '=';
     
     /** Creates new form Calc */
     public Calc() {
@@ -467,16 +468,44 @@ public class Calc extends javax.swing.JFrame {
 
     private void addCalc(java.awt.event.ActionEvent evt) {
         if (initValue) {
-            jTextField1.setText(jTextField1.getText());
+            jTextField1.setText(evt.getActionCommand());
         } else {
             jTextField1.setText(jTextField1.getText() + evt.getActionCommand());
         }
+        if (commandCode == '=') {
+            savedValue = new BigDecimal(jTextField1.getText().replace(',', '.'));
+            currentValue = BigDecimal.ZERO;
+        } else {
+            currentValue = new BigDecimal(jTextField1.getText().replace(',', '.'));
+        }
         initValue = false;
-        currentValue = new BigDecimal(jTextField1.getText().replace(',', '.'));
     }
 
     private void fCalc(String command) {
-        if ("nbs".equals(command)) {
+        if ("=".equals(command)) {
+            if (commandCode != '=' && !initValue) {
+                BigDecimal value = new BigDecimal(jTextField1.getText().replace(',', '.'));
+                BigDecimal result = BigDecimal.ZERO;
+                switch (commandCode) {
+                    case '+':
+                        result = savedValue.add(value);
+                        break;
+                    case '-':
+                        result = savedValue.subtract(value);
+                        break;
+                    case '*':
+                        result = savedValue.multiply(value);
+                        break;
+                    case '/':
+                        result = savedValue.divide(value);
+                        break;
+                }
+                commandCode = '=';
+                jTextField1.setText(result.toString().replace('.', ','));
+                savedValue = result;
+                currentValue = BigDecimal.ZERO;
+            }
+        } else if ("nbs".equals(command)) {
             if (jTextField1.getText().matches("[\\d,]+")) {
                 BigDecimal value = new BigDecimal(jTextField1.getText().replace(',', '.'));
                 if (value.doubleValue() < 10 && value.doubleValue() > -10) {
@@ -485,12 +514,42 @@ public class Calc extends javax.swing.JFrame {
                     jTextField1.setText(jTextField1.getText().substring(0, jTextField1.getText().length() - 1));
                 }
             }
-        } else if ("+".equals(command) && !initValue) {
-            BigDecimal value = new BigDecimal(jTextField1.getText().replace(',', '.'));
-            BigDecimal result = savedValue.add(value);
-            jTextField1.setText(result.toString().replace('.', ','));
-            savedValue = result;
-            currentValue = BigDecimal.ZERO;
+        } else if ("+".equals(command)) {
+            if (commandCode != '=' && !initValue) {
+                BigDecimal value = new BigDecimal(jTextField1.getText().replace(',', '.'));
+                BigDecimal result = value.add(savedValue);
+                jTextField1.setText(result.toString().replace('.', ','));
+                savedValue = result;
+                currentValue = BigDecimal.ZERO;
+            }
+            commandCode = '+';
+        } else if ("-".equals(command)) {
+            if (commandCode != '=' && !initValue) {
+                BigDecimal value = new BigDecimal(jTextField1.getText().replace(',', '.'));
+                BigDecimal result = value.subtract(savedValue);
+                jTextField1.setText(result.toString().replace('.', ','));
+                savedValue = result;
+                currentValue = BigDecimal.ZERO;
+            }
+            commandCode = '-';
+        } else if ("*".equals(command)) {
+            if (commandCode != '=' && !initValue) {
+                BigDecimal value = new BigDecimal(jTextField1.getText().replace(',', '.'));
+                BigDecimal result = value.multiply(savedValue);
+                jTextField1.setText(result.toString().replace('.', ','));
+                savedValue = result;
+                currentValue = BigDecimal.ZERO;
+            }
+            commandCode = '*';
+        } else if ("/".equals(command)) {
+            if (commandCode != '=' && !initValue) {
+                BigDecimal value = new BigDecimal(jTextField1.getText().replace(',', '.'));
+                BigDecimal result = value.divide(savedValue);
+                jTextField1.setText(result.toString().replace('.', ','));
+                savedValue = result;
+                currentValue = BigDecimal.ZERO;
+            }
+            commandCode = '/';
         }
         if (doInitValue) {
             initValue = true;
@@ -556,7 +615,7 @@ public class Calc extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-        // TODO add your handling code here:
+        fCalc("/");
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
@@ -576,7 +635,7 @@ public class Calc extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton18ActionPerformed
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
-        // TODO add your handling code here:
+        fCalc("*");
     }//GEN-LAST:event_jButton19ActionPerformed
 
     private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
@@ -592,7 +651,7 @@ public class Calc extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton23ActionPerformed
 
     private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
-        // TODO add your handling code here:
+        fCalc("-");
     }//GEN-LAST:event_jButton24ActionPerformed
 
     private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
@@ -608,6 +667,7 @@ public class Calc extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton28ActionPerformed
 
     private void jButton25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton25ActionPerformed
+        fCalc("=");
     }
         // TODO add your handling code here:}//GEN-LAST:event_jButton25ActionPerformed
 

@@ -33,6 +33,10 @@ package com.github.swingcalculator;
 import java.math.BigDecimal;
 
 public class Calc extends javax.swing.JFrame {
+    private BigDecimal currentValue = BigDecimal.ZERO;
+    private BigDecimal savedValue = BigDecimal.ZERO;
+    private boolean initValue;
+    private boolean doInitValue = true;
     
     /** Creates new form Calc */
     public Calc() {
@@ -462,7 +466,13 @@ public class Calc extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addCalc(java.awt.event.ActionEvent evt) {
-        jTextField1.setText(jTextField1.getText() + evt.getActionCommand());
+        if (initValue) {
+            jTextField1.setText(jTextField1.getText());
+        } else {
+            jTextField1.setText(jTextField1.getText() + evt.getActionCommand());
+        }
+        initValue = false;
+        currentValue = new BigDecimal(jTextField1.getText().replace(',', '.'));
     }
 
     private void fCalc(String command) {
@@ -475,6 +485,17 @@ public class Calc extends javax.swing.JFrame {
                     jTextField1.setText(jTextField1.getText().substring(0, jTextField1.getText().length() - 1));
                 }
             }
+        } else if ("+".equals(command) && !initValue) {
+            BigDecimal value = new BigDecimal(jTextField1.getText().replace(',', '.'));
+            BigDecimal result = savedValue.add(value);
+            jTextField1.setText(result.toString().replace('.', ','));
+            savedValue = result;
+            currentValue = BigDecimal.ZERO;
+        }
+        if (doInitValue) {
+            initValue = true;
+        } else {
+            doInitValue = true;
         }
     }
     private void keyDetect(java.awt.event.ActionEvent evt) {
@@ -583,7 +604,7 @@ public class Calc extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton27ActionPerformed
 
     private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
-        // TODO add your handling code here:
+        fCalc("+");
     }//GEN-LAST:event_jButton28ActionPerformed
 
     private void jButton25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton25ActionPerformed

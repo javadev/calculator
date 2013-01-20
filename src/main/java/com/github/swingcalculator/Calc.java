@@ -31,6 +31,7 @@
 package com.github.swingcalculator;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class Calc extends javax.swing.JFrame {
     private BigDecimal currentValue = BigDecimal.ZERO;
@@ -500,7 +501,7 @@ public class Calc extends javax.swing.JFrame {
                         result = savedValue.multiply(value);
                         break;
                     case '/':
-                        result = savedValue.divide(value);
+                        result = savedValue.divide(value, 16, RoundingMode.HALF_UP);
                         break;
                 }
                 commandCode = '=';

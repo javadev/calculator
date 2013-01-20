@@ -35,7 +35,7 @@ import java.math.BigDecimal;
 public class Calc extends javax.swing.JFrame {
     private BigDecimal currentValue = BigDecimal.ZERO;
     private BigDecimal savedValue = BigDecimal.ZERO;
-    private boolean initValue;
+    private boolean initValue = true;
     private boolean doInitValue = true;
     private char commandCode = '=';
     
@@ -560,7 +560,8 @@ public class Calc extends javax.swing.JFrame {
     private void keyDetect(java.awt.event.ActionEvent evt) {
         if (evt.getActionCommand().charAt(0) >= '0' && evt.getActionCommand().charAt(0) <= '9') {
             addCalc(evt);
-        } else if (evt.getActionCommand().charAt(0) == ',' && !jTextField1.getText().contains(",")) {
+        } else if (evt.getActionCommand().charAt(0) == ',' && !jTextField1.getText().contains(",")
+                && jTextField1.getText().matches("\\d+")) {
             addCalc(evt);
         } else if (evt.getActionCommand().charAt(0) == '←') {
             fCalc("nbs");

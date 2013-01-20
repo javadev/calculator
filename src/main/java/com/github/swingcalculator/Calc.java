@@ -531,7 +531,7 @@ public class Calc extends javax.swing.JFrame {
         } else if ("+".equals(command)) {
             if (commandCode != '=' && !initValue) {
                 BigDecimal value = new BigDecimal(jTextField1.getText().replace(',', '.'));
-                BigDecimal result = value.add(savedValue);
+                BigDecimal result = savedValue.add(value);
                 jTextField1.setText(result.toString().replace('.', ','));
                 savedValue = result;
                 currentValue = BigDecimal.ZERO;
@@ -540,7 +540,7 @@ public class Calc extends javax.swing.JFrame {
         } else if ("-".equals(command)) {
             if (commandCode != '=' && !initValue) {
                 BigDecimal value = new BigDecimal(jTextField1.getText().replace(',', '.'));
-                BigDecimal result = value.subtract(savedValue);
+                BigDecimal result = savedValue.subtract(value);
                 jTextField1.setText(result.toString().replace('.', ','));
                 savedValue = result;
                 currentValue = BigDecimal.ZERO;
@@ -549,7 +549,7 @@ public class Calc extends javax.swing.JFrame {
         } else if ("*".equals(command)) {
             if (commandCode != '=' && !initValue) {
                 BigDecimal value = new BigDecimal(jTextField1.getText().replace(',', '.'));
-                BigDecimal result = value.multiply(savedValue);
+                BigDecimal result = savedValue.multiply(value);
                 jTextField1.setText(result.toString().replace('.', ','));
                 savedValue = result;
                 currentValue = BigDecimal.ZERO;
@@ -558,7 +558,7 @@ public class Calc extends javax.swing.JFrame {
         } else if ("/".equals(command)) {
             if (commandCode != '=' && !initValue) {
                 BigDecimal value = new BigDecimal(jTextField1.getText().replace(',', '.'));
-                BigDecimal result = value.divide(savedValue);
+                BigDecimal result = savedValue.divide(value, 16, RoundingMode.HALF_UP);
                 jTextField1.setText(result.toString().replace('.', ','));
                 savedValue = result;
                 currentValue = BigDecimal.ZERO;

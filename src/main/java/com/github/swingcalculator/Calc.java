@@ -508,6 +508,16 @@ public class Calc extends javax.swing.JFrame {
                 savedValue = result;
                 currentValue = BigDecimal.ZERO;
             }
+        } else if ("+-".equals(command)) {
+                BigDecimal value = new BigDecimal(jTextField1.getText().replace(',', '.'));
+                jTextField1.setText(value.multiply(new BigDecimal("-1")).toString().replace('.', ','));
+                if (commandCode == '=') {
+                    savedValue = new BigDecimal(jTextField1.getText().replace(',', '.'));
+                    currentValue = BigDecimal.ZERO;
+                } else {
+                    currentValue = new BigDecimal(jTextField1.getText().replace(',', '.'));
+                }
+                doInitValue = true;
         } else if ("nbs".equals(command)) {
             if (jTextField1.getText().matches("[\\d,]+")) {
                 BigDecimal value = new BigDecimal(jTextField1.getText().replace(',', '.'));
@@ -598,7 +608,7 @@ public class Calc extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
+        fCalc("+-");
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed

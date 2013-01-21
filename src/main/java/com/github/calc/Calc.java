@@ -471,8 +471,19 @@ public class Calc extends javax.swing.JFrame {
         initValue = false;
     }
 
+    private void initCalc() {
+        currentValue = BigDecimal.ZERO;
+        savedValue = BigDecimal.ZERO;
+        initValue = true;
+        doInitValue = true;
+        commandCode = '=';
+        jTextField1.setText("0");
+    }
+
     private void fCalc(String command) {
-        if ("=".equals(command)) {
+        if("ce".equals(command)) {
+            initCalc();
+        } else if ("=".equals(command)) {
             if (commandCode != '=' && !initValue) {
                 BigDecimal value = new BigDecimal(jTextField1.getText().replace(',', '.'));
                 BigDecimal result = BigDecimal.ZERO;
@@ -557,6 +568,7 @@ public class Calc extends javax.swing.JFrame {
             doInitValue = true;
         }
     }
+
     private void keyDetect(java.awt.event.ActionEvent evt) {
         if (evt.getActionCommand().charAt(0) >= '0' && evt.getActionCommand().charAt(0) <= '9') {
             addCalc(evt);
@@ -587,7 +599,7 @@ public class Calc extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
+        fCalc("ce");
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed

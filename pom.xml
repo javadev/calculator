@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   
   <groupId>com.github</groupId>
-  <artifactId>swingcalculator</artifactId>
+  <artifactId>calc</artifactId>
   <packaging>jar</packaging>
   <version>1.0-SNAPSHOT</version>
   <name>Swing calculator application</name>
@@ -26,7 +26,7 @@
         <configuration>  
           <archive>  
             <manifest>  
-              <mainClass>com.github.swingcalculator.Calc</mainClass>  
+              <mainClass>com.github.calc.Calc</mainClass>  
             </manifest>  
           </archive>  
         </configuration>  
@@ -43,7 +43,7 @@
           </execution>
         </executions>
         <configuration>
-          <mainClass>com.github.swingcalculator.Calc</mainClass>
+          <mainClass>com.github.calc.Calc</mainClass>
         </configuration>
       </plugin>
       <plugin>

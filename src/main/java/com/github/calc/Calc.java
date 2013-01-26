@@ -523,7 +523,7 @@ public class Calc extends javax.swing.JFrame {
                 } catch (ArithmeticException ex) {
                     ex.getMessage();
                 }
-                jTextField1.setText(currentValue.toString().replace('.', ',')
+                jTextField1.setText(currentValue.setScale(16, BigDecimal.ROUND_HALF_UP).toString().replace('.', ',')
                     .replaceFirst("(.+?)0+$", "$1").replaceFirst(",$", ""));
                 if (commandCode == '=') {
                     savedValue = currentValue;

@@ -592,6 +592,15 @@ public class Calc extends javax.swing.JFrame {
                 currentValue = BigDecimal.ZERO;
             }
             doInitValue = true;
+        } else if ("%".equals(command)) {
+            if (commandCode != '=' && !initValue) {
+                BigDecimal value = new BigDecimal(jTextField1.getText().replace(',', '.'));
+                BigDecimal result = savedValue.multiply(value).divide(BigDecimal.valueOf(100), 18, BigDecimal.ROUND_HALF_UP);
+                jTextField1.setText(result.setScale(16, BigDecimal.ROUND_HALF_UP).toString().replace('.', ',')
+                    .replaceFirst("(.+?)0+$", "$1").replaceFirst(",$", ""));
+                currentValue = result;
+                return;
+            }
         }
         if (doInitValue) {
             initValue = true;
@@ -662,7 +671,7 @@ public class Calc extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
-        // TODO add your handling code here:
+        fCalc("%");
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed

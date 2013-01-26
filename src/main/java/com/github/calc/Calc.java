@@ -508,13 +508,26 @@ public class Calc extends javax.swing.JFrame {
                 currentValue = BigDecimal.ZERO;
             }
         } else if ("+-".equals(command)) {
-                BigDecimal value = new BigDecimal(jTextField1.getText().replace(',', '.'));
-                jTextField1.setText(value.multiply(new BigDecimal("-1")).toString().replace('.', ','));
+                currentValue = new BigDecimal(jTextField1.getText().replace(',', '.'));
+                currentValue = currentValue.multiply(new BigDecimal("-1"));
+                jTextField1.setText(currentValue.toString().replace('.', ','));
                 if (commandCode == '=') {
-                    savedValue = new BigDecimal(jTextField1.getText().replace(',', '.'));
+                    savedValue = currentValue;
                     currentValue = BigDecimal.ZERO;
-                } else {
-                    currentValue = new BigDecimal(jTextField1.getText().replace(',', '.'));
+                }
+                doInitValue = true;
+        } else if("sqrt".equals(command)) {
+                currentValue = new BigDecimal(jTextField1.getText().replace(',', '.'));
+                try {
+                    currentValue = BigDecimalUtil.sqrt(currentValue);
+                } catch (ArithmeticException ex) {
+                    ex.getMessage();
+                }
+                jTextField1.setText(currentValue.toString().replace('.', ',')
+                    .replaceFirst("(.+?)0+$", "$1").replaceFirst(",$", ""));
+                if (commandCode == '=') {
+                    savedValue = currentValue;
+                    currentValue = BigDecimal.ZERO;
                 }
                 doInitValue = true;
         } else if ("nbs".equals(command)) {
@@ -559,11 +572,26 @@ public class Calc extends javax.swing.JFrame {
                 BigDecimal value = new BigDecimal(jTextField1.getText().replace(',', '.'));
                 BigDecimal result = savedValue.divide(value, 18, BigDecimal.ROUND_HALF_UP);
                 jTextField1.setText(result.setScale(16, BigDecimal.ROUND_HALF_UP).toString().replace('.', ',')
-                    .replaceFirst("0+$", "").replaceFirst(",$", ""));
+                    .replaceFirst("(.+?)0+$", "$1").replaceFirst(",$", ""));
                 savedValue = result;
                 currentValue = BigDecimal.ZERO;
             }
             commandCode = '/';
+        } else if ("1/x".equals(command)) {
+            currentValue = savedValue == BigDecimal.ZERO
+                ? new BigDecimal(jTextField1.getText().replace(',', '.')) : savedValue;
+            try {
+                currentValue = BigDecimal.ONE.divide(currentValue, 18, BigDecimal.ROUND_HALF_UP);
+            } catch (ArithmeticException ex) {
+                ex.getMessage();
+            }
+            jTextField1.setText(currentValue.setScale(16, BigDecimal.ROUND_HALF_UP).toString().replace('.', ',')
+                .replaceFirst("(.+?)0+$", "$1").replaceFirst(",$", ""));
+            if (commandCode == '=') {
+                savedValue = currentValue;
+                currentValue = BigDecimal.ZERO;
+            }
+            doInitValue = true;
         }
         if (doInitValue) {
             initValue = true;
@@ -614,7 +642,7 @@ public class Calc extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        // TODO add your handling code here:
+        fCalc("sqrt");
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
@@ -710,7 +738,7 @@ public class Calc extends javax.swing.JFrame {
     }//GEN-LAST:event_formKeyTyped
 
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
-        // TODO add your handling code here:
+        fCalc("1/x");
     }//GEN-LAST:event_jButton20ActionPerformed
     
     /**

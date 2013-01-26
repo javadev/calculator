@@ -498,11 +498,12 @@ public class Calc extends javax.swing.JFrame {
                         result = savedValue.multiply(value);
                         break;
                     case '/':
-                        result = savedValue.divide(value, 16, BigDecimal.ROUND_HALF_UP);
+                        result = savedValue.divide(value, 18, BigDecimal.ROUND_HALF_UP);
                         break;
                 }
                 commandCode = '=';
-                jTextField1.setText(result.toString().replace('.', ','));
+                jTextField1.setText(result.setScale(16, BigDecimal.ROUND_HALF_UP).toString().replace('.', ',')
+                    .replaceFirst("0+$", "").replaceFirst(",$", ""));
                 savedValue = result;
                 currentValue = BigDecimal.ZERO;
             }
@@ -524,6 +525,7 @@ public class Calc extends javax.swing.JFrame {
                 } else {
                     jTextField1.setText(jTextField1.getText().substring(0, jTextField1.getText().length() - 1));
                 }
+                return;
             }
         } else if ("+".equals(command)) {
             if (commandCode != '=' && !initValue) {
@@ -555,8 +557,9 @@ public class Calc extends javax.swing.JFrame {
         } else if ("/".equals(command)) {
             if (commandCode != '=' && !initValue) {
                 BigDecimal value = new BigDecimal(jTextField1.getText().replace(',', '.'));
-                BigDecimal result = savedValue.divide(value, 16, BigDecimal.ROUND_HALF_UP);
-                jTextField1.setText(result.toString().replace('.', ','));
+                BigDecimal result = savedValue.divide(value, 18, BigDecimal.ROUND_HALF_UP);
+                jTextField1.setText(result.setScale(16, BigDecimal.ROUND_HALF_UP).toString().replace('.', ',')
+                    .replaceFirst("0+$", "").replaceFirst(",$", ""));
                 savedValue = result;
                 currentValue = BigDecimal.ZERO;
             }

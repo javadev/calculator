@@ -533,7 +533,7 @@ public class Calc extends javax.swing.JFrame {
                 }
                 commandCode = '=';
                 jTextField1.setText(result.setScale(16, BigDecimal.ROUND_HALF_UP).toString().replace('.', ',')
-                    .replaceFirst("0+$", "").replaceFirst(",$", ""));
+                    .replaceFirst("0+$", "").replaceFirst(",$", "").replace("E-16", ""));
                 savedValue = result;
                 currentValue = BigDecimal.ZERO;
             }

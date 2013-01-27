@@ -19,6 +19,12 @@ package com.github.calc;
 
 import java.math.BigDecimal;
 
+/**
+ * Java swing calculator.
+ *
+ * @author Valentyn Kolesnikov
+ * @version $Revision$ $Date$
+ */
 public class Calc extends javax.swing.JFrame {
     private BigDecimal currentValue = BigDecimal.ZERO;
     private BigDecimal savedValue = BigDecimal.ZERO;
@@ -131,7 +137,7 @@ public class Calc extends javax.swing.JFrame {
             }
         });
 
-        jButton6.setText("←");
+        jButton6.setText("\u2190");
         jButton6.setFocusable(false);
         jButton6.setMargin(new java.awt.Insets(2, 2, 2, 2));
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -650,7 +656,7 @@ public class Calc extends javax.swing.JFrame {
             addCalc(evt);
         } else if (evt.getActionCommand().charAt(0) == ',' && !jTextField1.getText().contains(",")) {
             addCalc(evt);
-        } else if (evt.getActionCommand().charAt(0) == '←') {
+        } else if (evt.getActionCommand().charAt(0) == '\u2190') {
             fCalc("nbs");
         }
     }

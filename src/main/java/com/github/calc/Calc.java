@@ -371,6 +371,9 @@ public class Calc extends javax.swing.JFrame {
         jTextField1.setText("0");
         jTextField1.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField1KeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextField1KeyTyped(evt);
             }
@@ -842,7 +845,6 @@ public class Calc extends javax.swing.JFrame {
             fCalc("nbs");
         } else if (evt.getKeyChar() == '\n') {
             fCalc("=");
-            evt.consume();
         } else {
             java.awt.event.ActionEvent actionEvent = new java.awt.event.ActionEvent(this, 0, "" + evt.getKeyChar());
             if (evt.getKeyChar() == '.') {
@@ -868,6 +870,12 @@ public class Calc extends javax.swing.JFrame {
             Logger.getLogger(Calc.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
+        if (evt.getKeyChar() == '\n') {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField1KeyPressed
     
     /**
      * @param args the command line arguments

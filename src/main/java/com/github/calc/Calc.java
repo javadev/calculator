@@ -82,9 +82,8 @@ public class Calc extends javax.swing.JFrame {
         });
 
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
         jTextField1.setEditable(false);
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14));
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         jTextField1.setText("0");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -101,7 +100,7 @@ public class Calc extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Tahoma", 0, 10));
         jButton2.setText("MR");
         jButton2.setMargin(new java.awt.Insets(2, 0, 2, 0));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -110,7 +109,7 @@ public class Calc extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jButton3.setFont(new java.awt.Font("Tahoma", 0, 10));
         jButton3.setText("MS");
         jButton3.setMargin(new java.awt.Insets(2, 0, 2, 0));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -119,7 +118,7 @@ public class Calc extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jButton4.setFont(new java.awt.Font("Tahoma", 0, 10));
         jButton4.setText("M+");
         jButton4.setMargin(new java.awt.Insets(2, 0, 2, 0));
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -128,7 +127,7 @@ public class Calc extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jButton5.setFont(new java.awt.Font("Tahoma", 0, 10));
         jButton5.setText("M-");
         jButton5.setMargin(new java.awt.Insets(2, 0, 2, 0));
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -313,7 +312,7 @@ public class Calc extends javax.swing.JFrame {
             }
         });
 
-        jButton29.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jButton29.setFont(new java.awt.Font("Tahoma", 0, 10));
         jButton29.setText("MC");
         jButton29.setMargin(new java.awt.Insets(2, 0, 2, 0));
         jButton29.addActionListener(new java.awt.event.ActionListener() {
@@ -531,10 +530,11 @@ public class Calc extends javax.swing.JFrame {
                 }
                 doInitValue = true;
         } else if ("nbs".equals(command)) {
-            if (jTextField1.getText().matches("[\\d,]+")) {
+            if (!initValue && jTextField1.getText().matches("[\\d,]+")) {
                 BigDecimal value = new BigDecimal(jTextField1.getText().replace(',', '.'));
                 if (value.doubleValue() < 10 && value.doubleValue() > -10) {
                     jTextField1.setText("0");
+                    initValue = true;
                 } else {
                     jTextField1.setText(jTextField1.getText().substring(0, jTextField1.getText().length() - 1));
                 }
@@ -643,7 +643,7 @@ public class Calc extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
+        fCalc("ce");
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -740,6 +740,18 @@ public class Calc extends javax.swing.JFrame {
     }//GEN-LAST:event_formKeyPressed
 
     private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+        if (evt.getKeyChar() == '+' || evt.getKeyChar() == '-' || evt.getKeyChar() == '*'
+                || evt.getKeyChar() == '/' || evt.getKeyChar() == '=' || evt.getKeyChar() == '%') {
+            fCalc("" + evt.getKeyChar());
+        } else if (evt.getKeyChar() == '\b') {
+            fCalc("nbs");
+        } else {
+            java.awt.event.ActionEvent actionEvent = new java.awt.event.ActionEvent(this, 0, "" + evt.getKeyChar());
+            if (evt.getKeyChar() == '.') {
+                actionEvent = new java.awt.event.ActionEvent(this, 0, ",");
+            }
+            keyDetect(actionEvent);
+        }
     }//GEN-LAST:event_jTextField1KeyTyped
 
     private void formKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyTyped

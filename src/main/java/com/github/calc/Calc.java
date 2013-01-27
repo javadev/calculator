@@ -29,6 +29,11 @@ public class Calc extends javax.swing.JFrame {
     /** Creates new form Calc */
     public Calc() {
         initComponents();
+        setIconImage(java.awt.Toolkit.getDefaultToolkit().getImage(getClass().getResource("/calc.png")));
+        final java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
+        final int x = (screenSize.width - getWidth()) / 2;
+        final int y = (screenSize.height - getHeight()) / 2;
+        setLocation(x, y);
     }
     
     /** This method is called from within the constructor to

@@ -787,6 +787,9 @@ public class Calc extends javax.swing.JFrame {
             fCalc("" + evt.getKeyChar());
         } else if (evt.getKeyChar() == '\b') {
             fCalc("nbs");
+        } else if (evt.getKeyChar() == '\n') {
+            fCalc("=");
+            evt.consume();
         } else {
             java.awt.event.ActionEvent actionEvent = new java.awt.event.ActionEvent(this, 0, "" + evt.getKeyChar());
             if (evt.getKeyChar() == '.') {

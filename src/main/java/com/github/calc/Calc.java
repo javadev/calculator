@@ -39,7 +39,6 @@ public class Calc extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -68,6 +67,12 @@ public class Calc extends javax.swing.JFrame {
         jButton28 = new javax.swing.JButton();
         jButton29 = new javax.swing.JButton();
         jButton20 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextField1 = new javax.swing.JTextPane();
+        javax.swing.text.StyledDocument doc = jTextField1.getStyledDocument();
+        javax.swing.text.SimpleAttributeSet center = new javax.swing.text.SimpleAttributeSet();
+        javax.swing.text.StyleConstants.setAlignment(center, javax.swing.text.StyleConstants.ALIGN_RIGHT);
+        doc.setParagraphAttributes(0, doc.getLength(), center, false);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Calculator");
@@ -81,27 +86,9 @@ public class Calc extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField1.setEditable(false);
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14));
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        jTextField1.setText("0");
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextField1KeyPressed(evt);
-            }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField1KeyTyped(evt);
-            }
-        });
-
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 10));
+        jButton2.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jButton2.setText("MR");
+        jButton2.setFocusable(false);
         jButton2.setMargin(new java.awt.Insets(2, 0, 2, 0));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,8 +96,9 @@ public class Calc extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 0, 10));
+        jButton3.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jButton3.setText("MS");
+        jButton3.setFocusable(false);
         jButton3.setMargin(new java.awt.Insets(2, 0, 2, 0));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,8 +106,9 @@ public class Calc extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setFont(new java.awt.Font("Tahoma", 0, 10));
+        jButton4.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jButton4.setText("M+");
+        jButton4.setFocusable(false);
         jButton4.setMargin(new java.awt.Insets(2, 0, 2, 0));
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,8 +116,9 @@ public class Calc extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setFont(new java.awt.Font("Tahoma", 0, 10));
+        jButton5.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jButton5.setText("M-");
+        jButton5.setFocusable(false);
         jButton5.setMargin(new java.awt.Insets(2, 0, 2, 0));
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,6 +127,7 @@ public class Calc extends javax.swing.JFrame {
         });
 
         jButton6.setText("←");
+        jButton6.setFocusable(false);
         jButton6.setMargin(new java.awt.Insets(2, 2, 2, 2));
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -145,6 +136,7 @@ public class Calc extends javax.swing.JFrame {
         });
 
         jButton7.setText("CE");
+        jButton7.setFocusable(false);
         jButton7.setMargin(new java.awt.Insets(2, -1, 2, -1));
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -153,6 +145,7 @@ public class Calc extends javax.swing.JFrame {
         });
 
         jButton8.setText("C");
+        jButton8.setFocusable(false);
         jButton8.setMargin(new java.awt.Insets(2, 2, 2, 2));
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -161,6 +154,7 @@ public class Calc extends javax.swing.JFrame {
         });
 
         jButton9.setText("±");
+        jButton9.setFocusable(false);
         jButton9.setMargin(new java.awt.Insets(2, 2, 2, 2));
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -169,6 +163,7 @@ public class Calc extends javax.swing.JFrame {
         });
 
         jButton10.setText("√");
+        jButton10.setFocusable(false);
         jButton10.setMargin(new java.awt.Insets(2, 2, 2, 2));
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -177,6 +172,7 @@ public class Calc extends javax.swing.JFrame {
         });
 
         jButton11.setText("7");
+        jButton11.setFocusable(false);
         jButton11.setMargin(new java.awt.Insets(2, 2, 2, 2));
         jButton11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -185,6 +181,7 @@ public class Calc extends javax.swing.JFrame {
         });
 
         jButton12.setText("8");
+        jButton12.setFocusable(false);
         jButton12.setMargin(new java.awt.Insets(2, 2, 2, 2));
         jButton12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -193,6 +190,7 @@ public class Calc extends javax.swing.JFrame {
         });
 
         jButton13.setText("9");
+        jButton13.setFocusable(false);
         jButton13.setMargin(new java.awt.Insets(2, 2, 2, 2));
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -201,6 +199,7 @@ public class Calc extends javax.swing.JFrame {
         });
 
         jButton14.setText("/");
+        jButton14.setFocusable(false);
         jButton14.setMargin(new java.awt.Insets(2, 2, 2, 2));
         jButton14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -209,6 +208,7 @@ public class Calc extends javax.swing.JFrame {
         });
 
         jButton15.setText("%");
+        jButton15.setFocusable(false);
         jButton15.setMargin(new java.awt.Insets(2, 2, 2, 2));
         jButton15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -217,6 +217,7 @@ public class Calc extends javax.swing.JFrame {
         });
 
         jButton16.setText("4");
+        jButton16.setFocusable(false);
         jButton16.setMargin(new java.awt.Insets(2, 2, 2, 2));
         jButton16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -225,6 +226,7 @@ public class Calc extends javax.swing.JFrame {
         });
 
         jButton17.setText("5");
+        jButton17.setFocusable(false);
         jButton17.setMargin(new java.awt.Insets(2, 2, 2, 2));
         jButton17.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -233,6 +235,7 @@ public class Calc extends javax.swing.JFrame {
         });
 
         jButton18.setText("6");
+        jButton18.setFocusable(false);
         jButton18.setMargin(new java.awt.Insets(2, 2, 2, 2));
         jButton18.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -241,6 +244,7 @@ public class Calc extends javax.swing.JFrame {
         });
 
         jButton19.setText("*");
+        jButton19.setFocusable(false);
         jButton19.setMargin(new java.awt.Insets(2, 2, 2, 2));
         jButton19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -249,6 +253,7 @@ public class Calc extends javax.swing.JFrame {
         });
 
         jButton21.setText("1");
+        jButton21.setFocusable(false);
         jButton21.setMargin(new java.awt.Insets(2, 2, 2, 2));
         jButton21.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -257,6 +262,7 @@ public class Calc extends javax.swing.JFrame {
         });
 
         jButton22.setText("2");
+        jButton22.setFocusable(false);
         jButton22.setMargin(new java.awt.Insets(2, 2, 2, 2));
         jButton22.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -265,6 +271,7 @@ public class Calc extends javax.swing.JFrame {
         });
 
         jButton23.setText("3");
+        jButton23.setFocusable(false);
         jButton23.setMargin(new java.awt.Insets(2, 2, 2, 2));
         jButton23.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -273,6 +280,7 @@ public class Calc extends javax.swing.JFrame {
         });
 
         jButton24.setText("-");
+        jButton24.setFocusable(false);
         jButton24.setMargin(new java.awt.Insets(2, 2, 2, 2));
         jButton24.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -281,6 +289,7 @@ public class Calc extends javax.swing.JFrame {
         });
 
         jButton25.setText("=");
+        jButton25.setFocusable(false);
         jButton25.setMargin(new java.awt.Insets(2, 2, 2, 2));
         jButton25.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -289,6 +298,7 @@ public class Calc extends javax.swing.JFrame {
         });
 
         jButton26.setText("0");
+        jButton26.setFocusable(false);
         jButton26.setMargin(new java.awt.Insets(2, 2, 2, 2));
         jButton26.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -297,6 +307,7 @@ public class Calc extends javax.swing.JFrame {
         });
 
         jButton27.setText(",");
+        jButton27.setFocusable(false);
         jButton27.setMargin(new java.awt.Insets(2, 2, 2, 2));
         jButton27.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -305,6 +316,7 @@ public class Calc extends javax.swing.JFrame {
         });
 
         jButton28.setText("+");
+        jButton28.setFocusable(false);
         jButton28.setMargin(new java.awt.Insets(2, 2, 2, 2));
         jButton28.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -312,8 +324,9 @@ public class Calc extends javax.swing.JFrame {
             }
         });
 
-        jButton29.setFont(new java.awt.Font("Tahoma", 0, 10));
+        jButton29.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jButton29.setText("MC");
+        jButton29.setFocusable(false);
         jButton29.setMargin(new java.awt.Insets(2, 0, 2, 0));
         jButton29.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -322,6 +335,7 @@ public class Calc extends javax.swing.JFrame {
         });
 
         jButton20.setText("1/x");
+        jButton20.setFocusable(false);
         jButton20.setMargin(new java.awt.Insets(2, 0, 2, 0));
         jButton20.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -329,26 +343,37 @@ public class Calc extends javax.swing.JFrame {
             }
         });
 
+        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField1.setEditable(false);
+        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jTextField1.setText("0");
+        jTextField1.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField1KeyTyped(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTextField1);
+
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
-                        .add(org.jdesktop.layout.GroupLayout.LEADING, jTextField1)
-                        .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
-                            .add(jButton29, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                            .add(jButton2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                            .add(jButton3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                            .add(jButton4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                            .add(jButton5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                    .add(layout.createSequentialGroup()
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
+                        .add(jButton29, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jButton2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jButton3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jButton4, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jButton5, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
                         .add(jButton6, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(jButton7, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -358,7 +383,7 @@ public class Calc extends javax.swing.JFrame {
                         .add(jButton9, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(jButton10, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(layout.createSequentialGroup()
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
                         .add(jButton11, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(jButton12, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -368,7 +393,7 @@ public class Calc extends javax.swing.JFrame {
                         .add(jButton14, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(jButton15, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(layout.createSequentialGroup()
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
                         .add(jButton16, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(jButton17, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -378,7 +403,7 @@ public class Calc extends javax.swing.JFrame {
                         .add(jButton19, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .add(jButton20, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                    .add(layout.createSequentialGroup()
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                             .add(layout.createSequentialGroup()
                                 .add(jButton21, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -403,8 +428,8 @@ public class Calc extends javax.swing.JFrame {
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .addContainerGap()
-                .add(jTextField1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 51, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 46, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jButton2)
                     .add(jButton3)
@@ -727,17 +752,17 @@ public class Calc extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton29ActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
-
-    private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1KeyPressed
-
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_formKeyPressed
+
+    private void formKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formKeyTyped
+
+    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
+        fCalc("1/x");
+    }//GEN-LAST:event_jButton20ActionPerformed
 
     private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
         if (evt.getKeyChar() == '+' || evt.getKeyChar() == '-' || evt.getKeyChar() == '*'
@@ -753,14 +778,6 @@ public class Calc extends javax.swing.JFrame {
             keyDetect(actionEvent);
         }
     }//GEN-LAST:event_jTextField1KeyTyped
-
-    private void formKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_formKeyTyped
-
-    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
-        fCalc("1/x");
-    }//GEN-LAST:event_jButton20ActionPerformed
     
     /**
      * @param args the command line arguments
@@ -826,7 +843,8 @@ public class Calc extends javax.swing.JFrame {
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextPane jTextField1;
     // End of variables declaration//GEN-END:variables
     
 }

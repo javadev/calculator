@@ -863,7 +863,7 @@ public class Calc extends javax.swing.JFrame {
         try {
             jTextField1.setText((String) getToolkit().getSystemClipboard().getContents(null).getTransferData(
                     java.awt.datatransfer.DataFlavor.stringFlavor));
-            savedValue = new BigDecimal(jTextField1.getText());
+            savedValue = new BigDecimal(jTextField1.getText().replace(",", "."));
         } catch (UnsupportedFlavorException ex) {
             Logger.getLogger(Calc.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {

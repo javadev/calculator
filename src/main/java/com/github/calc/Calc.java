@@ -35,6 +35,7 @@ public class Calc extends javax.swing.JFrame {
     private boolean initValue = true;
     private boolean doInitValue = true;
     private char commandCode = '=';
+    BigDecimal memoryValue = BigDecimal.ZERO;
     
     /** Creates new form Calc */
     public Calc() {
@@ -699,6 +700,40 @@ public class Calc extends javax.swing.JFrame {
                 currentValue = result;
                 return;
             }
+        } else if ("MC".equals(command)) {
+            memoryValue = BigDecimal.ZERO;
+            if (commandCode == '=') {
+                savedValue = currentValue;
+                currentValue = BigDecimal.ZERO;
+            }
+            doInitValue = true;
+        } else if ("MR".equals(command)) {
+            jTextField1.setText(memoryValue.toString().replace('.', ','));
+            if (commandCode == '=') {
+                savedValue = currentValue;
+                currentValue = BigDecimal.ZERO;
+            }
+            doInitValue = true;
+        } else if ("MS".equals(command)) {
+            currentValue = new BigDecimal(jTextField1.getText().replace(',', '.'));
+            memoryValue = currentValue;
+            doInitValue = true;
+        } else if ("M+".equals(command)) {
+            currentValue = new BigDecimal(jTextField1.getText().replace(',', '.'));
+            memoryValue = memoryValue.add(currentValue);
+            if (commandCode == '=') {
+                savedValue = currentValue;
+                currentValue = BigDecimal.ZERO;
+            }
+            doInitValue = true;
+        } else if ("M-".equals(command)) {
+            currentValue = new BigDecimal(jTextField1.getText().replace(',', '.'));
+            memoryValue = memoryValue.subtract(currentValue);
+            if (commandCode == '=') {
+                savedValue = currentValue;
+                currentValue = BigDecimal.ZERO;
+            }
+            doInitValue = true;
         }
         if (doInitValue) {
             initValue = true;
@@ -717,19 +752,19 @@ public class Calc extends javax.swing.JFrame {
         }
     }
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        fCalc("MR");
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+        fCalc("MS");
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        fCalc("M+");
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+        fCalc("M-");
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -822,7 +857,7 @@ public class Calc extends javax.swing.JFrame {
         // TODO add your handling code here:}//GEN-LAST:event_jButton25ActionPerformed
 
     private void jButton29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton29ActionPerformed
-        // TODO add your handling code here:
+        fCalc("MC");
     }//GEN-LAST:event_jButton29ActionPerformed
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed

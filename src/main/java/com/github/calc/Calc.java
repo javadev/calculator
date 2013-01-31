@@ -680,7 +680,7 @@ public class Calc extends javax.swing.JFrame {
             currentValue = savedValue == BigDecimal.ZERO
                 ? new BigDecimal(jTextField1.getText().replace(',', '.')) : savedValue;
             try {
-                currentValue = BigDecimal.ONE.divide(currentValue, 18, BigDecimal.ROUND_HALF_UP);
+                currentValue = BigDecimal.ONE.divide(currentValue, 32, BigDecimal.ROUND_HALF_UP);
             } catch (ArithmeticException ex) {
                 ex.getMessage();
             }

@@ -136,7 +136,7 @@ function fCalc(command) {
             return;
         }
     } else if ("MC" == command) {
-        memoryValue = BigDecimal.ZERO;
+        memoryValue = BigDecimal.valueOf(0);
         if (commandCode == '=') {
             savedValue = currentValue;
             currentValue = BigDecimal.ZERO;

@@ -118,4 +118,42 @@ public class CalcTest {
             "5", jTextField1.getText());
     }
 
+    @Test
+    public void mr() throws Exception {
+        Method method = calc.getClass().getDeclaredMethod("keyDetect", new Class[] { java.awt.event.ActionEvent.class });
+        method.setAccessible(true);
+        Method methodFCalc = calc.getClass().getDeclaredMethod("fCalc", new Class[] { java.lang.String.class });
+        methodFCalc.setAccessible(true);
+        method.invoke(calc, new java.awt.event.ActionEvent("source", 1, "59"));
+        methodFCalc.invoke(calc, "M+");
+        method.invoke(calc, new java.awt.event.ActionEvent("source", 1, "1"));
+        methodFCalc.invoke(calc, "+");
+        methodFCalc.invoke(calc, "MR");
+        methodFCalc.invoke(calc, "=");
+        Field field = calc.getClass().getDeclaredField("jTextField1");
+        field.setAccessible(true);
+        javax.swing.JTextPane jTextField1 = (javax.swing.JTextPane) field.get(calc);
+        Assert.assertEquals("Value must be 60, but " + jTextField1.getText(),
+            "60", jTextField1.getText());
+    }
+
+    @Test
+    public void ms() throws Exception {
+        Method method = calc.getClass().getDeclaredMethod("keyDetect", new Class[] { java.awt.event.ActionEvent.class });
+        method.setAccessible(true);
+        Method methodFCalc = calc.getClass().getDeclaredMethod("fCalc", new Class[] { java.lang.String.class });
+        methodFCalc.setAccessible(true);
+        method.invoke(calc, new java.awt.event.ActionEvent("source", 1, "59"));
+        methodFCalc.invoke(calc, "MS");
+        method.invoke(calc, new java.awt.event.ActionEvent("source", 1, "1"));
+        methodFCalc.invoke(calc, "+");
+        methodFCalc.invoke(calc, "MR");
+        methodFCalc.invoke(calc, "=");
+        Field field = calc.getClass().getDeclaredField("jTextField1");
+        field.setAccessible(true);
+        javax.swing.JTextPane jTextField1 = (javax.swing.JTextPane) field.get(calc);
+        Assert.assertEquals("Value must be 60, but " + jTextField1.getText(),
+            "60", jTextField1.getText());
+    }
+
 }

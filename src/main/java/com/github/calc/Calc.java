@@ -708,37 +708,27 @@ public class Calc extends javax.swing.JFrame {
             }
         } else if ("MC".equals(command)) {
             memoryValue = BigDecimal.ZERO;
-            if (commandCode == '=') {
-                savedValue = currentValue;
-                currentValue = BigDecimal.ZERO;
-            }
             doInitValue = true;
         } else if ("MR".equals(command)) {
-            jTextField1.setText(memoryValue.toString().replace('.', ','));
+            jTextField1.setText(memoryValue.toPlainString().replace('.', ','));
             if (commandCode == '=') {
-                savedValue = currentValue;
+                savedValue = memoryValue;
                 currentValue = BigDecimal.ZERO;
+            } else {
+                currentValue = memoryValue;
             }
-            doInitValue = true;
+            doInitValue = false;
+            initValue = false;
         } else if ("MS".equals(command)) {
-            currentValue = new BigDecimal(jTextField1.getText().replace(',', '.'));
-            memoryValue = currentValue;
+            memoryValue = new BigDecimal(jTextField1.getText().replace(',', '.'));
             doInitValue = true;
         } else if ("M+".equals(command)) {
             currentValue = new BigDecimal(jTextField1.getText().replace(',', '.'));
             memoryValue = memoryValue.add(currentValue);
-            if (commandCode == '=') {
-                savedValue = currentValue;
-                currentValue = BigDecimal.ZERO;
-            }
             doInitValue = true;
         } else if ("M-".equals(command)) {
             currentValue = new BigDecimal(jTextField1.getText().replace(',', '.'));
             memoryValue = memoryValue.subtract(currentValue);
-            if (commandCode == '=') {
-                savedValue = currentValue;
-                currentValue = BigDecimal.ZERO;
-            }
             doInitValue = true;
         }
         if (doInitValue) {

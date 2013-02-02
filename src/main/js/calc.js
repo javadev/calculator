@@ -168,8 +168,7 @@ function fCalc(command) {
         initValue = false;
     } else if ("MS" == command) {
         memoryValue = new BigDecimal($id().value.replace(',', '.'));
-        doInitValue = false;
-        initValue = false;
+        doInitValue = true;
     } else if ("M+" == command) {
         currentValue = new BigDecimal($id().value.replace(',', '.'));
         memoryValue = memoryValue.add(currentValue);

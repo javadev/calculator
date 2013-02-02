@@ -1,1 +1,1 @@
-mvn exec:java -Dexec.args="%*"
+java -jar calc.jar

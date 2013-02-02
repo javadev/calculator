@@ -55,8 +55,23 @@ public class CalcTest {
         Field field = calc.getClass().getDeclaredField("jTextField1");
         field.setAccessible(true);
         javax.swing.JTextPane jTextField1 = (javax.swing.JTextPane) field.get(calc);
-        Assert.assertEquals("Password must be 0,01, but " + jTextField1.getText(),
+        Assert.assertEquals("Value must be 0,01, but " + jTextField1.getText(),
             "0,01", jTextField1.getText());
+    }
+
+    @Test
+    public void sqrt() throws Exception {
+        Method method = calc.getClass().getDeclaredMethod("keyDetect", new Class[] { java.awt.event.ActionEvent.class });
+        method.setAccessible(true);
+        Method methodFCalc = calc.getClass().getDeclaredMethod("fCalc", new Class[] { java.lang.String.class });
+        methodFCalc.setAccessible(true);
+        method.invoke(calc, new java.awt.event.ActionEvent("source", 1, "9"));
+        methodFCalc.invoke(calc, "sqrt");
+        Field field = calc.getClass().getDeclaredField("jTextField1");
+        field.setAccessible(true);
+        javax.swing.JTextPane jTextField1 = (javax.swing.JTextPane) field.get(calc);
+        Assert.assertEquals("Value must be 3, but " + jTextField1.getText(),
+            "3", jTextField1.getText());
     }
 
 }

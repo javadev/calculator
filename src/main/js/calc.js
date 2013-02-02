@@ -158,15 +158,18 @@ function fCalc(command) {
         doInitValue = true;
     } else if ("MR" == command) {
         $id().value = memoryValue.toPlainString().replace('.', ',');
-        if (commandCode != '=') {
+        if (commandCode == '=') {
+            savedValue = memoryValue;
             currentValue = BigDecimal.valueOf(0);
-            initValue = false;
+        } else {
+            currentValue = memoryValue;
         }
         doInitValue = false;
+        initValue = false;
     } else if ("MS" == command) {
-        currentValue = new BigDecimal($id().value.replace(',', '.'));
-        memoryValue = currentValue;
-        doInitValue = true;
+        memoryValue = new BigDecimal($id().value.replace(',', '.'));
+        doInitValue = false;
+        initValue = false;
     } else if ("M+" == command) {
         currentValue = new BigDecimal($id().value.replace(',', '.'));
         memoryValue = memoryValue.add(currentValue);

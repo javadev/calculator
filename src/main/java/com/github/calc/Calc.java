@@ -591,7 +591,7 @@ public class Calc extends javax.swing.JFrame {
                         break;
                     case '/':
                         try {
-                            result = savedValue.divide(value, 18, BigDecimal.ROUND_HALF_UP);
+                            result = savedValue.divide(value, 32, BigDecimal.ROUND_HALF_UP);
                         } catch (ArithmeticException ex) {
                             initCalc();
                             jTextField1.setText("Error.");
@@ -621,7 +621,7 @@ public class Calc extends javax.swing.JFrame {
                 } catch (ArithmeticException ex) {
                     ex.getMessage();
                 }
-                jTextField1.setText(currentValue.setScale(16, BigDecimal.ROUND_HALF_UP).toString().replace('.', ',')
+                jTextField1.setText(currentValue.setScale(16, BigDecimal.ROUND_HALF_UP).toPlainString().replace('.', ',')
                     .replaceFirst("(.+?)0+$", "$1").replaceFirst(",$", ""));
                 if (commandCode == '=') {
                     savedValue = currentValue;
@@ -669,8 +669,8 @@ public class Calc extends javax.swing.JFrame {
         } else if ("/".equals(command)) {
             if (commandCode != '=' && !initValue) {
                 BigDecimal value = new BigDecimal(jTextField1.getText().replace(',', '.'));
-                BigDecimal result = savedValue.divide(value, 18, BigDecimal.ROUND_HALF_UP);
-                jTextField1.setText(result.setScale(16, BigDecimal.ROUND_HALF_UP).toString().replace('.', ',')
+                BigDecimal result = savedValue.divide(value, 32, BigDecimal.ROUND_HALF_UP);
+                jTextField1.setText(result.setScale(16, BigDecimal.ROUND_HALF_UP).toPlainString().replace('.', ',')
                     .replaceFirst("(.+?)0+$", "$1").replaceFirst(",$", ""));
                 savedValue = result;
                 currentValue = BigDecimal.ZERO;
@@ -684,7 +684,7 @@ public class Calc extends javax.swing.JFrame {
             } catch (ArithmeticException ex) {
                 ex.getMessage();
             }
-            jTextField1.setText(currentValue.setScale(16, BigDecimal.ROUND_HALF_UP).toString().replace('.', ',')
+            jTextField1.setText(currentValue.setScale(16, BigDecimal.ROUND_HALF_UP).toPlainString().replace('.', ',')
                 .replaceFirst("(.+?)0+$", "$1").replaceFirst(",$", ""));
             if (commandCode == '=') {
                 savedValue = currentValue;
@@ -694,8 +694,8 @@ public class Calc extends javax.swing.JFrame {
         } else if ("%".equals(command)) {
             if (commandCode != '=' && !initValue) {
                 BigDecimal value = new BigDecimal(jTextField1.getText().replace(',', '.'));
-                BigDecimal result = savedValue.multiply(value).divide(BigDecimal.valueOf(100), 18, BigDecimal.ROUND_HALF_UP);
-                jTextField1.setText(result.setScale(16, BigDecimal.ROUND_HALF_UP).toString().replace('.', ',')
+                BigDecimal result = savedValue.multiply(value).divide(BigDecimal.valueOf(100), 32, BigDecimal.ROUND_HALF_UP);
+                jTextField1.setText(result.setScale(16, BigDecimal.ROUND_HALF_UP).toPlainString().replace('.', ',')
                     .replaceFirst("(.+?)0+$", "$1").replaceFirst(",$", ""));
                 currentValue = result;
                 return;

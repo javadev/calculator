@@ -60,6 +60,28 @@ public class CalcTest {
     }
 
     @Test
+    public void div() throws Exception {
+        Method method = calc.getClass().getDeclaredMethod("keyDetect", new Class[] { java.awt.event.ActionEvent.class });
+        method.setAccessible(true);
+        Method methodFCalc = calc.getClass().getDeclaredMethod("fCalc", new Class[] { java.lang.String.class });
+        methodFCalc.setAccessible(true);
+        method.invoke(calc, new java.awt.event.ActionEvent("source", 1, "1"));
+        methodFCalc.invoke(calc, "/");
+        method.invoke(calc, new java.awt.event.ActionEvent("source", 1, "7"));
+        methodFCalc.invoke(calc, "=");
+        Field field = calc.getClass().getDeclaredField("jTextField1");
+        field.setAccessible(true);
+        javax.swing.JTextPane jTextField1 = (javax.swing.JTextPane) field.get(calc);
+        Assert.assertEquals("Value must be 0,1428571428571429 but " + jTextField1.getText(),
+            "0,1428571428571429", jTextField1.getText());
+        methodFCalc.invoke(calc, "*");
+        method.invoke(calc, new java.awt.event.ActionEvent("source", 1, "7"));
+        methodFCalc.invoke(calc, "=");
+        Assert.assertEquals("Value must be 1 but " + jTextField1.getText(),
+            "1", jTextField1.getText());
+    }
+
+    @Test
     public void sqrt() throws Exception {
         Method method = calc.getClass().getDeclaredMethod("keyDetect", new Class[] { java.awt.event.ActionEvent.class });
         method.setAccessible(true);
@@ -72,6 +94,28 @@ public class CalcTest {
         javax.swing.JTextPane jTextField1 = (javax.swing.JTextPane) field.get(calc);
         Assert.assertEquals("Value must be 3, but " + jTextField1.getText(),
             "3", jTextField1.getText());
+    }
+
+    @Test
+    public void comma() throws Exception {
+        Method method = calc.getClass().getDeclaredMethod("keyDetect", new Class[] { java.awt.event.ActionEvent.class });
+        method.setAccessible(true);
+        Method methodFCalc = calc.getClass().getDeclaredMethod("fCalc", new Class[] { java.lang.String.class });
+        methodFCalc.setAccessible(true);
+        method.invoke(calc, new java.awt.event.ActionEvent("source", 1, "3"));
+        method.invoke(calc, new java.awt.event.ActionEvent("source", 1, ","));
+        method.invoke(calc, new java.awt.event.ActionEvent("source", 1, "1"));
+        methodFCalc.invoke(calc, "nbs");
+        methodFCalc.invoke(calc, "+");
+        method.invoke(calc, new java.awt.event.ActionEvent("source", 1, "2"));
+        method.invoke(calc, new java.awt.event.ActionEvent("source", 1, ","));
+        method.invoke(calc, new java.awt.event.ActionEvent("source", 1, "0"));
+        methodFCalc.invoke(calc, "=");
+        Field field = calc.getClass().getDeclaredField("jTextField1");
+        field.setAccessible(true);
+        javax.swing.JTextPane jTextField1 = (javax.swing.JTextPane) field.get(calc);
+        Assert.assertEquals("Value must be 5, but " + jTextField1.getText(),
+            "5", jTextField1.getText());
     }
 
 }

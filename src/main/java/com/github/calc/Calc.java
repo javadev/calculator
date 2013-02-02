@@ -636,13 +636,13 @@ public class Calc extends javax.swing.JFrame {
                 doInitValue = true;
         } else if ("nbs".equals(command)) {
             if (!initValue && jTextField1.getText().matches("[\\d,]+")) {
-                BigDecimal value = new BigDecimal(jTextField1.getText().replace(',', '.'));
-                if (value.doubleValue() < 10 && value.doubleValue() > -10) {
+                if (jTextField1.getText().length() == 1) {
                     jTextField1.setText("0");
                     initValue = true;
                 } else {
                     jTextField1.setText(jTextField1.getText().substring(0, jTextField1.getText().length() - 1));
                 }
+                savedValue = new BigDecimal(jTextField1.getText().replace(',', '.'));
                 return;
             }
         } else if ("+".equals(command)) {
@@ -915,7 +915,7 @@ public class Calc extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jTextField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyPressed
-        if (evt.getKeyChar() == '\n') {
+        if (evt.getKeyChar() == '\n' || evt.getKeyChar() == '\b') {
             evt.consume();
         }
     }//GEN-LAST:event_jTextField1KeyPressed

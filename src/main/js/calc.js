@@ -115,9 +115,9 @@ function fCalc(command) {
         currentValue = savedValue == BigDecimal.ZERO
             ? new BigDecimal($id().value.replace(',', '.')) : savedValue;
         try {
-            currentValue = BigDecimal.ONE.divide(currentValue, 32, BigDecimal.ROUND_HALF_UP);
+            currentValue = BigDecimal.valueOf(1).divide(currentValue, 32, BigDecimal.ROUND_HALF_UP);
         } catch (ex) {
-            ex.getMessage();
+            console.log(ex);
         }
         $id().value = currentValue.setScale(16, BigDecimal.ROUND_HALF_UP).toPlainString().replace('.', ',')
             .replace(/(.+?)0+$/, "$1").replace(/,$/, "");

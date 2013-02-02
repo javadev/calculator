@@ -1,3 +1,21 @@
+/*
+ * $Id$
+ *
+ * Copyright (c) 2013 Valentyn Kolesnikov
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 var currentValue = BigDecimal.ZERO;
 var savedValue = BigDecimal.ZERO;
 var initValue = true;
@@ -215,16 +233,16 @@ function keyDetect(keyChar) {
     return true;
 }
 function keyDetectCalc(evt) {
-    var keyChar = String.fromCharCode(evt.keyCode);
+    var keyChar = String.fromCharCode(evt.charCode);
     if (keyChar == '+' || keyChar == '-' || keyChar == '*'
             || keyChar == '/' || keyChar == '=' || keyChar == '%') {
         fCalc(keyChar);
-    } else if (keyChar == '\b') {
+    } else if (evt.keyCode == 8) {
         fCalc("nbs");
-    } else if (keyChar == '\n') {
+    } else if (evt.keyCode == 13) {
         fCalc("=");
     } else {
-        keyDetect(evt.keyCode == 188 || evt.keyCode == 190 ? ',' : keyChar);
+        keyDetect(keyChar == '.' ? ',' : keyChar);
     }
 }
 function sqrt(x) {

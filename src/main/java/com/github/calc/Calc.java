@@ -619,7 +619,7 @@ public class Calc extends javax.swing.JFrame {
                     savedValue = currentValue;
                     currentValue = BigDecimal.ZERO;
                 }
-                doInitValue = true;
+                doInitValue = false;
         } else if("sqrt".equals(command)) {
                 currentValue = new BigDecimal(jTextField1.getText().replace(',', '.'));
                 try {

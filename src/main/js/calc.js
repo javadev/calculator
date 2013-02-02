@@ -48,7 +48,7 @@ function fCalc(command) {
                 savedValue = currentValue;
                 currentValue = BigDecimal.ZERO;
             }
-            doInitValue = true;
+            doInitValue = false;
     } else if("sqrt" == command) {
             currentValue = new BigDecimal($id().value.replace(',', '.'));
             try {

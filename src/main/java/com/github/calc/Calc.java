@@ -110,7 +110,7 @@ public class Calc extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Tahoma", 0, 10));
         jButton2.setText("MR");
         jButton2.setFocusable(false);
         jButton2.setMargin(new java.awt.Insets(2, 0, 2, 0));
@@ -120,7 +120,7 @@ public class Calc extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jButton3.setFont(new java.awt.Font("Tahoma", 0, 10));
         jButton3.setText("MS");
         jButton3.setFocusable(false);
         jButton3.setMargin(new java.awt.Insets(2, 0, 2, 0));
@@ -130,7 +130,7 @@ public class Calc extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jButton4.setFont(new java.awt.Font("Tahoma", 0, 10));
         jButton4.setText("M+");
         jButton4.setFocusable(false);
         jButton4.setMargin(new java.awt.Insets(2, 0, 2, 0));
@@ -140,7 +140,7 @@ public class Calc extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jButton5.setFont(new java.awt.Font("Tahoma", 0, 10));
         jButton5.setText("M-");
         jButton5.setFocusable(false);
         jButton5.setMargin(new java.awt.Insets(2, 0, 2, 0));
@@ -348,7 +348,7 @@ public class Calc extends javax.swing.JFrame {
             }
         });
 
-        jButton29.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jButton29.setFont(new java.awt.Font("Tahoma", 0, 10));
         jButton29.setText("MC");
         jButton29.setFocusable(false);
         jButton29.setMargin(new java.awt.Insets(2, 0, 2, 0));
@@ -368,7 +368,7 @@ public class Calc extends javax.swing.JFrame {
         });
 
         jTextField1.setEditable(false);
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 20));
         jTextField1.setText("0");
         jTextField1.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -417,6 +417,11 @@ public class Calc extends javax.swing.JFrame {
         jMenu1.setText("Help");
 
         jMenuItem4.setText("About Calculator");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem4);
 
         jMenuBar2.add(jMenu1);
@@ -430,7 +435,7 @@ public class Calc extends javax.swing.JFrame {
             .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, jScrollPane1)
+                    .add(org.jdesktop.layout.GroupLayout.LEADING, jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
                     .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
                         .add(jButton29, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
@@ -538,7 +543,7 @@ public class Calc extends javax.swing.JFrame {
                             .add(jButton26)
                             .add(jButton27)
                             .add(jButton28)))
-                    .add(jButton25, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .add(jButton25, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -911,6 +916,13 @@ public class Calc extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_jTextField1KeyPressed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        About dialog = new About(this, true);
+        final java.awt.Point location = getLocation();
+        dialog.setLocation(location.x + 40, location.y + 40);
+        dialog.setVisible(true);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
     
     /**
      * @param args the command line arguments

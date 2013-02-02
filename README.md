@@ -1,4 +1,5 @@
-calc
+Calc
 ====
 
-The java/swing sample calculator
+The java/swing, javascript calculator
+

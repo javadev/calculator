@@ -553,9 +553,10 @@ public class Calc extends javax.swing.JFrame {
     private void addCalc(java.awt.event.ActionEvent evt) {
         if (initValue) {
             if (evt.getActionCommand().equals(",")) {
-                return;
+                jTextField1.setText("0" + evt.getActionCommand());
+            } else {
+                jTextField1.setText(evt.getActionCommand());
             }
-            jTextField1.setText(evt.getActionCommand());
         } else {
             jTextField1.setText(jTextField1.getText() + evt.getActionCommand());
         }
@@ -750,8 +751,10 @@ public class Calc extends javax.swing.JFrame {
     private void keyDetect(java.awt.event.ActionEvent evt) {
         if (evt.getActionCommand().charAt(0) >= '0' && evt.getActionCommand().charAt(0) <= '9') {
             addCalc(evt);
-        } else if (evt.getActionCommand().charAt(0) == ',' && !jTextField1.getText().contains(",")) {
-            addCalc(evt);
+        } else if (evt.getActionCommand().charAt(0) == ',') {
+            if (initValue || !jTextField1.getText().contains(",")) {
+                addCalc(evt);
+            }
         } else if (evt.getActionCommand().charAt(0) == '\u2190') {
             fCalc("nbs");
         }

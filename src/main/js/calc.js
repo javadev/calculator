@@ -16,8 +16,8 @@
  * limitations under the License.
  */
 
-var currentValue = BigDecimal.ZERO;
-var savedValue = BigDecimal.ZERO;
+var currentValue = BigDecimal.valueOf(0);
+var savedValue = BigDecimal.valueOf(0);
 var initValue = true;
 var doInitValue = true;
 var commandCode = '=';
@@ -31,7 +31,7 @@ function fCalc(command) {
     } else if ("=" == command) {
         if (commandCode != '=' && !initValue) {
             var value = new BigDecimal($id().value.replace(',', '.'));
-            var result = BigDecimal.ZERO;
+            var result = BigDecimal.valueOf(0);
             switch (commandCode) {
                 case '+':
                     result = savedValue.add(value);
@@ -56,7 +56,7 @@ function fCalc(command) {
             $id().value = result.setScale(16, BigDecimal.ROUND_HALF_UP).toPlainString().replace('.', ',')
                 .replace(/0+$/, "").replace(/,$/, "");
             savedValue = result;
-            currentValue = BigDecimal.ZERO;
+            currentValue = BigDecimal.valueOf(0);
         }
     } else if ("+-" == command) {
             currentValue = new BigDecimal($id().value.replace(',', '.'));
@@ -64,7 +64,7 @@ function fCalc(command) {
             $id().value = currentValue.toPlainString().replace('.', ',');
             if (commandCode == '=') {
                 savedValue = currentValue;
-                currentValue = BigDecimal.ZERO;
+                currentValue = BigDecimal.valueOf(0);
             }
             doInitValue = false;
     } else if("sqrt" == command) {
@@ -78,7 +78,7 @@ function fCalc(command) {
                 .replace(/(.+?)0+$/, "$1").replace(/,$/, "");
             if (commandCode == '=') {
                 savedValue = currentValue;
-                currentValue = BigDecimal.ZERO;
+                currentValue = BigDecimal.valueOf(0);
             }
             doInitValue = true;
     } else if ("nbs" == command) {
@@ -98,7 +98,7 @@ function fCalc(command) {
             var result = savedValue.add(value);
             $id().value = result.toPlainString().replace('.', ',');
             savedValue = result;
-            currentValue = BigDecimal.ZERO;
+            currentValue = BigDecimal.valueOf(0);
         }
         commandCode = '+';
     } else if ("-" == command) {
@@ -107,7 +107,7 @@ function fCalc(command) {
             var result = savedValue.subtract(value);
             $id().value = result.toPlainString().replace('.', ',');
             savedValue = result;
-            currentValue = BigDecimal.ZERO;
+            currentValue = BigDecimal.valueOf(0);
         }
         commandCode = '-';
     } else if ("*" == command) {
@@ -116,7 +116,7 @@ function fCalc(command) {
             var result = savedValue.multiply(value);
             $id().value = result.toPlainString().replace('.', ',');
             savedValue = result;
-            currentValue = BigDecimal.ZERO;
+            currentValue = BigDecimal.valueOf(0);
         }
         commandCode = '*';
     } else if ("/" == command) {
@@ -126,11 +126,11 @@ function fCalc(command) {
             $id().value = result.setScale(16, BigDecimal.ROUND_HALF_UP).toPlainString().replace('.', ',')
                 .replace(/(.+?)0+$/, "$1").replace(/,$/, "");
             savedValue = result;
-            currentValue = BigDecimal.ZERO;
+            currentValue = BigDecimal.valueOf(0);
         }
         commandCode = '/';
     } else if ("1/x" == command) {
-        currentValue = savedValue == BigDecimal.ZERO
+        currentValue = savedValue == BigDecimal.valueOf(0)
             ? new BigDecimal($id().value.replace(',', '.')) : savedValue;
         try {
             currentValue = BigDecimal.valueOf(1).divide(currentValue, 32, BigDecimal.ROUND_HALF_UP);
@@ -141,7 +141,7 @@ function fCalc(command) {
             .replace(/(.+?)0+$/, "$1").replace(/,$/, "");
         if (commandCode == '=') {
             savedValue = currentValue;
-            currentValue = BigDecimal.ZERO;
+            currentValue = BigDecimal.valueOf(0);
         }
         doInitValue = true;
     } else if ("%" == command) {
@@ -155,18 +155,14 @@ function fCalc(command) {
         }
     } else if ("MC" == command) {
         memoryValue = BigDecimal.valueOf(0);
-        if (commandCode == '=') {
-            savedValue = currentValue;
-            currentValue = BigDecimal.ZERO;
-        }
         doInitValue = true;
     } else if ("MR" == command) {
         $id().value = memoryValue.toPlainString().replace('.', ',');
-        if (commandCode == '=') {
-            savedValue = currentValue;
-            currentValue = BigDecimal.ZERO;
+        if (commandCode != '=') {
+            currentValue = BigDecimal.valueOf(0);
+            initValue = false;
         }
-        doInitValue = true;
+        doInitValue = false;
     } else if ("MS" == command) {
         currentValue = new BigDecimal($id().value.replace(',', '.'));
         memoryValue = currentValue;
@@ -174,18 +170,10 @@ function fCalc(command) {
     } else if ("M+" == command) {
         currentValue = new BigDecimal($id().value.replace(',', '.'));
         memoryValue = memoryValue.add(currentValue);
-        if (commandCode == '=') {
-            savedValue = currentValue;
-            currentValue = BigDecimal.ZERO;
-        }
         doInitValue = true;
     } else if ("M-" == command) {
         currentValue = new BigDecimal($id().value.replace(',', '.'));
         memoryValue = memoryValue.subtract(currentValue);
-        if (commandCode == '=') {
-            savedValue = currentValue;
-            currentValue = BigDecimal.ZERO;
-        }
         doInitValue = true;
     }
     if (doInitValue) {
@@ -206,15 +194,15 @@ function addCalc(command) {
     }
     if (commandCode == '=') {
         savedValue = new BigDecimal($id().value.replace(',', '.'));
-        currentValue = BigDecimal.ZERO;
+        currentValue = BigDecimal.valueOf(0);
     } else {
         currentValue = new BigDecimal($id().value.replace(',', '.'));
     }
     initValue = false;
 }
 function initCalc() {
-    currentValue = BigDecimal.ZERO;
-    savedValue = BigDecimal.ZERO;
+    currentValue = BigDecimal.valueOf(0);
+    savedValue = BigDecimal.valueOf(0);
     initValue = true;
     doInitValue = true;
     commandCode = '=';

@@ -161,11 +161,12 @@ function fCalc(command) {
         if (commandCode == '=') {
             savedValue = memoryValue;
             currentValue = BigDecimal.valueOf(0);
+            doInitValue = true;
         } else {
             currentValue = memoryValue;
+            doInitValue = false;
+            initValue = false;
         }
-        doInitValue = false;
-        initValue = false;
     } else if ("MS" == command) {
         memoryValue = new BigDecimal($id().value.replace(',', '.'));
         doInitValue = true;

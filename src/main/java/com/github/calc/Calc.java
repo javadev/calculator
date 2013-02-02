@@ -714,11 +714,12 @@ public class Calc extends javax.swing.JFrame {
             if (commandCode == '=') {
                 savedValue = memoryValue;
                 currentValue = BigDecimal.ZERO;
+                doInitValue = true;
             } else {
                 currentValue = memoryValue;
+                doInitValue = false;
+                initValue = false;
             }
-            doInitValue = false;
-            initValue = false;
         } else if ("MS".equals(command)) {
             memoryValue = new BigDecimal(jTextField1.getText().replace(',', '.'));
             doInitValue = true;

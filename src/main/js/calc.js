@@ -3,7 +3,7 @@ var savedValue = BigDecimal.ZERO;
 var initValue = true;
 var doInitValue = true;
 var commandCode = '=';
-var memoryValue = BigDecimal.ZERO;
+var memoryValue = BigDecimal.valueOf(0);
 function $id() {
     return document.getElementById('calc_result');
 }

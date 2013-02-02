@@ -18,8 +18,10 @@
 }
 .calc_result
 {
-        width:90%;
-        text-align:right;
+        width: 95%;
+        text-align: right;
+        height: 30px;
+        font-size: 25px;
 }
 .calc_td_calculs
 {

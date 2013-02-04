@@ -36,6 +36,20 @@ public class Calc extends javax.swing.JFrame {
     private boolean doInitValue = true;
     private char commandCode = '=';
     BigDecimal memoryValue = BigDecimal.ZERO;
+    private String text;
+    private final String template =
+"<html>"
++ "  <head>"
++ "  </head>"
++ "  <body>"
++ "    <p style=\"text-align:right;font-size:10px;margin-top: 0\">"
++ "     %s"            
++ "    </p>"
++ "    <p style=\"text-align:right;font-size:14px;margin-top: 0\">"
++ "     %s"
++ "    </p>"
++ "  </body>"
++ "</html>";
     
     /** Creates new form Calc */
     public Calc() {
@@ -85,10 +99,7 @@ public class Calc extends javax.swing.JFrame {
         jButton20 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextField1 = new javax.swing.JTextPane();
-        javax.swing.text.StyledDocument doc = jTextField1.getStyledDocument();
-        javax.swing.text.SimpleAttributeSet center = new javax.swing.text.SimpleAttributeSet();
-        javax.swing.text.StyleConstants.setAlignment(center, javax.swing.text.StyleConstants.ALIGN_RIGHT);
-        doc.setParagraphAttributes(0, doc.getLength(), center, false);
+        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -367,9 +378,10 @@ public class Calc extends javax.swing.JFrame {
             }
         });
 
+        jTextField1.setContentType("text/html");
         jTextField1.setEditable(false);
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 20));
-        jTextField1.setText("0");
+        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        jTextField1.setText("<html>\r\n  <head>\r\n\r  </head>\r\n  <body>\r\n    <p style=\"text-align:right;font-size:10px;margin-top: 0\">\r\n    </p>\r\n    <p style=\"text-align:right;font-size:16px;margin-top: 0\">\n     0\n    </p>\n  </body>\r\n</html>\r\n");
         jTextField1.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -550,21 +562,34 @@ public class Calc extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void setText(String text) {
+        this.text = text;
+        jTextField1.setText(String.format(template, "", text));
+    }
+
+    private void setTopText(String topText) {
+        jTextField1.setText(String.format(template, topText, text));
+    }
+
+    private String getText() {
+        return text;
+    }
+
     private void addCalc(java.awt.event.ActionEvent evt) {
         if (initValue) {
             if (evt.getActionCommand().equals(",")) {
-                jTextField1.setText("0" + evt.getActionCommand());
+                setText("0" + evt.getActionCommand());
             } else {
-                jTextField1.setText(evt.getActionCommand());
+                setText(evt.getActionCommand());
             }
         } else {
-            jTextField1.setText(jTextField1.getText() + evt.getActionCommand());
+            setText(getText() + evt.getActionCommand());
         }
         if (commandCode == '=') {
-            savedValue = new BigDecimal(jTextField1.getText().replace(',', '.'));
+            savedValue = new BigDecimal(getText().replace(',', '.'));
             currentValue = BigDecimal.ZERO;
         } else {
-            currentValue = new BigDecimal(jTextField1.getText().replace(',', '.'));
+            currentValue = new BigDecimal(getText().replace(',', '.'));
         }
         initValue = false;
     }
@@ -575,7 +600,7 @@ public class Calc extends javax.swing.JFrame {
         initValue = true;
         doInitValue = true;
         commandCode = '=';
-        jTextField1.setText("0");
+        setText("0");
     }
 
     private void fCalc(String command) {
@@ -583,7 +608,7 @@ public class Calc extends javax.swing.JFrame {
             initCalc();
         } else if ("=".equals(command)) {
             if (commandCode != '=' && !initValue) {
-                BigDecimal value = new BigDecimal(jTextField1.getText().replace(',', '.'));
+                BigDecimal value = new BigDecimal(getText().replace(',', '.'));
                 BigDecimal result = BigDecimal.ZERO;
                 switch (commandCode) {
                     case '+':
@@ -600,34 +625,34 @@ public class Calc extends javax.swing.JFrame {
                             result = savedValue.divide(value, 32, BigDecimal.ROUND_HALF_UP);
                         } catch (ArithmeticException ex) {
                             initCalc();
-                            jTextField1.setText("Error.");
+                            setText("Error.");
                             return;
                         }
                         break;
                 }
                 commandCode = '=';
-                jTextField1.setText(result.setScale(16, BigDecimal.ROUND_HALF_UP).toPlainString().replace('.', ',')
+                setText(result.setScale(16, BigDecimal.ROUND_HALF_UP).toPlainString().replace('.', ',')
                     .replaceFirst("0+$", "").replaceFirst(",$", ""));
                 savedValue = result;
                 currentValue = BigDecimal.ZERO;
             }
         } else if ("+-".equals(command)) {
-                currentValue = new BigDecimal(jTextField1.getText().replace(',', '.'));
+                currentValue = new BigDecimal(getText().replace(',', '.'));
                 currentValue = currentValue.multiply(new BigDecimal("-1"));
-                jTextField1.setText(currentValue.toString().replace('.', ','));
+                setText(currentValue.toString().replace('.', ','));
                 if (commandCode == '=') {
                     savedValue = currentValue;
                     currentValue = BigDecimal.ZERO;
                 }
                 doInitValue = false;
         } else if("sqrt".equals(command)) {
-                currentValue = new BigDecimal(jTextField1.getText().replace(',', '.'));
+                currentValue = new BigDecimal(getText().replace(',', '.'));
                 try {
                     currentValue = BigDecimalUtil.sqrt(currentValue);
                 } catch (ArithmeticException ex) {
                     ex.getMessage();
                 }
-                jTextField1.setText(currentValue.setScale(16, BigDecimal.ROUND_HALF_UP).toPlainString().replace('.', ',')
+                setText(currentValue.setScale(16, BigDecimal.ROUND_HALF_UP).toPlainString().replace('.', ',')
                     .replaceFirst("(.+?)0+$", "$1").replaceFirst(",$", ""));
                 if (commandCode == '=') {
                     savedValue = currentValue;
@@ -635,62 +660,66 @@ public class Calc extends javax.swing.JFrame {
                 }
                 doInitValue = true;
         } else if ("nbs".equals(command)) {
-            if (!initValue && jTextField1.getText().matches("[\\d,]+")) {
-                if (jTextField1.getText().length() == 1) {
-                    jTextField1.setText("0");
+            if (!initValue && getText().matches("[\\d,]+")) {
+                if (getText().length() == 1) {
+                    setText("0");
                     initValue = true;
                 } else {
-                    jTextField1.setText(jTextField1.getText().substring(0, jTextField1.getText().length() - 1));
+                    setText(getText().substring(0, getText().length() - 1));
                 }
-                savedValue = new BigDecimal(jTextField1.getText().replace(',', '.'));
+                savedValue = new BigDecimal(getText().replace(',', '.'));
                 return;
             }
         } else if ("+".equals(command)) {
             if (commandCode != '=' && !initValue) {
-                BigDecimal value = new BigDecimal(jTextField1.getText().replace(',', '.'));
+                BigDecimal value = new BigDecimal(getText().replace(',', '.'));
                 BigDecimal result = savedValue.add(value);
-                jTextField1.setText(result.toString().replace('.', ','));
+                setText(result.toString().replace('.', ','));
                 savedValue = result;
                 currentValue = BigDecimal.ZERO;
             }
             commandCode = '+';
+            setTopText(getText() + " " + commandCode);
         } else if ("-".equals(command)) {
             if (commandCode != '=' && !initValue) {
-                BigDecimal value = new BigDecimal(jTextField1.getText().replace(',', '.'));
+                BigDecimal value = new BigDecimal(getText().replace(',', '.'));
                 BigDecimal result = savedValue.subtract(value);
-                jTextField1.setText(result.toString().replace('.', ','));
+                setText(result.toString().replace('.', ','));
                 savedValue = result;
                 currentValue = BigDecimal.ZERO;
             }
             commandCode = '-';
+            setTopText(getText() + " " + commandCode);
         } else if ("*".equals(command)) {
             if (commandCode != '=' && !initValue) {
-                BigDecimal value = new BigDecimal(jTextField1.getText().replace(',', '.'));
+                BigDecimal value = new BigDecimal(getText().replace(',', '.'));
                 BigDecimal result = savedValue.multiply(value);
-                jTextField1.setText(result.toString().replace('.', ','));
+                setText(result.toString().replace('.', ','));
                 savedValue = result;
                 currentValue = BigDecimal.ZERO;
             }
             commandCode = '*';
+            setTopText(getText() + " " + commandCode);
         } else if ("/".equals(command)) {
             if (commandCode != '=' && !initValue) {
-                BigDecimal value = new BigDecimal(jTextField1.getText().replace(',', '.'));
+                BigDecimal value = new BigDecimal(getText().replace(',', '.'));
                 BigDecimal result = savedValue.divide(value, 32, BigDecimal.ROUND_HALF_UP);
-                jTextField1.setText(result.setScale(16, BigDecimal.ROUND_HALF_UP).toPlainString().replace('.', ',')
+                setText(result.setScale(16, BigDecimal.ROUND_HALF_UP).toPlainString().replace('.', ',')
                     .replaceFirst("(.+?)0+$", "$1").replaceFirst(",$", ""));
                 savedValue = result;
                 currentValue = BigDecimal.ZERO;
             }
             commandCode = '/';
+            setTopText(getText() + " " + commandCode);
         } else if ("1/x".equals(command)) {
             currentValue = savedValue == BigDecimal.ZERO
-                ? new BigDecimal(jTextField1.getText().replace(',', '.')) : savedValue;
+                ? new BigDecimal(getText().replace(',', '.')) : savedValue;
             try {
                 currentValue = BigDecimal.ONE.divide(currentValue, 32, BigDecimal.ROUND_HALF_UP);
             } catch (ArithmeticException ex) {
                 ex.getMessage();
             }
-            jTextField1.setText(currentValue.setScale(16, BigDecimal.ROUND_HALF_UP).toPlainString().replace('.', ',')
+            setText(currentValue.setScale(16, BigDecimal.ROUND_HALF_UP).toPlainString().replace('.', ',')
                 .replaceFirst("(.+?)0+$", "$1").replaceFirst(",$", ""));
             if (commandCode == '=') {
                 savedValue = currentValue;
@@ -699,9 +728,9 @@ public class Calc extends javax.swing.JFrame {
             doInitValue = true;
         } else if ("%".equals(command)) {
             if (commandCode != '=' && !initValue) {
-                BigDecimal value = new BigDecimal(jTextField1.getText().replace(',', '.'));
+                BigDecimal value = new BigDecimal(getText().replace(',', '.'));
                 BigDecimal result = savedValue.multiply(value).divide(BigDecimal.valueOf(100), 32, BigDecimal.ROUND_HALF_UP);
-                jTextField1.setText(result.setScale(16, BigDecimal.ROUND_HALF_UP).toPlainString().replace('.', ',')
+                setText(result.setScale(16, BigDecimal.ROUND_HALF_UP).toPlainString().replace('.', ',')
                     .replaceFirst("(.+?)0+$", "$1").replaceFirst(",$", ""));
                 currentValue = result;
                 return;
@@ -743,7 +772,7 @@ public class Calc extends javax.swing.JFrame {
         if (evt.getActionCommand().charAt(0) >= '0' && evt.getActionCommand().charAt(0) <= '9') {
             addCalc(evt);
         } else if (evt.getActionCommand().charAt(0) == ',') {
-            if (initValue || !jTextField1.getText().contains(",")) {
+            if (initValue || !getText().contains(",")) {
                 addCalc(evt);
             }
         } else if (evt.getActionCommand().charAt(0) == '\u2190') {
@@ -889,15 +918,15 @@ public class Calc extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1KeyTyped
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        java.awt.datatransfer.StringSelection data = new java.awt.datatransfer.StringSelection(jTextField1.getText());
+        java.awt.datatransfer.StringSelection data = new java.awt.datatransfer.StringSelection(getText());
         getToolkit().getSystemClipboard().setContents(data, data);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         try {
-            jTextField1.setText((String) getToolkit().getSystemClipboard().getContents(null).getTransferData(
+            setText((String) getToolkit().getSystemClipboard().getContents(null).getTransferData(
                     java.awt.datatransfer.DataFlavor.stringFlavor));
-            savedValue = new BigDecimal(jTextField1.getText().replace(",", "."));
+            savedValue = new BigDecimal(getText().replace(",", "."));
         } catch (UnsupportedFlavorException ex) {
             Logger.getLogger(Calc.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {

@@ -739,7 +739,7 @@ public class Calc extends javax.swing.JFrame {
             memoryValue = BigDecimal.ZERO;
             doInitValue = true;
         } else if ("MR".equals(command)) {
-            jTextField1.setText(memoryValue.toPlainString().replace('.', ','));
+            setText(memoryValue.toPlainString().replace('.', ','));
             if (commandCode == '=') {
                 savedValue = memoryValue;
                 currentValue = BigDecimal.ZERO;
@@ -750,14 +750,14 @@ public class Calc extends javax.swing.JFrame {
                 initValue = false;
             }
         } else if ("MS".equals(command)) {
-            memoryValue = new BigDecimal(jTextField1.getText().replace(',', '.'));
+            memoryValue = new BigDecimal(getText().replace(',', '.'));
             doInitValue = true;
         } else if ("M+".equals(command)) {
-            currentValue = new BigDecimal(jTextField1.getText().replace(',', '.'));
+            currentValue = new BigDecimal(getText().replace(',', '.'));
             memoryValue = memoryValue.add(currentValue);
             doInitValue = true;
         } else if ("M-".equals(command)) {
-            currentValue = new BigDecimal(jTextField1.getText().replace(',', '.'));
+            currentValue = new BigDecimal(getText().replace(',', '.'));
             memoryValue = memoryValue.subtract(currentValue);
             doInitValue = true;
         }

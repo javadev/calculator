@@ -52,11 +52,11 @@ public class CalcTest {
         method.invoke(calc, new java.awt.event.ActionEvent("source", 1, ","));
         method.invoke(calc, new java.awt.event.ActionEvent("source", 1, "1"));
         methodFCalc.invoke(calc, "=");
-        Field field = calc.getClass().getDeclaredField("jTextField1");
+        Field field = calc.getClass().getDeclaredField("text");
         field.setAccessible(true);
-        javax.swing.JTextPane jTextField1 = (javax.swing.JTextPane) field.get(calc);
-        Assert.assertEquals("Value must be 0,01, but " + jTextField1.getText(),
-            "0,01", jTextField1.getText());
+        String jTextField1 = (String) field.get(calc);
+        Assert.assertEquals("Value must be 0,01, but " + jTextField1,
+            "0,01", jTextField1);
     }
 
     @Test
@@ -69,16 +69,17 @@ public class CalcTest {
         methodFCalc.invoke(calc, "/");
         method.invoke(calc, new java.awt.event.ActionEvent("source", 1, "7"));
         methodFCalc.invoke(calc, "=");
-        Field field = calc.getClass().getDeclaredField("jTextField1");
+        Field field = calc.getClass().getDeclaredField("text");
         field.setAccessible(true);
-        javax.swing.JTextPane jTextField1 = (javax.swing.JTextPane) field.get(calc);
-        Assert.assertEquals("Value must be 0,1428571428571429 but " + jTextField1.getText(),
-            "0,1428571428571429", jTextField1.getText());
+        String jTextField1 = (String) field.get(calc);
+        Assert.assertEquals("Value must be 0,1428571428571429 but " + jTextField1,
+            "0,1428571428571429", jTextField1);
         methodFCalc.invoke(calc, "*");
         method.invoke(calc, new java.awt.event.ActionEvent("source", 1, "7"));
         methodFCalc.invoke(calc, "=");
-        Assert.assertEquals("Value must be 1 but " + jTextField1.getText(),
-            "1", jTextField1.getText());
+        jTextField1 = (String) field.get(calc);
+        Assert.assertEquals("Value must be 1 but " + jTextField1,
+            "1", jTextField1);
     }
 
     @Test
@@ -89,11 +90,11 @@ public class CalcTest {
         methodFCalc.setAccessible(true);
         method.invoke(calc, new java.awt.event.ActionEvent("source", 1, "9"));
         methodFCalc.invoke(calc, "sqrt");
-        Field field = calc.getClass().getDeclaredField("jTextField1");
+        Field field = calc.getClass().getDeclaredField("text");
         field.setAccessible(true);
-        javax.swing.JTextPane jTextField1 = (javax.swing.JTextPane) field.get(calc);
-        Assert.assertEquals("Value must be 3, but " + jTextField1.getText(),
-            "3", jTextField1.getText());
+        String jTextField1 = (String) field.get(calc);
+        Assert.assertEquals("Value must be 3, but " + jTextField1,
+            "3", jTextField1);
     }
 
     @Test
@@ -111,11 +112,11 @@ public class CalcTest {
         method.invoke(calc, new java.awt.event.ActionEvent("source", 1, ","));
         method.invoke(calc, new java.awt.event.ActionEvent("source", 1, "0"));
         methodFCalc.invoke(calc, "=");
-        Field field = calc.getClass().getDeclaredField("jTextField1");
+        Field field = calc.getClass().getDeclaredField("text");
         field.setAccessible(true);
-        javax.swing.JTextPane jTextField1 = (javax.swing.JTextPane) field.get(calc);
-        Assert.assertEquals("Value must be 5, but " + jTextField1.getText(),
-            "5", jTextField1.getText());
+        String jTextField1 = (String) field.get(calc);
+        Assert.assertEquals("Value must be 5, but " + jTextField1,
+            "5", jTextField1);
     }
 
     @Test
@@ -130,11 +131,11 @@ public class CalcTest {
         methodFCalc.invoke(calc, "+");
         methodFCalc.invoke(calc, "MR");
         methodFCalc.invoke(calc, "=");
-        Field field = calc.getClass().getDeclaredField("jTextField1");
+        Field field = calc.getClass().getDeclaredField("text");
         field.setAccessible(true);
-        javax.swing.JTextPane jTextField1 = (javax.swing.JTextPane) field.get(calc);
-        Assert.assertEquals("Value must be 60, but " + jTextField1.getText(),
-            "60", jTextField1.getText());
+        String jTextField1 = (String) field.get(calc);
+        Assert.assertEquals("Value must be 60, but " + jTextField1,
+            "60", jTextField1);
     }
 
     @Test
@@ -149,11 +150,11 @@ public class CalcTest {
         methodFCalc.invoke(calc, "+");
         methodFCalc.invoke(calc, "MR");
         methodFCalc.invoke(calc, "=");
-        Field field = calc.getClass().getDeclaredField("jTextField1");
+        Field field = calc.getClass().getDeclaredField("text");
         field.setAccessible(true);
-        javax.swing.JTextPane jTextField1 = (javax.swing.JTextPane) field.get(calc);
-        Assert.assertEquals("Value must be 60, but " + jTextField1.getText(),
-            "60", jTextField1.getText());
+        String jTextField1 = (String) field.get(calc);
+        Assert.assertEquals("Value must be 60, but " + jTextField1,
+            "60", jTextField1);
     }
 
 }

@@ -19,6 +19,7 @@ package com.github.calc;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.math.MathContext;
 
 /**
  * BigDecimal utilities.
@@ -28,6 +29,9 @@ import java.math.BigInteger;
  */
 public final class BigDecimalUtil {
     private static final int SCALE = 18;
+    public static long ITER = 1000;
+    public static MathContext context = new MathContext( 100 );
+
     private BigDecimalUtil() {
     }
 
@@ -64,4 +68,25 @@ public final class BigDecimalUtil {
 
         return new BigDecimal(ix, SCALE);
     }
+
+    public static BigDecimal ln(BigDecimal x) {
+        if (x.equals(BigDecimal.ONE)) {
+            return BigDecimal.ZERO;
+        }
+
+        x = x.subtract(BigDecimal.ONE);
+        BigDecimal ret = new BigDecimal(ITER + 1);
+        for (long i = ITER; i >= 0; i--) {
+        BigDecimal N = new BigDecimal(i / 2 + 1).pow(2);
+            N = N.multiply(x, context);
+            ret = N.divide(ret, context);
+
+            N = new BigDecimal(i + 1);
+            ret = ret.add(N, context);
+
+        }
+
+        ret = x.divide(ret, context);
+        return ret;
+    }    
 }

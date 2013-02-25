@@ -82,6 +82,7 @@ function fCalc(command) {
             }
             doInitValue = true;
     } else if ("nbs" == command) {
+        //noinspection JSValidateTypes
         if (!initValue && $id().value.match("[\\d,]+")) {
             if ($id().value.length == 1) {
                 $id().value = "0";
@@ -239,7 +240,7 @@ function keyDetectCalc(evt) {
 function sqrt(x) {
     // Check that x >= 0.
     if (x.signum() < 0) {
-        throw new Exception("x < 0");
+        throw new Error("x < 0");
     }
 
     // n = x*(10^(2*32))

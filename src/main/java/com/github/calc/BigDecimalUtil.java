@@ -31,6 +31,7 @@ public final class BigDecimalUtil {
     private static final int SCALE = 18;
     public static long ITER = 1000;
     public static MathContext context = new MathContext( 100 );
+    private static final int ROUNDING_MODE = BigDecimal.ROUND_HALF_EVEN;
 
     private BigDecimalUtil() {
     }
@@ -88,5 +89,67 @@ public final class BigDecimalUtil {
 
         ret = x.divide(ret, context);
         return ret;
-    }    
+    }
+
+    public static BigDecimal cosine(BigDecimal x) {
+
+        BigDecimal currentValue = BigDecimal.ONE;
+        BigDecimal lastVal      = currentValue.add(BigDecimal.ONE);
+        BigDecimal xSquared     = x.multiply(x);
+        BigDecimal numerator    = BigDecimal.ONE;
+        BigDecimal denominator  = BigDecimal.ONE;
+        int        i            = 0;
+
+        while (lastVal.compareTo(currentValue) != 0) {
+            lastVal = currentValue;
+
+            int z = 2 * i + 2;
+
+            denominator = denominator.multiply(BigDecimal.valueOf(z));
+            denominator = denominator.multiply(BigDecimal.valueOf(z - 1));
+            numerator   = numerator.multiply(xSquared);
+
+            BigDecimal term = numerator.divide(denominator, SCALE + 5, ROUNDING_MODE);
+
+            if (i % 2 != 0) {
+                currentValue = currentValue.add(term);
+            } else {
+                currentValue = currentValue.subtract(term);
+            }
+            i++;
+        }
+
+        return currentValue;
+    }
+
+    public static BigDecimal sine(BigDecimal x) {
+        BigDecimal lastVal      = x.add(BigDecimal.ONE);
+        BigDecimal currentValue = x;
+        BigDecimal xSquared     = x.multiply(x);
+        BigDecimal numerator    = x;
+        BigDecimal denominator  = BigDecimal.ONE;
+        int        i            = 0;
+
+        while (lastVal.compareTo(currentValue) != 0) {
+            lastVal = currentValue;
+
+            int z = 2 * i + 3;
+
+            denominator = denominator.multiply(BigDecimal.valueOf(z));
+            denominator = denominator.multiply(BigDecimal.valueOf(z - 1));
+            numerator   = numerator.multiply(xSquared);
+
+            BigDecimal term = numerator.divide(denominator, SCALE + 5, ROUNDING_MODE);
+
+            if (i % 2 != 0) {
+                currentValue = currentValue.add(term);
+            } else {
+                currentValue = currentValue.subtract(term);
+            }
+
+            i++;
+        }
+        return currentValue;
+    }
+
 }

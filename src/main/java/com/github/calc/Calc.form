@@ -1,4 +1,4 @@
-<?xml version="1.1" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.3" maxVersion="1.5" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
@@ -117,7 +117,7 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane1" alignment="0" pref="519" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Component id="jPanel1" min="-2" pref="270" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -253,7 +253,7 @@
                                   <Component id="jButton26" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Component id="jButton25" alignment="0" pref="60" max="32767" attributes="0"/>
+                          <Component id="jButton25" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Component id="jPanel1" max="32767" attributes="0"/>
@@ -624,7 +624,7 @@
       <SubComponents>
         <Component class="javax.swing.JTextPane" name="jTextField1">
           <Properties>
-            <Property name="contentType" type="java.lang.String" value="text/html"/>
+            <Property name="contentType" type="java.lang.String" value="text/html" noResource="true"/>
             <Property name="editable" type="boolean" value="false"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="20" style="0"/>
@@ -783,6 +783,9 @@
               <Insets value="[2, 0, 2, 0]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton36ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton37">
           <Properties>
@@ -821,6 +824,9 @@
               <Insets value="[2, -1, 2, -1]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton41ActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton40">
           <Properties>
@@ -883,7 +889,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jRadioButton3" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jRadioButton2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jRadioButton1" alignment="3" pref="16" max="32767" attributes="0"/>
+                          <Component id="jRadioButton1" alignment="3" pref="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                   </Group>

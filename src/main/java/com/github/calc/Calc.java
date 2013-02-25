@@ -156,7 +156,7 @@ public class Calc extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 10));
+        jButton2.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jButton2.setText("MR");
         jButton2.setFocusable(false);
         jButton2.setMargin(new java.awt.Insets(2, 0, 2, 0));
@@ -166,7 +166,7 @@ public class Calc extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 0, 10));
+        jButton3.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jButton3.setText("MS");
         jButton3.setFocusable(false);
         jButton3.setMargin(new java.awt.Insets(2, 0, 2, 0));
@@ -176,7 +176,7 @@ public class Calc extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setFont(new java.awt.Font("Tahoma", 0, 10));
+        jButton4.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jButton4.setText("M+");
         jButton4.setFocusable(false);
         jButton4.setMargin(new java.awt.Insets(2, 0, 2, 0));
@@ -186,7 +186,7 @@ public class Calc extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setFont(new java.awt.Font("Tahoma", 0, 10));
+        jButton5.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jButton5.setText("M-");
         jButton5.setFocusable(false);
         jButton5.setMargin(new java.awt.Insets(2, 0, 2, 0));
@@ -413,9 +413,9 @@ public class Calc extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.setContentType("text/html");
+        jTextField1.setContentType("text/html"); // NOI18N
         jTextField1.setEditable(false);
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 20));
+        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jTextField1.setText("<html>\r\n  <head>\r\n\r  </head>\r\n  <body>\r\n    <p style=\"text-align:right;font-size:10px;margin-top: 0\">\r\n    </p>\r\n    <p style=\"text-align:right;font-size:16px;margin-top: 0\">\n     0\n    </p>\n  </body>\r\n</html>\r\n");
         jTextField1.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -432,6 +432,11 @@ public class Calc extends javax.swing.JFrame {
 
         jButton36.setText("sin");
         jButton36.setMargin(new java.awt.Insets(2, 0, 2, 0));
+        jButton36.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton36ActionPerformed(evt);
+            }
+        });
 
         jButton37.setText("X²");
         jButton37.setMargin(new java.awt.Insets(2, 0, 2, 0));
@@ -450,6 +455,11 @@ public class Calc extends javax.swing.JFrame {
 
         jButton41.setText("cos");
         jButton41.setMargin(new java.awt.Insets(2, -1, 2, -1));
+        jButton41.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton41ActionPerformed(evt);
+            }
+        });
 
         jButton40.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jButton40.setText("cosh");
@@ -493,7 +503,7 @@ public class Calc extends javax.swing.JFrame {
                 .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jRadioButton3)
                     .add(jRadioButton2)
-                    .add(jRadioButton1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 16, Short.MAX_VALUE))
+                    .add(jRadioButton1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .add(4, 4, 4))
         );
 
@@ -782,7 +792,7 @@ public class Calc extends javax.swing.JFrame {
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
+                    .add(jScrollPane1)
                     .add(layout.createSequentialGroup()
                         .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 270, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
@@ -896,7 +906,7 @@ public class Calc extends javax.swing.JFrame {
                                     .add(jButton28)
                                     .add(jButton27)
                                     .add(jButton26)))
-                            .add(jButton25, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)))
+                            .add(jButton25, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -1030,6 +1040,44 @@ public class Calc extends javax.swing.JFrame {
                         return;
                     }
                     currentValue = BigDecimalUtil.ln(currentValue);
+                } catch (ArithmeticException ex) {
+                    ex.getMessage();
+                }
+                setText(currentValue.setScale(16, BigDecimal.ROUND_HALF_UP).toPlainString().replace('.', ',')
+                    .replaceFirst("(.+?)0+$", "$1").replaceFirst(",$", ""));
+                if (commandCode == '=') {
+                    savedValue = currentValue;
+                    currentValue = BigDecimal.ZERO;
+                }
+                doInitValue = true;
+        } else if("sin".equals(command)) {            
+                currentValue = new BigDecimal(getText().replace(',', '.'));
+                try {
+                    if (currentValue.toBigInteger().toString().length() > 256) {
+                        initCalc();
+                        setText("Error.");
+                        return;
+                    }
+                    currentValue = BigDecimalUtil.sine(currentValue);
+                } catch (ArithmeticException ex) {
+                    ex.getMessage();
+                }
+                setText(currentValue.setScale(16, BigDecimal.ROUND_HALF_UP).toPlainString().replace('.', ',')
+                    .replaceFirst("(.+?)0+$", "$1").replaceFirst(",$", ""));
+                if (commandCode == '=') {
+                    savedValue = currentValue;
+                    currentValue = BigDecimal.ZERO;
+                }
+                doInitValue = true;
+        } else if("cos".equals(command)) {            
+                currentValue = new BigDecimal(getText().replace(',', '.'));
+                try {
+                    if (currentValue.toBigInteger().toString().length() > 256) {
+                        initCalc();
+                        setText("Error.");
+                        return;
+                    }
+                    currentValue = BigDecimalUtil.cosine(currentValue);
                 } catch (ArithmeticException ex) {
                     ex.getMessage();
                 }
@@ -1399,6 +1447,14 @@ public class Calc extends javax.swing.JFrame {
     private void jButton51ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton51ActionPerformed
         fCalc("ln");
     }//GEN-LAST:event_jButton51ActionPerformed
+
+    private void jButton36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton36ActionPerformed
+        fCalc("sin");
+    }//GEN-LAST:event_jButton36ActionPerformed
+
+    private void jButton41ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton41ActionPerformed
+        fCalc("cos");
+    }//GEN-LAST:event_jButton41ActionPerformed
     
     /**
      * @param args the command line arguments

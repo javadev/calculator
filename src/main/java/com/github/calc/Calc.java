@@ -114,9 +114,9 @@ public class Calc extends javax.swing.JFrame {
         jButton39 = new javax.swing.JButton();
         jButton38 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
+        jRadioButton4 = new javax.swing.JRadioButton();
+        jRadioButton5 = new javax.swing.JRadioButton();
+        jRadioButton6 = new javax.swing.JRadioButton();
         jButton43 = new javax.swing.JButton();
         jButton44 = new javax.swing.JButton();
         jButton45 = new javax.swing.JButton();
@@ -474,37 +474,37 @@ public class Calc extends javax.swing.JFrame {
         jPanel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true));
         jPanel2.setPreferredSize(new java.awt.Dimension(254, 25));
 
-        buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setSelected(true);
-        jRadioButton1.setText("Degrees");
+        buttonGroup1.add(jRadioButton4);
+        jRadioButton4.setSelected(true);
+        jRadioButton4.setText("Degrees");
 
-        buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setText("Radians");
+        buttonGroup1.add(jRadioButton5);
+        jRadioButton5.setText("Radians");
 
-        buttonGroup1.add(jRadioButton3);
-        jRadioButton3.setText("Grads");
+        buttonGroup1.add(jRadioButton6);
+        jRadioButton6.setText("Grads");
 
         org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .add(jRadioButton1)
-                .add(18, 18, 18)
-                .add(jRadioButton2)
-                .add(18, 18, 18)
-                .add(jRadioButton3)
-                .add(28, 28, 28))
+            .add(jPanel2Layout.createSequentialGroup()
+                .add(19, 19, 19)
+                .add(jRadioButton4)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jRadioButton5)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(jRadioButton6)
+                .addContainerGap(51, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanel2Layout.createSequentialGroup()
                 .add(jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jRadioButton3)
-                    .add(jRadioButton2)
-                    .add(jRadioButton1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .add(4, 4, 4))
+                    .add(jRadioButton4)
+                    .add(jRadioButton5)
+                    .add(jRadioButton6))
+                .add(0, 4, Short.MAX_VALUE))
         );
 
         jButton43.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
@@ -1596,9 +1596,9 @@ public class Calc extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
+    private javax.swing.JRadioButton jRadioButton4;
+    private javax.swing.JRadioButton jRadioButton5;
+    private javax.swing.JRadioButton jRadioButton6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextPane jTextField1;
     // End of variables declaration//GEN-END:variables

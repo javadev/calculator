@@ -152,4 +152,12 @@ public final class BigDecimalUtil {
         return currentValue;
     }
 
+    public static BigDecimal tangent(BigDecimal x) {
+
+        BigDecimal sin = sine(x);
+        BigDecimal cos = cosine(x);
+
+        return sin.divide(cos, SCALE, BigDecimal.ROUND_HALF_UP);
+    }
+
 }

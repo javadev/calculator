@@ -1050,6 +1050,26 @@ public class Calc extends javax.swing.JFrame {
                     currentValue = BigDecimal.ZERO;
                 }
                 doInitValue = true;
+        } else if("log".equals(command)) {            
+                currentValue = new BigDecimal(getText().replace(',', '.'));
+                try {
+                    if (currentValue.compareTo(BigDecimal.ZERO) < 0 ||
+                        currentValue.toBigInteger().toString().length() > 256) {
+                        initCalc();
+                        setText("Error.");
+                        return;
+                    }
+                    currentValue = BigDecimalUtil.log10(currentValue);
+                } catch (ArithmeticException ex) {
+                    ex.getMessage();
+                }
+                setText(currentValue.setScale(16, BigDecimal.ROUND_HALF_UP).toPlainString().replace('.', ',')
+                    .replaceFirst("(.+?)0+$", "$1").replaceFirst(",$", ""));
+                if (commandCode == '=') {
+                    savedValue = currentValue;
+                    currentValue = BigDecimal.ZERO;
+                }
+                doInitValue = true;
         } else if("sin".equals(command)) {            
                 currentValue = new BigDecimal(getText().replace(',', '.'));
                 try {
@@ -1428,7 +1448,7 @@ public class Calc extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton57ActionPerformed
 
     private void jButton58ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton58ActionPerformed
-        // TODO add your handling code here:
+        fCalc("log");
     }//GEN-LAST:event_jButton58ActionPerformed
 
     private void jButton59ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton59ActionPerformed

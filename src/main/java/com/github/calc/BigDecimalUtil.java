@@ -213,7 +213,7 @@ public final class BigDecimalUtil {
 
         // Search for the cube root via the Newton-Raphson loop. Output each // successive iteration's value.
 
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 1024; i++) {
             x = x.subtract(x.pow(3, mc).subtract(b, mc).divide(new BigDecimal("3", mc).multiply(x.pow(2, mc), mc), mc), mc);
         }
         return x;

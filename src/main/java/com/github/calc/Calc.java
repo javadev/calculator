@@ -156,7 +156,7 @@ public class Calc extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Tahoma", 0, 10));
         jButton2.setText("MR");
         jButton2.setFocusable(false);
         jButton2.setMargin(new java.awt.Insets(2, 0, 2, 0));
@@ -166,7 +166,7 @@ public class Calc extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jButton3.setFont(new java.awt.Font("Tahoma", 0, 10));
         jButton3.setText("MS");
         jButton3.setFocusable(false);
         jButton3.setMargin(new java.awt.Insets(2, 0, 2, 0));
@@ -176,7 +176,7 @@ public class Calc extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jButton4.setFont(new java.awt.Font("Tahoma", 0, 10));
         jButton4.setText("M+");
         jButton4.setFocusable(false);
         jButton4.setMargin(new java.awt.Insets(2, 0, 2, 0));
@@ -186,7 +186,7 @@ public class Calc extends javax.swing.JFrame {
             }
         });
 
-        jButton5.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jButton5.setFont(new java.awt.Font("Tahoma", 0, 10));
         jButton5.setText("M-");
         jButton5.setFocusable(false);
         jButton5.setMargin(new java.awt.Insets(2, 0, 2, 0));
@@ -394,7 +394,7 @@ public class Calc extends javax.swing.JFrame {
             }
         });
 
-        jButton29.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jButton29.setFont(new java.awt.Font("Tahoma", 0, 10));
         jButton29.setText("MC");
         jButton29.setFocusable(false);
         jButton29.setMargin(new java.awt.Insets(2, 0, 2, 0));
@@ -415,7 +415,7 @@ public class Calc extends javax.swing.JFrame {
 
         jTextField1.setContentType("text/html"); // NOI18N
         jTextField1.setEditable(false);
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 20));
         jTextField1.setText("<html>\r\n  <head>\r\n\r  </head>\r\n  <body>\r\n    <p style=\"text-align:right;font-size:10px;margin-top: 0\">\r\n    </p>\r\n    <p style=\"text-align:right;font-size:16px;margin-top: 0\">\n     0\n    </p>\n  </body>\r\n</html>\r\n");
         jTextField1.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -431,6 +431,7 @@ public class Calc extends javax.swing.JFrame {
         jPanel1.setFocusable(false);
 
         jButton36.setText("sin");
+        jButton36.setFocusable(false);
         jButton36.setMargin(new java.awt.Insets(2, 0, 2, 0));
         jButton36.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -439,6 +440,7 @@ public class Calc extends javax.swing.JFrame {
         });
 
         jButton37.setText("X²");
+        jButton37.setFocusable(false);
         jButton37.setMargin(new java.awt.Insets(2, 0, 2, 0));
         jButton37.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -446,14 +448,17 @@ public class Calc extends javax.swing.JFrame {
             }
         });
 
-        jButton35.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jButton35.setFont(new java.awt.Font("Tahoma", 0, 10));
         jButton35.setText("sinh");
+        jButton35.setFocusable(false);
         jButton35.setMargin(new java.awt.Insets(2, -1, 2, -1));
 
         jButton42.setText("Xª");
+        jButton42.setFocusable(false);
         jButton42.setMargin(new java.awt.Insets(2, 0, 2, 0));
 
         jButton41.setText("cos");
+        jButton41.setFocusable(false);
         jButton41.setMargin(new java.awt.Insets(2, -1, 2, -1));
         jButton41.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -461,14 +466,17 @@ public class Calc extends javax.swing.JFrame {
             }
         });
 
-        jButton40.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jButton40.setFont(new java.awt.Font("Tahoma", 0, 10));
         jButton40.setText("cosh");
+        jButton40.setFocusable(false);
         jButton40.setMargin(new java.awt.Insets(2, -1, 2, -1));
 
         jButton39.setText("dms");
+        jButton39.setFocusable(false);
         jButton39.setMargin(new java.awt.Insets(2, -1, 2, -1));
 
         jButton38.setText("n!");
+        jButton38.setFocusable(false);
         jButton38.setMargin(new java.awt.Insets(2, 0, 2, 0));
 
         jPanel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true));
@@ -477,12 +485,15 @@ public class Calc extends javax.swing.JFrame {
         buttonGroup1.add(jRadioButton4);
         jRadioButton4.setSelected(true);
         jRadioButton4.setText("Degrees");
+        jRadioButton4.setFocusable(false);
 
         buttonGroup1.add(jRadioButton5);
         jRadioButton5.setText("Radians");
+        jRadioButton5.setFocusable(false);
 
         buttonGroup1.add(jRadioButton6);
         jRadioButton6.setText("Grads");
+        jRadioButton6.setFocusable(false);
 
         org.jdesktop.layout.GroupLayout jPanel2Layout = new org.jdesktop.layout.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -509,9 +520,11 @@ public class Calc extends javax.swing.JFrame {
 
         jButton43.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jButton43.setText("ª√X");
+        jButton43.setFocusable(false);
         jButton43.setMargin(new java.awt.Insets(2, -1, 2, -1));
 
         jButton44.setText("π");
+        jButton44.setFocusable(false);
         jButton44.setMargin(new java.awt.Insets(2, 0, 2, 0));
         jButton44.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -519,8 +532,9 @@ public class Calc extends javax.swing.JFrame {
             }
         });
 
-        jButton45.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jButton45.setFont(new java.awt.Font("Tahoma", 0, 10));
         jButton45.setText("tanh");
+        jButton45.setFocusable(false);
         jButton45.setMargin(new java.awt.Insets(2, -1, 2, -1));
         jButton45.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -529,6 +543,7 @@ public class Calc extends javax.swing.JFrame {
         });
 
         jButton46.setText("tan");
+        jButton46.setFocusable(false);
         jButton46.setMargin(new java.awt.Insets(2, 0, 2, 0));
         jButton46.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -537,6 +552,7 @@ public class Calc extends javax.swing.JFrame {
         });
 
         jButton47.setText("X³");
+        jButton47.setFocusable(false);
         jButton47.setMargin(new java.awt.Insets(2, 0, 2, 0));
         jButton47.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -544,8 +560,9 @@ public class Calc extends javax.swing.JFrame {
             }
         });
 
-        jButton48.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        jButton48.setFont(new java.awt.Font("Tahoma", 0, 10));
         jButton48.setText("³√X");
+        jButton48.setFocusable(false);
         jButton48.setMargin(new java.awt.Insets(2, -1, 2, -1));
         jButton48.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -558,9 +575,11 @@ public class Calc extends javax.swing.JFrame {
         jButton49.setMargin(new java.awt.Insets(2, 0, 2, 0));
 
         jButton50.setText("Inv");
+        jButton50.setFocusable(false);
         jButton50.setMargin(new java.awt.Insets(2, 0, 2, 0));
 
         jButton51.setText("ln");
+        jButton51.setFocusable(false);
         jButton51.setMargin(new java.awt.Insets(2, 0, 2, 0));
         jButton51.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -569,15 +588,19 @@ public class Calc extends javax.swing.JFrame {
         });
 
         jButton52.setText("(");
+        jButton52.setFocusable(false);
         jButton52.setMargin(new java.awt.Insets(2, 0, 2, 0));
 
         jButton53.setText(")");
+        jButton53.setFocusable(false);
         jButton53.setMargin(new java.awt.Insets(2, 0, 2, 0));
 
         jButton54.setText("Int");
+        jButton54.setFocusable(false);
         jButton54.setMargin(new java.awt.Insets(2, 0, 2, 0));
 
         jButton55.setText("F-E");
+        jButton55.setFocusable(false);
         jButton55.setMargin(new java.awt.Insets(2, 0, 2, 0));
         jButton55.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -586,6 +609,7 @@ public class Calc extends javax.swing.JFrame {
         });
 
         jButton56.setText("Exp");
+        jButton56.setFocusable(false);
         jButton56.setMargin(new java.awt.Insets(2, 0, 2, 0));
         jButton56.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -594,6 +618,7 @@ public class Calc extends javax.swing.JFrame {
         });
 
         jButton57.setText("Mod");
+        jButton57.setFocusable(false);
         jButton57.setMargin(new java.awt.Insets(2, 0, 2, 0));
         jButton57.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -602,6 +627,7 @@ public class Calc extends javax.swing.JFrame {
         });
 
         jButton58.setText("log");
+        jButton58.setFocusable(false);
         jButton58.setMargin(new java.awt.Insets(2, 0, 2, 0));
         jButton58.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -610,6 +636,7 @@ public class Calc extends javax.swing.JFrame {
         });
 
         jButton59.setText("10ª");
+        jButton59.setFocusable(false);
         jButton59.setMargin(new java.awt.Insets(2, -1, 2, -1));
         jButton59.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -792,7 +819,7 @@ public class Calc extends javax.swing.JFrame {
             .add(layout.createSequentialGroup()
                 .addContainerGap()
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jScrollPane1)
+                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 519, Short.MAX_VALUE)
                     .add(layout.createSequentialGroup()
                         .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 270, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
@@ -906,7 +933,7 @@ public class Calc extends javax.swing.JFrame {
                                     .add(jButton28)
                                     .add(jButton27)
                                     .add(jButton26)))
-                            .add(jButton25, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .add(jButton25, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)))
                     .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );

@@ -203,4 +203,19 @@ public final class BigDecimalUtil {
 	ans = ans.round(new MathContext(ans.precision() - ans.scale() + SCALE, RoundingMode.HALF_EVEN));
 	return ans;
     }
+    
+    public static BigDecimal cuberoot(BigDecimal b) {
+        // Specify a math context with 40 digits of precision.
+
+        MathContext mc = new MathContext(40);
+
+        BigDecimal x = new BigDecimal("1", mc);
+
+        // Search for the cube root via the Newton-Raphson loop. Output each // successive iteration's value.
+
+        for (int i = 0; i < 15; i++) {
+            x = x.subtract(x.pow(3, mc).subtract(b, mc).divide(new BigDecimal("3", mc).multiply(x.pow(2, mc), mc), mc), mc);
+        }
+        return x;
+    }
 }

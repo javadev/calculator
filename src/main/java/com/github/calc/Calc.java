@@ -1127,6 +1127,45 @@ public class Calc extends javax.swing.JFrame {
                     currentValue = BigDecimal.ZERO;
                 }
                 doInitValue = true;
+        } else if("cube".equals(command)) {            
+                currentValue = new BigDecimal(getText().replace(',', '.'));
+                try {
+                    if (currentValue.toBigInteger().toString().length() > 256) {
+                        initCalc();
+                        setText("Error.");
+                        return;
+                    }
+                    currentValue = currentValue.pow(3);
+                } catch (ArithmeticException ex) {
+                    ex.getMessage();
+                }
+                setText(currentValue.setScale(16, BigDecimal.ROUND_HALF_UP).toPlainString().replace('.', ',')
+                    .replaceFirst("(.+?)0+$", "$1").replaceFirst(",$", ""));
+                if (commandCode == '=') {
+                    savedValue = currentValue;
+                    currentValue = BigDecimal.ZERO;
+                }
+                doInitValue = true;
+        } else if("cuberoot".equals(command)) {            
+             currentValue = savedValue == BigDecimal.ZERO
+                ? new BigDecimal(getText().replace(',', '.')) : savedValue;    
+            try {
+                if (currentValue.toBigInteger().toString().length() > 256) {
+                    initCalc();
+                    setText("Error.");
+                    return;
+                }
+                currentValue = BigDecimalUtil.cuberoot(currentValue);
+            } catch (ArithmeticException ex) {
+                ex.getMessage();
+            }
+            setText(currentValue.setScale(16, BigDecimal.ROUND_HALF_UP).toPlainString().replace('.', ',')
+                .replaceFirst("(.+?)0+$", "$1").replaceFirst(",$", ""));
+            if (commandCode == '=') {
+                savedValue = currentValue;
+                currentValue = BigDecimal.ZERO;
+            }
+            doInitValue = true;
         } else if ("nbs".equals(command)) {
             if (!initValue && getText().matches("[\\d,]+")) {
                 if (getText().length() == 1) {
@@ -1424,11 +1463,11 @@ public class Calc extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton46ActionPerformed
 
     private void jButton47ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton47ActionPerformed
-        // TODO add your handling code here:
+        fCalc("cube");
     }//GEN-LAST:event_jButton47ActionPerformed
 
     private void jButton48ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton48ActionPerformed
-        // TODO add your handling code here:
+        fCalc("cuberoot");
     }//GEN-LAST:event_jButton48ActionPerformed
 
     private void jButton44ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton44ActionPerformed

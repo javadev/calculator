@@ -33,6 +33,10 @@ public final class BigDecimalUtil {
     public static long ITER = 1000;
     public static MathContext context = new MathContext( 100 );
     private static final int ROUNDING_MODE = BigDecimal.ROUND_HALF_EVEN;
+    public static BigDecimal PI_DIV_180
+        = new BigDecimal("3.1415926535897932384626433832795").divide(BigDecimal.valueOf(180), 32, BigDecimal.ROUND_HALF_UP);
+    public static BigDecimal PI_DIV_200
+        = new BigDecimal("3.1415926535897932384626433832795").divide(BigDecimal.valueOf(200), 32, BigDecimal.ROUND_HALF_UP);
 
     private BigDecimalUtil() {
     }

@@ -988,7 +988,7 @@
             <Property name="text" type="java.lang.String" value="tan"/>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
-              <Insets value="[2, 0, 2, 0]"/>
+              <Insets value="[2, -1, 2, -1]"/>
             </Property>
           </Properties>
           <Events>

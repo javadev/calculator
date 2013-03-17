@@ -557,7 +557,7 @@ public class Calc extends javax.swing.JFrame {
 
         jButton46.setText("tan");
         jButton46.setFocusable(false);
-        jButton46.setMargin(new java.awt.Insets(2, 0, 2, 0));
+        jButton46.setMargin(new java.awt.Insets(2, -1, 2, -1));
         jButton46.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton46ActionPerformed(evt);
@@ -1744,11 +1744,11 @@ public class Calc extends javax.swing.JFrame {
 
     private void jButton50ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton50ActionPerformed
         jButton50.setSelected(!jButton50.isSelected());
-        jButton36.setText(jButton50.isSelected() ? "sin-1" : "sin");
+        jButton36.setText(jButton50.isSelected() ? "sinˉ¹" : "sin");
         jButton36.setFont(new java.awt.Font("Tahoma", 0, jButton50.isSelected() ? 8 : 11));
-        jButton41.setText(jButton50.isSelected() ? "cos-1" : "cos");
+        jButton41.setText(jButton50.isSelected() ? "cosˉ¹" : "cos");
         jButton41.setFont(new java.awt.Font("Tahoma", 0, jButton50.isSelected() ? 8 : 11));
-        jButton46.setText(jButton50.isSelected() ? "tan-1" : "tan");
+        jButton46.setText(jButton50.isSelected() ? "tanˉ¹" : "tan");
         jButton46.setFont(new java.awt.Font("Tahoma", 0, jButton50.isSelected() ? 8 : 11));
     }//GEN-LAST:event_jButton50ActionPerformed
     

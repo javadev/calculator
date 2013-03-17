@@ -37,6 +37,7 @@ public final class BigDecimalUtil {
         = new BigDecimal("3.1415926535897932384626433832795").divide(BigDecimal.valueOf(180), 32, BigDecimal.ROUND_HALF_UP);
     public static BigDecimal PI_DIV_200
         = new BigDecimal("3.1415926535897932384626433832795").divide(BigDecimal.valueOf(200), 32, BigDecimal.ROUND_HALF_UP);
+    public static BigDecimal EPS = BigDecimal.ONE.scaleByPowerOfTen(-100);
 
     private BigDecimalUtil() {
     }
@@ -469,5 +470,17 @@ public final class BigDecimalUtil {
         } while (sum.compareTo(sumPrev) != 0);
 
         return sum;
+    }
+
+    public static BigDecimal asin(BigDecimal val) {
+        return BigDecimal.valueOf(Math.asin(val.doubleValue()));
+    }
+
+    public static BigDecimal acos(BigDecimal val) {
+        return BigDecimal.valueOf(Math.acos(val.doubleValue()));
+    }
+
+    public static BigDecimal atan(BigDecimal val) {
+        return BigDecimal.valueOf(Math.atan(val.doubleValue()));
     }
 }

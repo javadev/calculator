@@ -37,6 +37,7 @@ public class Calc extends javax.swing.JFrame {
     private char commandCode = '=';
     BigDecimal memoryValue = BigDecimal.ZERO;
     private String text;
+    private String topText = "";
     private final String template =
 "<html>"
 + "  <head>"
@@ -961,15 +962,16 @@ public class Calc extends javax.swing.JFrame {
 
     private void setText(String text) {
         this.text = text;
-        jTextField1.setText(String.format(template, "", text));
-    }
-
-    private void setTopText(String topText) {
         jTextField1.setText(String.format(template, topText, text));
     }
 
     private String getText() {
         return text;
+    }
+
+    private void setTopText(String topText) {
+        this.topText += this.topText.equals("") ? topText : (" " + topText);
+        setText(getText());
     }
 
     private void addCalc(java.awt.event.ActionEvent evt) {
@@ -997,6 +999,7 @@ public class Calc extends javax.swing.JFrame {
         initValue = true;
         doInitValue = true;
         commandCode = '=';
+        topText = "";
         setText("0");
     }
 
@@ -1006,46 +1009,9 @@ public class Calc extends javax.swing.JFrame {
         } else if ("=".equals(command)) {
             if (commandCode != '=' && !initValue) {
                 BigDecimal value = new BigDecimal(getText().replace(',', '.'));
-                BigDecimal result = BigDecimal.ZERO;
-                switch (commandCode) {
-                    case '+':
-                        result = savedValue.add(value);
-                        break;
-                    case '-':
-                        result = savedValue.subtract(value);
-                        break;
-                    case '*':
-                        result = savedValue.multiply(value);
-                        break;
-                    case '/':
-                        try {
-                            result = savedValue.divide(value, 32, BigDecimal.ROUND_HALF_UP);
-                        } catch (ArithmeticException ex) {
-                            initCalc();
-                            setText("Error.");
-                            return;
-                        }
-                        break;
-                    case '^':
-                        try {
-                            result = BigDecimalUtil.pow(savedValue, value);
-                        } catch (ArithmeticException ex) {
-                            initCalc();
-                            setText("Error.");
-                            return;
-                        }
-                        break;
-                    case 'r':
-                        try {
-                            result = BigDecimalUtil.pow(savedValue, BigDecimal.ONE.divide(value, 32, BigDecimal.ROUND_HALF_UP));
-                        } catch (ArithmeticException ex) {
-                            initCalc();
-                            setText("Error.");
-                            return;
-                        }
-                        break;
-                }
+                BigDecimal result = calcResult(value);
                 commandCode = '=';
+                this.topText = "";
                 setText(result.setScale(16, BigDecimal.ROUND_HALF_UP).toPlainString().replace('.', ',')
                     .replaceFirst("0+$", "").replaceFirst(",$", ""));
                 savedValue = result;
@@ -1268,7 +1234,7 @@ public class Calc extends javax.swing.JFrame {
                 currentValue = BigDecimal.ZERO;
             }
             commandCode = '^';
-            setTopText(getText() + " " + commandCode);
+            setText(getText() + " " + commandCode);
         } else if ("yroot".equals(command)) {
             if (commandCode != '=' && !initValue) {
                 BigDecimal value = new BigDecimal(getText().replace(',', '.'));
@@ -1378,46 +1344,50 @@ public class Calc extends javax.swing.JFrame {
                 return;
             }
         } else if ("+".equals(command)) {
+            String saveText = getText();
             if (commandCode != '=' && !initValue) {
                 BigDecimal value = new BigDecimal(getText().replace(',', '.'));
-                BigDecimal result = savedValue.add(value);
+                BigDecimal result = calcResult(value);
                 setText(result.toString().replace('.', ','));
                 savedValue = result;
                 currentValue = BigDecimal.ZERO;
             }
             commandCode = '+';
-            setTopText(getText() + " " + commandCode);
+            setTopText(saveText + " " + commandCode);
         } else if ("-".equals(command)) {
+            String saveText = getText();
             if (commandCode != '=' && !initValue) {
                 BigDecimal value = new BigDecimal(getText().replace(',', '.'));
-                BigDecimal result = savedValue.subtract(value);
+                BigDecimal result = calcResult(value);
                 setText(result.toString().replace('.', ','));
                 savedValue = result;
                 currentValue = BigDecimal.ZERO;
             }
             commandCode = '-';
-            setTopText(getText() + " " + commandCode);
+            setTopText(saveText + " " + commandCode);
         } else if ("*".equals(command)) {
+            String saveText = getText();
             if (commandCode != '=' && !initValue) {
                 BigDecimal value = new BigDecimal(getText().replace(',', '.'));
-                BigDecimal result = savedValue.multiply(value);
+                BigDecimal result = calcResult(value);
                 setText(result.toString().replace('.', ','));
                 savedValue = result;
                 currentValue = BigDecimal.ZERO;
             }
             commandCode = '*';
-            setTopText(getText() + " " + commandCode);
+            setTopText(saveText + " " + commandCode);
         } else if ("/".equals(command)) {
+            String saveText = getText();
             if (commandCode != '=' && !initValue) {
                 BigDecimal value = new BigDecimal(getText().replace(',', '.'));
-                BigDecimal result = savedValue.divide(value, 32, BigDecimal.ROUND_HALF_UP);
+                BigDecimal result = calcResult(value);
                 setText(result.setScale(16, BigDecimal.ROUND_HALF_UP).toPlainString().replace('.', ',')
                     .replaceFirst("(.+?)0+$", "$1").replaceFirst(",$", ""));
                 savedValue = result;
                 currentValue = BigDecimal.ZERO;
             }
             commandCode = '/';
-            setTopText(getText() + " " + commandCode);
+            setTopText(saveText + " " + commandCode);
         } else if ("1/x".equals(command)) {
             currentValue = savedValue == BigDecimal.ZERO
                 ? new BigDecimal(getText().replace(',', '.')) : savedValue;
@@ -1859,5 +1829,48 @@ public class Calc extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextPane jTextField1;
     // End of variables declaration//GEN-END:variables
+
+    private BigDecimal calcResult(BigDecimal value) {
+        BigDecimal result = BigDecimal.ZERO;
+        switch (commandCode) {
+        case '+':
+            result = savedValue.add(value);
+            break;
+        case '-':
+            result = savedValue.subtract(value);
+            break;
+        case '*':
+            result = savedValue.multiply(value);
+            break;
+            case '/':
+                try {
+                    result = savedValue.divide(value, 32, BigDecimal.ROUND_HALF_UP);
+                } catch (ArithmeticException ex) {
+                    initCalc();
+                    setText("Error.");
+                    return result;
+                }
+                break;
+            case '^':
+                try {
+                    result = BigDecimalUtil.pow(savedValue, value);
+                } catch (ArithmeticException ex) {
+                    initCalc();
+                    setText("Error.");
+                    return result;
+                }
+                break;
+            case 'r':
+                try {
+                    result = BigDecimalUtil.pow(savedValue, BigDecimal.ONE.divide(value, 32, BigDecimal.ROUND_HALF_UP));
+                } catch (ArithmeticException ex) {
+                    initCalc();
+                    setText("Error.");
+                    return result;
+                }
+                break;
+        }
+        return result;
+    }
     
 }

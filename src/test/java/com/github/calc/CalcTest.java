@@ -157,4 +157,35 @@ public class CalcTest {
             "60", jTextField1);
     }
 
+    @Test
+    public void plusMinus() throws Exception {
+        Method method = calc.getClass().getDeclaredMethod("keyDetect", new Class[] { java.awt.event.ActionEvent.class });
+        method.setAccessible(true);
+        Method methodFCalc = calc.getClass().getDeclaredMethod("fCalc", new Class[] { java.lang.String.class });
+        methodFCalc.setAccessible(true);
+        method.invoke(calc, new java.awt.event.ActionEvent("source", 1, "3"));
+        method.invoke(calc, new java.awt.event.ActionEvent("source", 1, ","));
+        method.invoke(calc, new java.awt.event.ActionEvent("source", 1, "1"));
+        method.invoke(calc, new java.awt.event.ActionEvent("source", 1, "1"));
+        methodFCalc.invoke(calc, "+");
+        method.invoke(calc, new java.awt.event.ActionEvent("source", 1, "2"));
+        method.invoke(calc, new java.awt.event.ActionEvent("source", 1, ","));
+        method.invoke(calc, new java.awt.event.ActionEvent("source", 1, "2"));
+        methodFCalc.invoke(calc, "-");
+        method.invoke(calc, new java.awt.event.ActionEvent("source", 1, "3"));
+        method.invoke(calc, new java.awt.event.ActionEvent("source", 1, ","));
+        method.invoke(calc, new java.awt.event.ActionEvent("source", 1, "1"));
+        Field field = calc.getClass().getDeclaredField("text");
+        field.setAccessible(true);
+        Field field2 = calc.getClass().getDeclaredField("topText");
+        field2.setAccessible(true);
+        String jTextField2 = (String) field2.get(calc);
+        Assert.assertEquals("Value must be 3,11 + 2,2 -, but " + jTextField2,
+            "3,11 + 2,2 -", jTextField2);
+        methodFCalc.invoke(calc, "=");
+        String jTextField1 = (String) field.get(calc);
+        Assert.assertEquals("Value must be 2,21, but " + jTextField1,
+            "2,21", jTextField1);
+    }
+
 }

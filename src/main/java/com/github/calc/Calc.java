@@ -1340,7 +1340,11 @@ public class Calc extends javax.swing.JFrame {
                 } else {
                     setText(getText().substring(0, getText().length() - 1));
                 }
-                savedValue = new BigDecimal(getText().replace(',', '.'));
+                if (commandCode == '=') {
+                    savedValue = new BigDecimal(getText().replace(',', '.'));
+                } else {
+                    currentValue = new BigDecimal(getText().replace(',', '.'));
+                }
                 return;
             }
         } else if ("+".equals(command)) {

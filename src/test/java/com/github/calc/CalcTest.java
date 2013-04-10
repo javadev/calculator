@@ -120,6 +120,28 @@ public class CalcTest {
     }
 
     @Test
+    public void nbs() throws Exception {
+        Method method = calc.getClass().getDeclaredMethod("keyDetect", new Class[] { java.awt.event.ActionEvent.class });
+        method.setAccessible(true);
+        Method methodFCalc = calc.getClass().getDeclaredMethod("fCalc", new Class[] { java.lang.String.class });
+        methodFCalc.setAccessible(true);
+        method.invoke(calc, new java.awt.event.ActionEvent("source", 1, "3"));
+        method.invoke(calc, new java.awt.event.ActionEvent("source", 1, ","));
+        method.invoke(calc, new java.awt.event.ActionEvent("source", 1, "1"));
+        methodFCalc.invoke(calc, "+");
+        method.invoke(calc, new java.awt.event.ActionEvent("source", 1, "2"));
+        method.invoke(calc, new java.awt.event.ActionEvent("source", 1, ","));
+        method.invoke(calc, new java.awt.event.ActionEvent("source", 1, "1"));
+        methodFCalc.invoke(calc, "nbs");
+        methodFCalc.invoke(calc, "=");
+        Field field = calc.getClass().getDeclaredField("text");
+        field.setAccessible(true);
+        String jTextField1 = (String) field.get(calc);
+        Assert.assertEquals("Value must be 5,1, but " + jTextField1,
+            "5,1", jTextField1);
+    }
+
+    @Test
     public void mr() throws Exception {
         Method method = calc.getClass().getDeclaredMethod("keyDetect", new Class[] { java.awt.event.ActionEvent.class });
         method.setAccessible(true);

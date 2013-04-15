@@ -8,8 +8,33 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import java.math.BigDecimal;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Main extends Activity {
+    private BigDecimal currentValue = BigDecimal.ZERO;
+    private BigDecimal savedValue = BigDecimal.ZERO;
+    private boolean initValue = true;
+    private boolean doInitValue = true;
+    private char commandCode = '=';
+    private char mnemonic = 'D';
+    private BigDecimal memoryValue = BigDecimal.ZERO;
+    private String text;
+    private String topText = "";
+    private final String template =
+"<html>"
++ "  <head>"
++ "  </head>"
++ "  <body>"
++ "    <p style=\"text-align:right;font-size:10px;margin-top: 0\">"
++ "     %s"            
++ "    </p>"
++ "    <p style=\"text-align:right;font-size:14px;margin-top: 0\">"
++ "     %s"
++ "    </p>"
++ "  </body>"
++ "</html>";
     EditText editText;
     
     Button button0,button1,button2,button3,
@@ -78,452 +103,104 @@ public class Main extends Activity {
         button_bin=(Button)findViewById(R.id.button_bin);
         
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE); 
-        //button_del=(Button)findViewById(R.id.button_del);
         
-        editText.setText(result.toString());
+        initCalc();
     }
     
     public void onClickListener0(View v)
     {
         vibrator.vibrate(30);
-        if(press=='=')
-        {
-            onClickListenerReset(buttonReset);
-        }
-        
-        if(sum !="")
-        {
-            zero=(String)button0.getText();
-            
-            sum=sum+zero;
-            editText.setText(sum);
-        }
-        else
-        {
-            sum="0";
-            editText.setText("0");
-        }
+        keyDetect('0');
     }
     
     public void onClickListener1(View v)
     {
         vibrator.vibrate(30);
-        
-        if(press=='=')
-        {
-            onClickListenerReset(buttonReset);
-        }
-       
-        one=(String)button1.getText();
-        sum=sum+one;
-        
-        editText.setText(sum);
+        keyDetect('1');
     }
     
     public void onClickListener2(View v)
     {
         vibrator.vibrate(30);
-        
-        if(press=='=')
-        {
-            onClickListenerReset(buttonReset);
-        }
-        
-        if(press=='=')
-        {
-            onClickListenerEqual(buttonEqual);
-        }
-        
-        two=(String)button2.getText();
-        sum=sum+two;
-        
-        editText.setText(sum);
+        keyDetect('2');
     }
     
     public void onClickListener3(View v)
     {
         vibrator.vibrate(30);
-        if(press=='=')
-        {
-            onClickListenerReset(buttonReset);
-        }
-        three=(String)button3.getText();
-        sum=sum+three;
-        
-        editText.setText(sum);
+        keyDetect('3');
     }
     
     public void onClickListener4(View v)
     {
         vibrator.vibrate(30);
-        
-        if(press=='=')
-        {
-            onClickListenerReset(buttonReset);
-        }
-        
-        four=(String)button4.getText();
-        sum=sum+four;
-        
-        editText.setText(sum);
+        keyDetect('4');
     }
     
     public void onClickListener5(View v)
     {
         vibrator.vibrate(30);
-        if(press=='=')
-        {
-            onClickListenerReset(buttonReset);
-        }
-        
-        five=(String)button5.getText();
-        sum=sum+five;
-        
-        editText.setText(sum);
+        keyDetect('5');
     }
     
     public void onClickListener6(View v)
     {
         vibrator.vibrate(30);
-        if(press=='=')
-        {
-            onClickListenerReset(buttonReset);
-        }
-        
-        six=(String)button6.getText();
-        sum=sum+six;
-        
-        editText.setText(sum);
+        keyDetect('6');
     }
     
     public void onClickListener7(View v)
     {
         vibrator.vibrate(30);
-        if(press=='=')
-        {
-            onClickListenerReset(buttonReset);
-        }
-        
-        seven=(String)button7.getText();
-        sum=sum+seven;
-        
-        editText.setText(sum);
+        keyDetect('7');
     }
     
     public void onClickListener8(View v)
     {
         vibrator.vibrate(30);
-        if(press=='=')
-        {
-            onClickListenerReset(buttonReset);
-        }
-        
-        eight=(String)button8.getText();
-        sum=sum+eight;
-        
-        editText.setText(sum);
+        keyDetect('8');
     }
     
     public void onClickListener9(View v)
     {
         vibrator.vibrate(30);
-        if(press=='=')
-        {
-            onClickListenerReset(buttonReset);
-        }
-        
-        nine=(String)button9.getText();
-        sum=sum+nine;
-        
-        editText.setText(sum);
+        keyDetect('9');
     }
     
     public void onClickListenerPlus(View v)
     {
         vibrator.vibrate(30);
-        
-        if(press=='-')
-        {
-            onClickListenerEqual(buttonMinus);
-        }
-        else if(press=='*')
-        {
-            onClickListenerEqual(buttonMultiply);
-        }
-        
-        else if(press=='/')
-        {
-            onClickListenerEqual(buttonDivide);
-        }
-        
-        
-        press='+';
-        
-        if(sum != "")
-        {
-            result=result+Float.parseFloat(editText.getText().toString());
-            
-            editText.setText(result.toString());
-            
-            result_mul=result;
-            
-            result_div=result;
-            
-            sum="";            
-        }
-        else
-        {
-            editText.setText(result.toString());
-            
-            result_mul=result;
-            
-            result_div=result;
-            
-            sum="";
-        }
-        
+        fCalc("+");
     }
     
     public void onClickListenerMinus(View v)
     {
         vibrator.vibrate(30);
-        if(press=='+')
-        {
-            onClickListenerEqual(buttonPlus);
-        }
-        else if(press=='*')
-        {
-            onClickListenerEqual(buttonMultiply);
-        }
-        else if(press=='/')
-        {
-            onClickListenerEqual(buttonDivide);
-        }
-       
-        
-        
-        press='-';
-        
-        EditTextMsg= editText.getText().toString(); 
-        floatEditTextMsg=Float.parseFloat(EditTextMsg);
-        
-        if(sum==""  && result==0)
-        {
-            sum=sum+'-';
-            //Log.d("sum=","minus press");
-        }
-        else if(sum != "")
-        {
-            if(result==0)
-            {
-                result=Float.parseFloat(sum)-result;
-                
-                editText.setText(result.toString());
-                
-                result_mul=result;
-                
-                result_div=result;
-                
-                sum="";
-            }
-            
-            else
-            {
-                result=result-Float.parseFloat(sum);
-                
-                editText.setText(result.toString());
-                
-                result_mul=result;
-                
-                result_div=result;
-                
-                sum="";
-            }
-        }
-        
+        fCalc("-");
     }
     
     public void onClickListenerMultiply(View v)
     {
-        vibrator.vibrate(30);
-        if(press=='/')
-        {
-            onClickListenerEqual(buttonDivide);
-        }
-        else if(press=='+')
-        {
-            onClickListenerEqual(buttonPlus);
-        }
-        
-        else if(press=='-')
-        {
-            onClickListenerEqual(buttonMinus);
-        }
-        
-        
-        
-        press='*';
-        
-        EditTextMsg= editText.getText().toString(); 
-        floatEditTextMsg=Float.parseFloat(EditTextMsg);
-        
-        if(sum !="")
-        {
-            result_mul=result_mul * floatEditTextMsg; 
-            
-            result=result_mul;
-            
-            result_div=result_mul;
-            
-            editText.setText(result_mul.toString());
-            
-            sum="";
-        }
-        else
-        {
-            editText.setText(EditTextMsg);
-            
-            //result_mul=result_mul * Float.parseFloat(sum);
-            
-            //result=result_mul;
-            
-            sum="";
-        }
-        
+        fCalc("*");
     }
     
     
     public void onClickListenerDivide(View v)
     {
         vibrator.vibrate(30);
-        if(press=='+')
-        {
-            onClickListenerEqual(buttonPlus);
-        }
-        
-        else if(press=='-')
-        {
-            onClickListenerEqual(buttonMinus);
-        }
-        
-        else if(press=='*')
-        {
-            onClickListenerEqual(buttonMultiply);
-        }
-        
-        press='/';
-        
-        EditTextMsg= editText.getText().toString(); 
-        floatEditTextMsg=Float.parseFloat(EditTextMsg);
-        
-        if(sum !="" && result_div==1)
-        {
-            //int c=0;
-            
-            if(c==0)
-            {
-                result_div=floatEditTextMsg/result_div;  
-                Log.d("if if result_div=", result_div.toString());
-                c++;
-            }
-            else
-            {
-                result_div=result_div/floatEditTextMsg; 
-                Log.d("if else result_div=", result_div.toString());
-            }
-            
-            
-            result=result_div;
-            result_mul=result_div;
-            
-            editText.setText(result_div.toString());
-            
-            sum="";
-        }
-        else if(sum !="" && result_div !=1)
-        {
-            result_div=result_div/floatEditTextMsg; 
-            
-            Log.d("else if result_div=", result_div.toString());
-            
-            result=result_div;
-            
-            result_mul=result_div;
-            
-            editText.setText(result_div.toString());
-            
-            sum="";
-        }
-        else
-        {
-            editText.setText(EditTextMsg);
-            
-            sum="";
-        }
+        fCalc("/");
     }
-    
-    
     
     public void onClickListenerPoint(View v)
     {
         vibrator.vibrate(30);
-        
-       int error=0;
-        
-        if(sum !=null)
-        {
-            for(int i=0;i<sum.length();i++)
-            {
-                if(sum.charAt(i)=='.')
-                {
-                    error=1;
-                    break;
-                }
-            }
-
-        }
-        
-        if(error==0)
-        {
-            if(sum==null)
-            {
-                sum=sum+"0.";
-            }
-            else
-            {
-                sum=sum+".";
-            }
-        }
-       
-        editText.setText(sum);
+        keyDetect(',');
     }
     
     public void onClickListenerEqual(View v)
     {
         vibrator.vibrate(30);
-       
-        if(press=='+') 
-        {
-            onClickListenerPlus(buttonPlus);
-            //msg1= editText.getText().toString(); 
-            //floatMsg=Float.parseFloat(msg1);
-        }
-        else if(press=='-') 
-        {
-            onClickListenerMinus(buttonMinus);
-        }
-        else if(press=='*') 
-        {
-            onClickListenerMultiply(buttonMultiply);
-        }
-        else if(press=='/')
-        {
-            onClickListenerDivide(buttonDivide);
-        }
-        
-        press='=';
-        
-        
+        fCalc("=");
     }
     
     public void onClickListenerExit(View v)
@@ -535,197 +212,57 @@ public class Main extends Activity {
     public void onClickListenerReset(View v)
     {
         vibrator.vibrate(30);
-       
-        sum="";
-        countOne=0;//result=0;
-        
-        result=0f;
-        result_mul=1f;
-        result_div=1f;
-        press=' ';
-        c=0;
-        
-        editText.setText(result.toString());
+        fCalc("ce");
     }
     
     
     public void onClickListener_sin(View v)
     {
         vibrator.vibrate(30);
-        
-        EditTextMsg= editText.getText().toString(); 
-        doubleEditTextMsg=Double.parseDouble(EditTextMsg);//degree
-        
-        toRadian_doubleEditTextMsg=Math.toRadians(doubleEditTextMsg);
-        
-        afterSin =Math.sin(toRadian_doubleEditTextMsg);
-        
-        editText.setText(afterSin.toString());
-        
-        EditTextMsg=editText.getText().toString();
-        result=Float.parseFloat(EditTextMsg);
-        
-        result_mul=Float.parseFloat(EditTextMsg);
-        
-        result_div=Float.parseFloat(EditTextMsg);
-        
-        
-        sum="";
-        
-        
+        fCalc("sin");
     }
     
     public void onClickListener_cos(View v)
     {
         vibrator.vibrate(30);
-        EditTextMsg= editText.getText().toString(); 
-        doubleEditTextMsg=Double.parseDouble(EditTextMsg);//degree
-        
-        toRadian_doubleEditTextMsg=Math.toRadians(doubleEditTextMsg);
-        
-        after_cos =Math.cos(toRadian_doubleEditTextMsg);
-        
-        editText.setText(after_cos.toString());
-        
-        EditTextMsg=editText.getText().toString();
-        result=Float.parseFloat(EditTextMsg);
-        
-        result_mul=Float.parseFloat(EditTextMsg);
-        
-        result_div=Float.parseFloat(EditTextMsg);
-        
-        
-        sum="";
-        
-        
+        fCalc("cos");
     }
     
     public void onClickListener_tan(View v)
     {
         vibrator.vibrate(30);
-        
-        EditTextMsg= editText.getText().toString(); 
-        doubleEditTextMsg=Double.parseDouble(EditTextMsg);//degree
-        
-        toRadian_doubleEditTextMsg=Math.toRadians(doubleEditTextMsg);
-        
-        after_tan =Math.tan(toRadian_doubleEditTextMsg);
-        
-        editText.setText(after_tan.toString());
-        
-        EditTextMsg=editText.getText().toString();
-        result=Float.parseFloat(EditTextMsg);
-        
-        result_mul=Float.parseFloat(EditTextMsg);
-        
-        result_div=Float.parseFloat(EditTextMsg);
-        
-        
-        sum="";
+        fCalc("tan");
     }
     
     
     public void onClickListener_squared_2(View v)
     {
         vibrator.vibrate(30);
-        
-        EditTextMsg= editText.getText().toString(); 
-        doubleEditTextMsg=Double.parseDouble(EditTextMsg);//degree
-        
-        
-        after_squared_2 =Math.pow(doubleEditTextMsg,2);
-        
-        editText.setText(after_squared_2.toString());
-        
-        EditTextMsg=editText.getText().toString();
-        result=Float.parseFloat(EditTextMsg);
-        
-        result_mul=Float.parseFloat(EditTextMsg);
-        
-        result_div=Float.parseFloat(EditTextMsg);
-        
-        
-        sum="";
-        
-        
+        fCalc("sqr");
     }
     
     public void onClickListener_qube(View v)
     {
         vibrator.vibrate(30);
-        
-        EditTextMsg= editText.getText().toString(); 
-        doubleEditTextMsg=Double.parseDouble(EditTextMsg);//degree
-        
-        
-        after_qube=Math.pow(doubleEditTextMsg,3);
-        
-        editText.setText(after_qube.toString());
-        
-        EditTextMsg=editText.getText().toString();
-        result=Float.parseFloat(EditTextMsg);
-        
-        result_mul=Float.parseFloat(EditTextMsg);
-        
-        result_div=Float.parseFloat(EditTextMsg);
-        
-        
-        sum="";
-        
-        
+        fCalc("cube");
     }
     
      public void onClickListener_root(View v)
     {
          vibrator.vibrate(30);
-        EditTextMsg= editText.getText().toString(); 
-        doubleEditTextMsg=Double.parseDouble(EditTextMsg);//degree
-        
-        after_root =Math.sqrt(doubleEditTextMsg);
-        
-        editText.setText(after_root.toString());
-        
-        EditTextMsg=editText.getText().toString();
-        result=Float.parseFloat(EditTextMsg);
-        
-        result_mul=Float.parseFloat(EditTextMsg);
-        
-        result_div=Float.parseFloat(EditTextMsg);
-        
-        
-        sum="";
-        
+        fCalc("sqrt");
     }
      
      public void onClickListener_pi(View v)
      {
           vibrator.vibrate(30);
-          
-          if(press=='=')
-          {
-              onClickListenerReset(buttonReset);
-          }
-          
-          sum=pi;
-         
-         editText.setText(pi);
-      
+          addCalc("3,1415926535897932384626433832795");
      } 
      
      public void onClickListener_del(View v)
      {
          vibrator.vibrate(30);
-         if(sum !="")
-         {
-             StringBuilder stringBuilder=new StringBuilder(80);
-             
-             stringBuilder.append(sum);
-             
-             sum=stringBuilder.deleteCharAt(stringBuilder.length()-1).toString();
-             
-             editText.setText(sum);
-         }
-         
+         fCalc("nbs");
      }
      
      public void onClickListener_dec(View v)
@@ -876,4 +413,549 @@ public class Main extends Activity {
          sum="";
          
      }
+
+    private void keyDetect(char key) {
+        if (key >= '0' && key <= '9') {
+            addCalc("" + key);
+        } else if (key == ',') {
+            if (initValue || !getText().contains(",")) {
+                addCalc("" + key);
+            }
+        } else if (key == '\u2190') {
+            fCalc("nbs");
+        }
+    }
+
+    private void setText(String text) {
+        this.text = text;
+        editText.setText(text);
+    }
+
+    private String getText() {
+        return text;
+    }
+
+    private void setTopText(String topText) {
+        this.topText += this.topText.equals("") ? topText : (" " + topText);
+        setText(getText());
+    }
+
+    private void addCalc(String key) {
+        if (initValue) {
+            if (key.equals(",")) {
+                setText("0" + key);
+            } else {
+                setText(key);
+            }
+        } else {
+            setText(getText() + key);
+        }
+        if (commandCode == '=') {
+            savedValue = new BigDecimal(getText().replace(',', '.'));
+            currentValue = BigDecimal.ZERO;
+        } else {
+            currentValue = new BigDecimal(getText().replace(',', '.'));
+        }
+        initValue = false;
+    }
+
+    private void initCalc() {
+        currentValue = BigDecimal.ZERO;
+        savedValue = BigDecimal.ZERO;
+        initValue = true;
+        doInitValue = true;
+        commandCode = '=';
+        topText = "";
+        setText("0");
+    }
+
+    private void fCalc(String command) {
+        if("ce".equals(command)) {
+            initCalc();
+        } else if ("=".equals(command)) {
+            if (commandCode != '=' && !initValue) {
+                BigDecimal value = new BigDecimal(getText().replace(',', '.'));
+                BigDecimal result = calcResult(value);
+                commandCode = '=';
+                this.topText = "";
+                setText(result.setScale(16, BigDecimal.ROUND_HALF_UP).toPlainString().replace('.', ',')
+                    .replaceFirst("0+$", "").replaceFirst(",$", ""));
+                savedValue = result;
+                currentValue = BigDecimal.ZERO;
+            }
+        } else if ("+-".equals(command)) {
+                currentValue = new BigDecimal(getText().replace(',', '.'));
+                currentValue = currentValue.multiply(new BigDecimal("-1"));
+                setText(currentValue.toString().replace('.', ','));
+                if (commandCode == '=') {
+                    savedValue = currentValue;
+                    currentValue = BigDecimal.ZERO;
+                }
+                doInitValue = false;
+        } else if("sqrt".equals(command)) {
+                currentValue = new BigDecimal(getText().replace(',', '.'));
+                try {
+                    currentValue = BigDecimalUtil.sqrt(currentValue);
+                } catch (ArithmeticException ex) {
+                    ex.getMessage();
+                }
+                setText(currentValue.setScale(16, BigDecimal.ROUND_HALF_UP).toPlainString().replace('.', ',')
+                    .replaceFirst("(.+?)0+$", "$1").replaceFirst(",$", ""));
+                if (commandCode == '=') {
+                    savedValue = currentValue;
+                    currentValue = BigDecimal.ZERO;
+                }
+                doInitValue = true;
+        } else if("sqr".equals(command)) {            
+                currentValue = new BigDecimal(getText().replace(',', '.'));
+                try {
+                    if (currentValue.toBigInteger().toString().length() > 256) {
+                        initCalc();
+                        setText("Error.");
+                        return;
+                    }
+                    currentValue = currentValue.pow(2);
+                } catch (ArithmeticException ex) {
+                    ex.getMessage();
+                }
+                setText(currentValue.setScale(16, BigDecimal.ROUND_HALF_UP).toPlainString().replace('.', ',')
+                    .replaceFirst("(.+?)0+$", "$1").replaceFirst(",$", ""));
+                if (commandCode == '=') {
+                    savedValue = currentValue;
+                    currentValue = BigDecimal.ZERO;
+                }
+                doInitValue = true;
+        } else if("ln".equals(command)) {            
+                currentValue = new BigDecimal(getText().replace(',', '.'));
+                try {
+                    if (currentValue.compareTo(BigDecimal.ZERO) < 0 ||
+                        currentValue.toBigInteger().toString().length() > 256) {
+                        initCalc();
+                        setText("Error.");
+                        return;
+                    }
+                    currentValue = BigDecimalUtil.ln(currentValue, 32);
+                } catch (ArithmeticException ex) {
+                    ex.getMessage();
+                }
+                setText(currentValue.setScale(16, BigDecimal.ROUND_HALF_UP).toPlainString().replace('.', ',')
+                    .replaceFirst("(.+?)0+$", "$1").replaceFirst(",$", ""));
+                if (commandCode == '=') {
+                    savedValue = currentValue;
+                    currentValue = BigDecimal.ZERO;
+                }
+                doInitValue = true;
+        } else if("log".equals(command)) {            
+                currentValue = new BigDecimal(getText().replace(',', '.'));
+                try {
+                    if (currentValue.compareTo(BigDecimal.ZERO) < 0 ||
+                        currentValue.toBigInteger().toString().length() > 256) {
+                        initCalc();
+                        setText("Error.");
+                        return;
+                    }
+                    currentValue = BigDecimalUtil.log10(currentValue);
+                } catch (ArithmeticException ex) {
+                    ex.getMessage();
+                }
+                setText(currentValue.setScale(16, BigDecimal.ROUND_HALF_UP).toPlainString().replace('.', ',')
+                    .replaceFirst("(.+?)0+$", "$1").replaceFirst(",$", ""));
+                if (commandCode == '=') {
+                    savedValue = currentValue;
+                    currentValue = BigDecimal.ZERO;
+                }
+                doInitValue = true;
+        } else if("sin".equals(command)) {            
+                currentValue = new BigDecimal(getText().replace(',', '.'));
+                switch (mnemonic) {
+                    case 'D':
+                        currentValue = currentValue.multiply(BigDecimalUtil.PI_DIV_180);
+                        break;
+                    case 'G':
+                        currentValue = currentValue.multiply(BigDecimalUtil.PI_DIV_200);
+                        break;
+                    default:
+                        break;
+                }                
+                try {
+                    if (currentValue.toBigInteger().toString().length() > 256) {
+                        initCalc();
+                        setText("Error.");
+                        return;
+                    }
+                    currentValue = BigDecimalUtil.sine(currentValue);
+                } catch (ArithmeticException ex) {
+                    ex.getMessage();
+                }
+                setText(currentValue.setScale(16, BigDecimal.ROUND_HALF_UP).toPlainString().replace('.', ',')
+                    .replaceFirst("(.+?)0+$", "$1").replaceFirst(",$", ""));
+                if (commandCode == '=') {
+                    savedValue = currentValue;
+                    currentValue = BigDecimal.ZERO;
+                }
+                doInitValue = true;
+        } else if("cos".equals(command)) {            
+                currentValue = new BigDecimal(getText().replace(',', '.'));
+                switch (mnemonic) {
+                    case 'D':
+                        currentValue = currentValue.multiply(BigDecimalUtil.PI_DIV_180);
+                        break;
+                    case 'G':
+                        currentValue = currentValue.multiply(BigDecimalUtil.PI_DIV_200);
+                        break;
+                    default:
+                        break;
+                }                
+                try {
+                    if (currentValue.toBigInteger().toString().length() > 256) {
+                        initCalc();
+                        setText("Error.");
+                        return;
+                    }
+                    currentValue = BigDecimalUtil.cosine(currentValue);
+                } catch (ArithmeticException ex) {
+                    ex.getMessage();
+                }
+                setText(currentValue.setScale(16, BigDecimal.ROUND_HALF_UP).toPlainString().replace('.', ',')
+                    .replaceFirst("(.+?)0+$", "$1").replaceFirst(",$", ""));
+                if (commandCode == '=') {
+                    savedValue = currentValue;
+                    currentValue = BigDecimal.ZERO;
+                }
+                doInitValue = true;
+        } else if("tan".equals(command)) {            
+                currentValue = new BigDecimal(getText().replace(',', '.'));
+                switch (mnemonic) {
+                    case 'D':
+                        currentValue = currentValue.multiply(BigDecimalUtil.PI_DIV_180);
+                        break;
+                    case 'G':
+                        currentValue = currentValue.multiply(BigDecimalUtil.PI_DIV_200);
+                        break;
+                    default:
+                        break;
+                }                
+                try {
+                    if (currentValue.toBigInteger().toString().length() > 256) {
+                        initCalc();
+                        setText("Error.");
+                        return;
+                    }
+                    currentValue = BigDecimalUtil.tangent(currentValue);
+                } catch (ArithmeticException ex) {
+                    ex.getMessage();
+                }
+                setText(currentValue.setScale(16, BigDecimal.ROUND_HALF_UP).toPlainString().replace('.', ',')
+                    .replaceFirst("(.+?)0+$", "$1").replaceFirst(",$", ""));
+                if (commandCode == '=') {
+                    savedValue = currentValue;
+                    currentValue = BigDecimal.ZERO;
+                }
+                doInitValue = true;
+        } else if("cube".equals(command)) {            
+                currentValue = new BigDecimal(getText().replace(',', '.'));
+                try {
+                    if (currentValue.toBigInteger().toString().length() > 256) {
+                        initCalc();
+                        setText("Error.");
+                        return;
+                    }
+                    currentValue = currentValue.pow(3);
+                } catch (ArithmeticException ex) {
+                    ex.getMessage();
+                }
+                setText(currentValue.setScale(16, BigDecimal.ROUND_HALF_UP).toPlainString().replace('.', ',')
+                    .replaceFirst("(.+?)0+$", "$1").replaceFirst(",$", ""));
+                if (commandCode == '=') {
+                    savedValue = currentValue;
+                    currentValue = BigDecimal.ZERO;
+                }
+                doInitValue = true;
+        } else if("cuberoot".equals(command)) {            
+             currentValue = savedValue == BigDecimal.ZERO
+                ? new BigDecimal(getText().replace(',', '.')) : savedValue;    
+            try {
+                if (currentValue.toBigInteger().toString().length() > 256) {
+                    initCalc();
+                    setText("Error.");
+                    return;
+                }
+                currentValue = BigDecimalUtil.cuberoot(currentValue);
+            } catch (ArithmeticException ex) {
+                ex.getMessage();
+            }
+            setText(currentValue.setScale(16, BigDecimal.ROUND_HALF_UP).toPlainString().replace('.', ',')
+                .replaceFirst("(.+?)0+$", "$1").replaceFirst(",$", ""));
+            if (commandCode == '=') {
+                savedValue = currentValue;
+                currentValue = BigDecimal.ZERO;
+            }
+            doInitValue = true;
+        } else if ("pow".equals(command)) {
+            if (commandCode != '=' && !initValue) {
+                BigDecimal value = new BigDecimal(getText().replace(',', '.'));
+                BigDecimal result = BigDecimalUtil.pow(savedValue, value);
+                setText(result.toString().replace('.', ','));
+                savedValue = result;
+                currentValue = BigDecimal.ZERO;
+            }
+            commandCode = '^';
+            setText(getText() + " " + commandCode);
+        } else if ("yroot".equals(command)) {
+            if (commandCode != '=' && !initValue) {
+                BigDecimal value = new BigDecimal(getText().replace(',', '.'));
+                BigDecimal result = BigDecimalUtil.pow(savedValue, BigDecimal.ONE.divide(value, 32, BigDecimal.ROUND_HALF_UP));
+                setText(result.toString().replace('.', ','));
+                savedValue = result;
+                currentValue = BigDecimal.ZERO;
+            }
+            commandCode = 'r';
+            setTopText(getText() + " " + commandCode);
+        } else if("arcsin".equals(command)) {            
+                currentValue = new BigDecimal(getText().replace(',', '.'));
+                try {
+                    if (currentValue.toBigInteger().toString().length() > 256) {
+                        initCalc();
+                        setText("Error.");
+                        return;
+                    }
+                    currentValue = BigDecimalUtil.asin(currentValue);
+                } catch (ArithmeticException ex) {
+                    ex.getMessage();
+                }
+                switch (mnemonic) {
+                    case 'D':
+                        currentValue = currentValue.divide(BigDecimalUtil.PI_DIV_180, 32, BigDecimal.ROUND_HALF_UP);
+                        break;
+                    case 'G':
+                        currentValue = currentValue.divide(BigDecimalUtil.PI_DIV_200, 32, BigDecimal.ROUND_HALF_UP);
+                        break;
+                    default:
+                        break;
+                }                
+                setText(currentValue.setScale(16, BigDecimal.ROUND_HALF_UP).toPlainString().replace('.', ',')
+                    .replaceFirst("(.+?)0+$", "$1").replaceFirst(",$", ""));
+                if (commandCode == '=') {
+                    savedValue = currentValue;
+                    currentValue = BigDecimal.ZERO;
+                }
+                doInitValue = true;
+        } else if("arccos".equals(command)) {            
+                currentValue = new BigDecimal(getText().replace(',', '.'));
+                try {
+                    if (currentValue.toBigInteger().toString().length() > 256) {
+                        initCalc();
+                        setText("Error.");
+                        return;
+                    }
+                    currentValue = BigDecimalUtil.acos(currentValue);
+                } catch (ArithmeticException ex) {
+                    ex.getMessage();
+                }
+                switch (mnemonic) {
+                    case 'D':
+                        currentValue = currentValue.divide(BigDecimalUtil.PI_DIV_180, 32, BigDecimal.ROUND_HALF_UP);
+                        break;
+                    case 'G':
+                        currentValue = currentValue.divide(BigDecimalUtil.PI_DIV_200, 32, BigDecimal.ROUND_HALF_UP);
+                        break;
+                    default:
+                        break;
+                }                
+                setText(currentValue.setScale(16, BigDecimal.ROUND_HALF_UP).toPlainString().replace('.', ',')
+                    .replaceFirst("(.+?)0+$", "$1").replaceFirst(",$", ""));
+                if (commandCode == '=') {
+                    savedValue = currentValue;
+                    currentValue = BigDecimal.ZERO;
+                }
+                doInitValue = true;
+        } else if("arctan".equals(command)) {            
+                currentValue = new BigDecimal(getText().replace(',', '.'));
+                try {
+                    if (currentValue.toBigInteger().toString().length() > 256) {
+                        initCalc();
+                        setText("Error.");
+                        return;
+                    }
+                    currentValue = BigDecimalUtil.atan(currentValue);
+                } catch (ArithmeticException ex) {
+                    ex.getMessage();
+                }
+                switch (mnemonic) {
+                    case 'D':
+                        currentValue = currentValue.divide(BigDecimalUtil.PI_DIV_180, 32, BigDecimal.ROUND_HALF_UP);
+                        break;
+                    case 'G':
+                        currentValue = currentValue.divide(BigDecimalUtil.PI_DIV_200, 32, BigDecimal.ROUND_HALF_UP);
+                        break;
+                    default:
+                        break;
+                }                
+                setText(currentValue.setScale(16, BigDecimal.ROUND_HALF_UP).toPlainString().replace('.', ',')
+                    .replaceFirst("(.+?)0+$", "$1").replaceFirst(",$", ""));
+                if (commandCode == '=') {
+                    savedValue = currentValue;
+                    currentValue = BigDecimal.ZERO;
+                }
+                doInitValue = true;
+        } else if ("nbs".equals(command)) {
+            if (!initValue && getText().matches("[\\d,]+")) {
+                if (getText().length() == 1) {
+                    setText("0");
+                    initValue = true;
+                } else {
+                    setText(getText().substring(0, getText().length() - 1));
+                }
+                if (commandCode == '=') {
+                    savedValue = new BigDecimal(getText().replace(',', '.'));
+                } else {
+                    currentValue = new BigDecimal(getText().replace(',', '.'));
+                }
+                return;
+            }
+        } else if ("+".equals(command)) {
+            String saveText = getText();
+            if (commandCode != '=' && !initValue) {
+                BigDecimal value = new BigDecimal(getText().replace(',', '.'));
+                BigDecimal result = calcResult(value);
+                setText(result.toString().replace('.', ','));
+                savedValue = result;
+                currentValue = BigDecimal.ZERO;
+            }
+            commandCode = '+';
+            setTopText(saveText + " " + commandCode);
+        } else if ("-".equals(command)) {
+            String saveText = getText();
+            if (commandCode != '=' && !initValue) {
+                BigDecimal value = new BigDecimal(getText().replace(',', '.'));
+                BigDecimal result = calcResult(value);
+                setText(result.toString().replace('.', ','));
+                savedValue = result;
+                currentValue = BigDecimal.ZERO;
+            }
+            commandCode = '-';
+            setTopText(saveText + " " + commandCode);
+        } else if ("*".equals(command)) {
+            String saveText = getText();
+            if (commandCode != '=' && !initValue) {
+                BigDecimal value = new BigDecimal(getText().replace(',', '.'));
+                BigDecimal result = calcResult(value);
+                setText(result.toString().replace('.', ','));
+                savedValue = result;
+                currentValue = BigDecimal.ZERO;
+            }
+            commandCode = '*';
+            setTopText(saveText + " " + commandCode);
+        } else if ("/".equals(command)) {
+            String saveText = getText();
+            if (commandCode != '=' && !initValue) {
+                BigDecimal value = new BigDecimal(getText().replace(',', '.'));
+                BigDecimal result = calcResult(value);
+                setText(result.setScale(16, BigDecimal.ROUND_HALF_UP).toPlainString().replace('.', ',')
+                    .replaceFirst("(.+?)0+$", "$1").replaceFirst(",$", ""));
+                savedValue = result;
+                currentValue = BigDecimal.ZERO;
+            }
+            commandCode = '/';
+            setTopText(saveText + " " + commandCode);
+        } else if ("1/x".equals(command)) {
+            currentValue = savedValue == BigDecimal.ZERO
+                ? new BigDecimal(getText().replace(',', '.')) : savedValue;
+            try {
+                currentValue = BigDecimal.ONE.divide(currentValue, 32, BigDecimal.ROUND_HALF_UP);
+            } catch (ArithmeticException ex) {
+                ex.getMessage();
+            }
+            setText(currentValue.setScale(16, BigDecimal.ROUND_HALF_UP).toPlainString().replace('.', ',')
+                .replaceFirst("(.+?)0+$", "$1").replaceFirst(",$", ""));
+            if (commandCode == '=') {
+                savedValue = currentValue;
+                currentValue = BigDecimal.ZERO;
+            }
+            doInitValue = true;
+        } else if ("%".equals(command)) {
+            if (commandCode != '=' && !initValue) {
+                BigDecimal value = new BigDecimal(getText().replace(',', '.'));
+                BigDecimal result = savedValue.multiply(value).divide(BigDecimal.valueOf(100), 32, BigDecimal.ROUND_HALF_UP);
+                setText(result.setScale(16, BigDecimal.ROUND_HALF_UP).toPlainString().replace('.', ',')
+                    .replaceFirst("(.+?)0+$", "$1").replaceFirst(",$", ""));
+                currentValue = result;
+                return;
+            }
+         } else if ("MC".equals(command)) {
+             memoryValue = BigDecimal.ZERO;
+             doInitValue = true;
+         } else if ("MR".equals(command)) {
+             setText(memoryValue.toPlainString().replace('.', ','));
+             if (commandCode == '=') {
+                 savedValue = memoryValue;
+                 currentValue = BigDecimal.ZERO;
+                 doInitValue = true;
+             } else {
+                 currentValue = memoryValue;
+                 doInitValue = false;
+                 initValue = false;
+             }
+         } else if ("MS".equals(command)) {
+             memoryValue = new BigDecimal(getText().replace(',', '.'));
+             doInitValue = true;
+         } else if ("M+".equals(command)) {
+             currentValue = new BigDecimal(getText().replace(',', '.'));
+             memoryValue = memoryValue.add(currentValue);
+             doInitValue = true;
+         } else if ("M-".equals(command)) {
+             currentValue = new BigDecimal(getText().replace(',', '.'));
+             memoryValue = memoryValue.subtract(currentValue);
+             doInitValue = true;
+         }
+        if (doInitValue) {
+            initValue = true;
+        } else {
+            doInitValue = true;
+        }
+    }
+
+    private BigDecimal calcResult(BigDecimal value) {
+        BigDecimal result = BigDecimal.ZERO;
+        switch (commandCode) {
+        case '+':
+            result = savedValue.add(value);
+            break;
+        case '-':
+            result = savedValue.subtract(value);
+            break;
+        case '*':
+            result = savedValue.multiply(value);
+            break;
+            case '/':
+                try {
+                    result = savedValue.divide(value, 32, BigDecimal.ROUND_HALF_UP);
+                } catch (ArithmeticException ex) {
+                    initCalc();
+                    setText("Error.");
+                    return result;
+                }
+                break;
+            case '^':
+                try {
+                    result = BigDecimalUtil.pow(savedValue, value);
+                } catch (ArithmeticException ex) {
+                    initCalc();
+                    setText("Error.");
+                    return result;
+                }
+                break;
+            case 'r':
+                try {
+                    result = BigDecimalUtil.pow(savedValue, BigDecimal.ONE.divide(value, 32, BigDecimal.ROUND_HALF_UP));
+                } catch (ArithmeticException ex) {
+                    initCalc();
+                    setText("Error.");
+                    return result;
+                }
+                break;
+        }
+        return result;
+    }
+    
 }

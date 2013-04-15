@@ -1,3 +1,20 @@
+/*
+ * $Id$
+ *
+ * Copyright 2013 Valentyn Kolesnikov
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.github.calc;
 
 import android.app.Activity;
@@ -9,9 +26,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import java.math.BigDecimal;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
+/**.
+ * @author Valentyn Kolesnikov
+ * @version $Revision$ $Date$
+ */
 public class Main extends Activity {
     private BigDecimal currentValue = BigDecimal.ZERO;
     private BigDecimal savedValue = BigDecimal.ZERO;
@@ -22,20 +41,7 @@ public class Main extends Activity {
     private BigDecimal memoryValue = BigDecimal.ZERO;
     private String text;
     private String topText = "";
-    private final String template =
-"<html>"
-+ "  <head>"
-+ "  </head>"
-+ "  <body>"
-+ "    <p style=\"text-align:right;font-size:10px;margin-top: 0\">"
-+ "     %s"            
-+ "    </p>"
-+ "    <p style=\"text-align:right;font-size:14px;margin-top: 0\">"
-+ "     %s"
-+ "    </p>"
-+ "  </body>"
-+ "</html>";
-    EditText editText;
+    private EditText editText;
     
     Button button0,button1,button2,button3,
                 button4,button5,button6,button7,button8,button9,buttonPlus,buttonMinus,buttonMultiply,
@@ -70,37 +76,37 @@ public class Main extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
-        editText=(EditText)findViewById(R.id.editText1);
+        editText = (EditText) findViewById(R.id.editText1);
 
-        button0=(Button)findViewById(R.id.button0);
-        button1=(Button)findViewById(R.id.button1);
-        button2=(Button)findViewById(R.id.button2);
-        button3=(Button)findViewById(R.id.button3);
-        button4=(Button)findViewById(R.id.button4);
+        button0 = (Button) findViewById(R.id.button0);
+        button1 = (Button) findViewById(R.id.button1);
+        button2 = (Button) findViewById(R.id.button2);
+        button3 = (Button) findViewById(R.id.button3);
+        button4 = (Button) findViewById(R.id.button4);
         
-        button5=(Button)findViewById(R.id.button5);
-        button6=(Button)findViewById(R.id.button6);
-        button7=(Button)findViewById(R.id.button7);
-        button8=(Button)findViewById(R.id.button8);
-        button9=(Button)findViewById(R.id.button9);
+        button5 = (Button) findViewById(R.id.button5);
+        button6 = (Button) findViewById(R.id.button6);
+        button7 = (Button) findViewById(R.id.button7);
+        button8 = (Button) findViewById(R.id.button8);
+        button9 = (Button) findViewById(R.id.button9);
         
-        buttonPlus=(Button)findViewById(R.id.buttonPlus);
-        buttonMinus=(Button)findViewById(R.id.buttonMinus);
-        buttonMultiply=(Button)findViewById(R.id.buttonMultiply);
-        buttonDivide=(Button)findViewById(R.id.buttonDivide);
-        buttonPoint=(Button)findViewById(R.id.buttonPoint);
+        buttonPlus = (Button) findViewById(R.id.buttonPlus);
+        buttonMinus = (Button) findViewById(R.id.buttonMinus);
+        buttonMultiply = (Button) findViewById(R.id.buttonMultiply);
+        buttonDivide = (Button) findViewById(R.id.buttonDivide);
+        buttonPoint = (Button) findViewById(R.id.buttonPoint);
         
-        buttonEqual=(Button)findViewById(R.id.buttonEqual);
+        buttonEqual = (Button) findViewById(R.id.buttonEqual);
         
-        button_sin=(Button)findViewById(R.id.button_sin);
-        button_cos=(Button)findViewById(R.id.button_cos);
-        button_tan=(Button)findViewById(R.id.button_tan);
-        button_root=(Button)findViewById(R.id.button_root);
-        button_squared_2=(Button)findViewById(R.id.button_squared_2);
+        button_sin = (Button) findViewById(R.id.button_sin);
+        button_cos = (Button) findViewById(R.id.button_cos);
+        button_tan = (Button) findViewById(R.id.button_tan);
+        button_root = (Button) findViewById(R.id.button_root);
+        button_squared_2 = (Button) findViewById(R.id.button_squared_2);
         
-        button_del=(Button)findViewById(R.id.button_del);
-        button_dec=(Button)findViewById(R.id.button_dec);
-        button_bin=(Button)findViewById(R.id.button_bin);
+        button_del = (Button) findViewById(R.id.button_del);
+        button_dec = (Button) findViewById(R.id.button_dec);
+        button_bin = (Button) findViewById(R.id.button_bin);
         
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE); 
         
@@ -181,6 +187,7 @@ public class Main extends Activity {
     
     public void onClickListenerMultiply(View v)
     {
+         vibrator.vibrate(30);
         fCalc("*");
     }
     
@@ -256,7 +263,7 @@ public class Main extends Activity {
      public void onClickListener_pi(View v)
      {
           vibrator.vibrate(30);
-          addCalc("3,1415926535897932384626433832795");
+          addCalc("3,14159265358979323846");
      } 
      
      public void onClickListener_del(View v)
@@ -269,14 +276,14 @@ public class Main extends Activity {
      {
          vibrator.vibrate(30);
          
-         EditTextMsg= editText.getText().toString();
+         EditTextMsg = editText.getText().toString();
          
-         for(int i=0;i<=EditTextMsg.length()-1;i++)
+         for(int i = 0; i <= EditTextMsg.length() - 1; i++)
          {
-             unicode_value=EditTextMsg.codePointAt(i);
-             if(unicode_value>49 || unicode_value<48)
+             unicode_value = EditTextMsg.codePointAt(i);
+             if(unicode_value > 49 || unicode_value < 48)
              {
-                 dec_flag=1;
+                 dec_flag = 1;
                  Log.d("uni",unicode_value.toString());
                  break;
              }
@@ -320,10 +327,10 @@ public class Main extends Activity {
              }
              else
              {
-                 dec_string=dec_string+EditTextMsg.charAt(i);
+                 dec_string = dec_string+EditTextMsg.charAt(i);
              }
          }
-         dec_num=Integer.parseInt(dec_string);
+         dec_num = Integer.parseInt(dec_string);
          
          Log.d("dec_num=",dec_num.toString());
          

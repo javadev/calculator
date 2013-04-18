@@ -90,7 +90,11 @@ function fCalc(command) {
             } else {
                 $id().value = $id().value.substring(0, $id().value.length - 1);
             }
-            savedValue = new BigDecimal($id().value.replace(',', '.'));
+            if (commandCode == '=') {
+                savedValue = new BigDecimal($id().value.replace(',', '.'));
+            } else {
+                currentValue = new BigDecimal($id().value.replace(',', '.'));
+            }
             return;
         }
     } else if ("+" == command) {

@@ -31,27 +31,7 @@ function fCalc(command) {
     } else if ("=" == command) {
         if (commandCode != '=' && !initValue) {
             var value = new BigDecimal($id().value.replace(',', '.'));
-            var result = BigDecimal.valueOf(0);
-            switch (commandCode) {
-                case '+':
-                    result = savedValue.add(value);
-                    break;
-                case '-':
-                    result = savedValue.subtract(value);
-                    break;
-                case '*':
-                    result = savedValue.multiply(value);
-                    break;
-                case '/':
-                    try {
-                        result = savedValue.divide(value, 32, BigDecimal.ROUND_HALF_UP);
-                    } catch (ex) {
-                        initCalc();
-                        $id().value = "Error.";
-                        return;
-                    }
-                    break;
-            }
+            var result = calcResult(value);
             commandCode = '=';
             $id().value = result.setScale(16, BigDecimal.ROUND_HALF_UP).toPlainString().replace('.', ',')
                 .replace(/0+$/, "").replace(/,$/, "");
@@ -100,7 +80,7 @@ function fCalc(command) {
     } else if ("+" == command) {
         if (commandCode != '=' && !initValue) {
             var value = new BigDecimal($id().value.replace(',', '.'));
-            var result = savedValue.add(value);
+            var result = calcResult(value);
             $id().value = result.toPlainString().replace('.', ',');
             savedValue = result;
             currentValue = BigDecimal.valueOf(0);
@@ -109,7 +89,7 @@ function fCalc(command) {
     } else if ("-" == command) {
         if (commandCode != '=' && !initValue) {
             var value = new BigDecimal($id().value.replace(',', '.'));
-            var result = savedValue.subtract(value);
+            var result = calcResult(value);
             $id().value = result.toPlainString().replace('.', ',');
             savedValue = result;
             currentValue = BigDecimal.valueOf(0);
@@ -118,7 +98,7 @@ function fCalc(command) {
     } else if ("*" == command) {
         if (commandCode != '=' && !initValue) {
             var value = new BigDecimal($id().value.replace(',', '.'));
-            var result = savedValue.multiply(value);
+            var result = calcResult(value);
             $id().value = result.toPlainString().replace('.', ',');
             savedValue = result;
             currentValue = BigDecimal.valueOf(0);
@@ -127,7 +107,7 @@ function fCalc(command) {
     } else if ("/" == command) {
         if (commandCode != '=' && !initValue) {
             var value = new BigDecimal($id().value.replace(',', '.'));
-            var result = savedValue.divide(value, 32, BigDecimal.ROUND_HALF_UP);
+            var result = calcResult(value);
             $id().value = result.setScale(16, BigDecimal.ROUND_HALF_UP).toPlainString().replace('.', ',')
                 .replace(/(.+?)0+$/, "$1").replace(/,$/, "");
             savedValue = result;
@@ -241,6 +221,49 @@ function keyDetectCalc(evt) {
         keyDetect(keyChar == '.' ? ',' : keyChar);
     }
 }
+function calcResult(value) {
+    var result = BigDecimal.valueOf(0);
+    switch (commandCode) {
+    case '+':
+        result = savedValue.add(value);
+        break;
+    case '-':
+        result = savedValue.subtract(value);
+        break;
+    case '*':
+        result = savedValue.multiply(value);
+        break;
+        case '/':
+            try {
+                result = savedValue.divide(value, 32, BigDecimal.ROUND_HALF_UP);
+            } catch (ex) {
+                initCalc();
+                setText("Error.");
+                return result;
+            }
+            break;
+        case '^':
+            try {
+                result = BigDecimalUtil.pow(savedValue, value);
+            } catch (ex) {
+                initCalc();
+                setText("Error.");
+                return result;
+            }
+            break;
+        case 'r':
+            try {
+                result = BigDecimalUtil.pow(savedValue, BigDecimal.ONE.divide(value, 32, BigDecimal.ROUND_HALF_UP));
+            } catch (ex) {
+                initCalc();
+                setText("Error.");
+                return result;
+            }
+            break;
+    }
+    return result;
+}
+
 function sqrt(x) {
     // Check that x >= 0.
     if (x.signum() < 0) {

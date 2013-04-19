@@ -42,385 +42,49 @@ public class Main extends Activity {
     private String text;
     private String topText = "";
     private EditText editText;
+    private Vibrator vibrator;
     
-    Button button0,button1,button2,button3,
-                button4,button5,button6,button7,button8,button9,buttonPlus,buttonMinus,buttonMultiply,
-                buttonDivide,buttonEqual,buttonPoint,buttonDel,buttonReset,
-                button_sin,button_cos,button_tan,button_squared_2,button_root,button_del,button_dec,
-                button_bin,button_pi;
-    
-    String sum="",one,oneAgain="",two,twoAgain="",three,threeAgain="",four,fourAgain="",five,fiveAgain="",
-                            six,sixAgain,seven,sevenAgain="",eight,eightAgain="",nine,nineAgain="",
-                            zero,plus,minus,multiply,divide,equal,point,del,reset,
-                            dec_string="",hex_string="",oct_string="",pi="3.1416";
-    
-    Integer countOne=0,dec_num,unicode_value;
-    
-    Float result=0f,result_mul=1f,result_div=1f;
-    
-    int pressCount=1,sumZero,dec_flag=0,c,i;
-
-    char press;
-    
-    String EditTextMsg,bin_num,hex_num,oct_num;
-    
-    Float floatEditTextMsg;
-    
-    Double doubleEditTextMsg,afterSin,after_cos,after_tan,toRadian_doubleEditTextMsg,after_squared_2,after_root,after_qube;
-    
-    Vibrator vibrator;
-       
     @Override
-    public void onCreate(Bundle savedInstanceState) 
-    {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        
-        editText = (EditText) findViewById(R.id.editText1);
-
-        button0 = (Button) findViewById(R.id.button0);
-        button1 = (Button) findViewById(R.id.button1);
-        button2 = (Button) findViewById(R.id.button2);
-        button3 = (Button) findViewById(R.id.button3);
-        button4 = (Button) findViewById(R.id.button4);
-        
-        button5 = (Button) findViewById(R.id.button5);
-        button6 = (Button) findViewById(R.id.button6);
-        button7 = (Button) findViewById(R.id.button7);
-        button8 = (Button) findViewById(R.id.button8);
-        button9 = (Button) findViewById(R.id.button9);
-        
-        buttonPlus = (Button) findViewById(R.id.buttonPlus);
-        buttonMinus = (Button) findViewById(R.id.buttonMinus);
-        buttonMultiply = (Button) findViewById(R.id.buttonMultiply);
-        buttonDivide = (Button) findViewById(R.id.buttonDivide);
-        buttonPoint = (Button) findViewById(R.id.buttonPoint);
-        
-        buttonEqual = (Button) findViewById(R.id.buttonEqual);
-        
-        button_sin = (Button) findViewById(R.id.button_sin);
-        button_cos = (Button) findViewById(R.id.button_cos);
-        button_tan = (Button) findViewById(R.id.button_tan);
-        button_root = (Button) findViewById(R.id.button_root);
-        button_squared_2 = (Button) findViewById(R.id.button_squared_2);
-        
-        button_del = (Button) findViewById(R.id.button_del);
-        button_dec = (Button) findViewById(R.id.button_dec);
-        button_bin = (Button) findViewById(R.id.button_bin);
-        
+        editText = (EditText) findViewById(R.id.screen);
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE); 
-        
         initCalc();
     }
-    
-    public void onClickListener0(View v)
-    {
-        vibrator.vibrate(30);
-        keyDetect('0');
-    }
-    
-    public void onClickListener1(View v)
-    {
-        vibrator.vibrate(30);
-        keyDetect('1');
-    }
-    
-    public void onClickListener2(View v)
-    {
-        vibrator.vibrate(30);
-        keyDetect('2');
-    }
-    
-    public void onClickListener3(View v)
-    {
-        vibrator.vibrate(30);
-        keyDetect('3');
-    }
-    
-    public void onClickListener4(View v)
-    {
-        vibrator.vibrate(30);
-        keyDetect('4');
-    }
-    
-    public void onClickListener5(View v)
-    {
-        vibrator.vibrate(30);
-        keyDetect('5');
-    }
-    
-    public void onClickListener6(View v)
-    {
-        vibrator.vibrate(30);
-        keyDetect('6');
-    }
-    
-    public void onClickListener7(View v)
-    {
-        vibrator.vibrate(30);
-        keyDetect('7');
-    }
-    
-    public void onClickListener8(View v)
-    {
-        vibrator.vibrate(30);
-        keyDetect('8');
-    }
-    
-    public void onClickListener9(View v)
-    {
-        vibrator.vibrate(30);
-        keyDetect('9');
-    }
-    
-    public void onClickListenerPlus(View v)
-    {
-        vibrator.vibrate(30);
-        fCalc("+");
-    }
-    
-    public void onClickListenerMinus(View v)
-    {
-        vibrator.vibrate(30);
-        fCalc("-");
-    }
-    
-    public void onClickListenerMultiply(View v)
-    {
-         vibrator.vibrate(30);
-        fCalc("*");
-    }
-    
-    
-    public void onClickListenerDivide(View v)
-    {
-        vibrator.vibrate(30);
-        fCalc("/");
-    }
-    
-    public void onClickListenerPoint(View v)
-    {
-        vibrator.vibrate(30);
-        keyDetect(',');
-    }
-    
-    public void onClickListenerEqual(View v)
-    {
-        vibrator.vibrate(30);
-        fCalc("=");
-    }
-    
-    public void onClickListenerExit(View v)
-    {
-        vibrator.vibrate(30);
-        finish();
-    }
-    
-    public void onClickListenerReset(View v)
-    {
-        vibrator.vibrate(30);
-        fCalc("ce");
-    }
-    
-    
-    public void onClickListener_sin(View v)
-    {
-        vibrator.vibrate(30);
-        fCalc("sin");
-    }
-    
-    public void onClickListener_cos(View v)
-    {
-        vibrator.vibrate(30);
-        fCalc("cos");
-    }
-    
-    public void onClickListener_tan(View v)
-    {
-        vibrator.vibrate(30);
-        fCalc("tan");
-    }
-    
-    
-    public void onClickListener_squared_2(View v)
-    {
-        vibrator.vibrate(30);
-        fCalc("sqr");
-    }
-    
-    public void onClickListener_qube(View v)
-    {
-        vibrator.vibrate(30);
-        fCalc("cube");
-    }
-    
-     public void onClickListener_root(View v)
-    {
-         vibrator.vibrate(30);
-        fCalc("sqrt");
-    }
-     
-     public void onClickListener_pi(View v)
-     {
-          vibrator.vibrate(30);
-          addCalc("3,14159265358979323846");
-     } 
-     
-     public void onClickListener_del(View v)
-     {
-         vibrator.vibrate(30);
-         fCalc("nbs");
-     }
-     
-     public void onClickListener_dec(View v)
-     {
-         vibrator.vibrate(30);
-         
-         EditTextMsg = editText.getText().toString();
-         
-         for(int i = 0; i <= EditTextMsg.length() - 1; i++)
-         {
-             unicode_value = EditTextMsg.codePointAt(i);
-             if(unicode_value > 49 || unicode_value < 48)
-             {
-                 dec_flag = 1;
-                 Log.d("uni",unicode_value.toString());
-                 break;
-             }
-             
 
-         }
-         
-         
-         if(dec_flag==0)
-         {
-             dec_num=Integer.parseInt(EditTextMsg, 2);
-             
-             
-             editText.setText(dec_num.toString());
-             
-             EditTextMsg=editText.getText().toString();
-             
-             sum="";
-         }
-         else
-         {
-                 
-                 editText.setText("input error");
-                 
-                 sum="";
-         }
-             
-     } 
+    public void ButtonClickHandler(View v) {
+        vibrator.vibrate(30);
+    	switch(v.getId()){
+    		case R.id.button0: keyDetect('0'); break;
+    		case R.id.button1: keyDetect('1'); break;
+    		case R.id.button2: keyDetect('2'); break;
+    		case R.id.button3: keyDetect('3'); break;
+    		case R.id.button4: keyDetect('4'); break;
+    		case R.id.button5: keyDetect('5'); break;
+    		case R.id.button6: keyDetect('6'); break;
+    		case R.id.button7: keyDetect('7'); break;
+    		case R.id.button8: keyDetect('8'); break;
+    		case R.id.button9: keyDetect('9'); break;
+    		case R.id.buttonPoint : 
+    			keyDetect(','); break;
+    		case R.id.buttonAdd: fCalc("+"); break;
+    		case R.id.buttonSub : fCalc("-"); break;
+    		case R.id.buttonMulti: fCalc("*"); break;
+    		case R.id.buttonDiv: fCalc("/"); break;
+    		case R.id.buttonSqr: fCalc("sqrt"); break;
+    		case R.id.buttonPow: fCalc("pow"); break;
+    		case R.id.buttonMod: fCalc("%"); break;
+    		case R.id.buttonOnediv: fCalc("1/x"); break;
+    		case R.id.buttonExe:	
+    			fCalc("="); break;
+    		case R.id.buttonDel:
+	   			 fCalc("nbs"); break;
+    		case R.id.buttonClear:
+    			fCalc("ce"); break;
+    	}
+    }
     
-     public void onClickListener_bin(View v)
-     {
-         vibrator.vibrate(30);
-         //button_bin.setBackgroundColor(Color.BLUE);
-         EditTextMsg= editText.getText().toString();
-         
-         for(i=0;i<EditTextMsg.length();i++)
-         {
-             if(EditTextMsg.charAt(i)=='.')
-             {
-                 break;
-             }
-             else
-             {
-                 dec_string = dec_string+EditTextMsg.charAt(i);
-             }
-         }
-         dec_num = Integer.parseInt(dec_string);
-         
-         Log.d("dec_num=",dec_num.toString());
-         
-         bin_num=Integer.toBinaryString(dec_num);
-         
-         editText.setText(bin_num);
-         
-         dec_string="";
-         EditTextMsg="";
-         bin_num="";
-         sum="";
-         
-     }
-     
-     public void onClickListener_hex(View v)
-     {
-         vibrator.vibrate(30);
-         
-         EditTextMsg= editText.getText().toString();
-         
-         for(i=0;i<EditTextMsg.length();i++)
-         {
-             if(EditTextMsg.charAt(i)=='.')
-             {
-                 break;
-             }
-             else
-             {
-                 hex_string=hex_string+EditTextMsg.charAt(i);
-             }
-         }
-         dec_num=Integer.parseInt(hex_string);
-         
-         Log.d("dec_num=",dec_num.toString());
-         
-         hex_num=Integer.toHexString(dec_num);
-         
-         editText.setText(hex_num);
-         
-         dec_string="";
-         hex_string="";
-         
-         EditTextMsg="";
-         
-         bin_num="";
-         hex_num="";
-         
-         sum="";
-         
-     }
-     
-     public void onClickListener_oct(View v)
-     {
-         vibrator.vibrate(30);
-         
-         EditTextMsg= editText.getText().toString();
-         
-         for(i=0;i<EditTextMsg.length();i++)
-         {
-             if(EditTextMsg.charAt(i)=='.')
-             {
-                 break;
-             }
-             else
-             {
-                 oct_string=oct_string+EditTextMsg.charAt(i);
-             }
-         }
-         dec_num=Integer.parseInt(oct_string);
-         
-         Log.d("dec_num=",dec_num.toString());
-         
-         oct_num=Integer.toOctalString(dec_num);
-         
-         editText.setText(oct_num);
-         
-         dec_string="";
-         hex_string="";
-         oct_string="";
-         
-         EditTextMsg="";
-         
-         bin_num="";
-         hex_num="";
-         oct_num="";
-         
-         sum="";
-         
-     }
-
     private void keyDetect(char key) {
         if (key >= '0' && key <= '9') {
             addCalc("" + key);

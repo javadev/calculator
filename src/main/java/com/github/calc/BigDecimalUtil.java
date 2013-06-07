@@ -221,10 +221,10 @@ public final class BigDecimalUtil {
 
             BigDecimal term = numerator.divide(denominator, SCALE + 5, ROUNDING_MODE);
 
-            if (i % 2 != 0) {
-                currentValue = currentValue.add(term);
-            } else {
+            if (i % 2 == 0) {
                 currentValue = currentValue.subtract(term);
+            } else {
+                currentValue = currentValue.add(term);
             }
             i++;
         }
@@ -251,10 +251,10 @@ public final class BigDecimalUtil {
 
             BigDecimal term = numerator.divide(denominator, SCALE + 5, ROUNDING_MODE);
 
-            if (i % 2 != 0) {
-                currentValue = currentValue.add(term);
-            } else {
+            if (i % 2 == 0) {
                 currentValue = currentValue.subtract(term);
+            } else {
+                currentValue = currentValue.add(term);
             }
 
             i++;
@@ -398,7 +398,9 @@ public final class BigDecimalUtil {
         BigDecimal xWhole = x.setScale(0, BigDecimal.ROUND_DOWN);
 
         // If there isn't a whole part, compute and return e^x.
-        if (xWhole.signum() == 0) return expTaylor(x, scale);
+        if (xWhole.signum() == 0) {
+            return expTaylor(x, scale);
+        }
 
         // Compute the fraction part of x.
         BigDecimal xFraction = x.subtract(xWhole);

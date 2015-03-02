@@ -30,7 +30,11 @@ import java.util.logging.Logger;
  */
 public class About extends javax.swing.JDialog {
 
-    /** Creates new form About */
+    /**
+     * Creates new form About.
+     * @param parent the parent frame
+     * @param modal is modal mode
+     */
     public About(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();

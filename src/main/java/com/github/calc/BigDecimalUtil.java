@@ -43,7 +43,7 @@ public final class BigDecimalUtil {
     }
 
     /**
-     * Compute the square root of x to a given scale, x >= 0.
+     * Compute the square root of x to a given scale, x &gt;= 0.
      * Use Newton's algorithm.
      * @param x the value of x
      * @return the result value
@@ -77,7 +77,7 @@ public final class BigDecimalUtil {
     }
 
     /**
-     * Compute the integral root of x to a given scale, x >= 0.
+     * Compute the integral root of x to a given scale, x &gt;= 0.
      * Use Newton's algorithm.
      * @param x the value of x
      * @param index the integral root value
@@ -136,10 +136,12 @@ public final class BigDecimalUtil {
     }
 
     /**
-     * Compute the natural logarithm of x to a given scale, x > 0.
+     * Compute the natural logarithm of x to a given scale, x &gt; 0.
+     * @param x the value
+     * @param scale the scale
+     * @return the result
      */
-    public static BigDecimal ln(BigDecimal x, int scale)
-    {
+    public static BigDecimal ln(BigDecimal x, int scale) {
         // Check that x > 0.
         if (x.signum() <= 0) {
             throw new IllegalArgumentException("x <= 0");

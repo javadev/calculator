@@ -2,7 +2,7 @@ Calc
 ====
 
 [![Maven Central](https://img.shields.io/maven-central/v/com.github.javadev/calc.svg)](http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.github.javadev%22%20AND%20a%3A%22calc%22)
-[![Build Status](https://secure.travis-ci.org/javadev/calc.png)](http://travis-ci.org/javadev/calc)
+[![Build Status](https://secure.travis-ci.org/javadev/calc.svg)](http://travis-ci.org/javadev/calc)
 
 The java/swing, javascript, android calculator
 

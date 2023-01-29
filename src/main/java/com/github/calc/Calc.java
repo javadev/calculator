@@ -1,7 +1,7 @@
 /*
  * $Id$
  *
- * Copyright 2013 Valentyn Kolesnikov
+ * Copyright 2013-2023 Valentyn Kolesnikov
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -57,7 +57,7 @@ public class Calc extends javax.swing.JFrame {
         initComponents();
         setIconImage(java.awt.Toolkit.getDefaultToolkit().getImage(getClass().getResource("/calc.png")));
         jPanel1.setVisible(false);
-        setSize(new java.awt.Dimension(jPanel1.getWidth() - 10, getHeight()));
+        setSize(new java.awt.Dimension(jPanel1.getWidth(), getHeight()));
         final java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
         final int x = (screenSize.width - getWidth()) / 2;
         final int y = (screenSize.height - getHeight()) / 2;
@@ -1670,8 +1670,8 @@ public class Calc extends javax.swing.JFrame {
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         jPanel1.setVisible(true);
-        setSize(new java.awt.Dimension((int) jPanel1.getPreferredSize().getWidth() * 2 + 10, getHeight()));
-        setPreferredSize(new java.awt.Dimension((int) jPanel1.getPreferredSize().getWidth() * 2 + 10, getHeight()));
+        setSize(new java.awt.Dimension((int) jPanel1.getPreferredSize().getWidth() * 2 + 20, getHeight()));
+        setPreferredSize(new java.awt.Dimension((int) jPanel1.getPreferredSize().getWidth() * 2 + 20, getHeight()));
 //        jTextField1.setSize(new java.awt.Dimension(jPanel1.getWidth() * 2, getHeight()));
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

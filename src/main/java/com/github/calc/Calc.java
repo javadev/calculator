@@ -215,7 +215,7 @@ public class Calc extends javax.swing.JFrame {
             }
         });
 
-        jButton8.setText("C");
+        jButton8.setText("*");
         jButton8.setFocusable(false);
         jButton8.setMargin(new java.awt.Insets(2, 2, 2, 2));
         jButton8.addActionListener(new java.awt.event.ActionListener() {
@@ -260,7 +260,7 @@ public class Calc extends javax.swing.JFrame {
             }
         });
 
-        jButton13.setText("9");
+        jButton13.setText("/");
         jButton13.setFocusable(false);
         jButton13.setMargin(new java.awt.Insets(2, 2, 2, 2));
         jButton13.addActionListener(new java.awt.event.ActionListener() {
@@ -269,7 +269,7 @@ public class Calc extends javax.swing.JFrame {
             }
         });
 
-        jButton14.setText("/");
+        jButton14.setText("9");
         jButton14.setFocusable(false);
         jButton14.setMargin(new java.awt.Insets(2, 2, 2, 2));
         jButton14.addActionListener(new java.awt.event.ActionListener() {
@@ -287,7 +287,7 @@ public class Calc extends javax.swing.JFrame {
             }
         });
 
-        jButton16.setText("4");
+        jButton16.setText("5");
         jButton16.setFocusable(false);
         jButton16.setMargin(new java.awt.Insets(2, 2, 2, 2));
         jButton16.addActionListener(new java.awt.event.ActionListener() {
@@ -296,7 +296,7 @@ public class Calc extends javax.swing.JFrame {
             }
         });
 
-        jButton17.setText("5");
+        jButton17.setText("6");
         jButton17.setFocusable(false);
         jButton17.setMargin(new java.awt.Insets(2, 2, 2, 2));
         jButton17.addActionListener(new java.awt.event.ActionListener() {
@@ -305,7 +305,7 @@ public class Calc extends javax.swing.JFrame {
             }
         });
 
-        jButton18.setText("6");
+        jButton18.setText("4");
         jButton18.setFocusable(false);
         jButton18.setMargin(new java.awt.Insets(2, 2, 2, 2));
         jButton18.addActionListener(new java.awt.event.ActionListener() {
@@ -314,7 +314,7 @@ public class Calc extends javax.swing.JFrame {
             }
         });
 
-        jButton19.setText("*");
+        jButton19.setText("C");
         jButton19.setFocusable(false);
         jButton19.setMargin(new java.awt.Insets(2, 2, 2, 2));
         jButton19.addActionListener(new java.awt.event.ActionListener() {
@@ -1485,7 +1485,7 @@ public class Calc extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        fCalc("ce");
+        fCalc("*");
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -1505,11 +1505,11 @@ public class Calc extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        keyDetect(evt);
+        fCalc("/");
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-        fCalc("/");
+        keyDetect(evt);
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
@@ -1529,7 +1529,7 @@ public class Calc extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton18ActionPerformed
 
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
-        fCalc("*");
+        fCalc("ce");
     }//GEN-LAST:event_jButton19ActionPerformed
 
     private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed

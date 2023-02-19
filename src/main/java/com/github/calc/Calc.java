@@ -215,7 +215,7 @@ public class Calc extends javax.swing.JFrame {
             }
         });
 
-        jButton8.setText("*");
+        jButton8.setText("C");
         jButton8.setFocusable(false);
         jButton8.setMargin(new java.awt.Insets(2, 2, 2, 2));
         jButton8.addActionListener(new java.awt.event.ActionListener() {
@@ -260,7 +260,7 @@ public class Calc extends javax.swing.JFrame {
             }
         });
 
-        jButton13.setText("/");
+        jButton13.setText("9");
         jButton13.setFocusable(false);
         jButton13.setMargin(new java.awt.Insets(2, 2, 2, 2));
         jButton13.addActionListener(new java.awt.event.ActionListener() {
@@ -269,7 +269,7 @@ public class Calc extends javax.swing.JFrame {
             }
         });
 
-        jButton14.setText("9");
+        jButton14.setText("/");
         jButton14.setFocusable(false);
         jButton14.setMargin(new java.awt.Insets(2, 2, 2, 2));
         jButton14.addActionListener(new java.awt.event.ActionListener() {
@@ -287,7 +287,7 @@ public class Calc extends javax.swing.JFrame {
             }
         });
 
-        jButton16.setText("5");
+        jButton16.setText("4");
         jButton16.setFocusable(false);
         jButton16.setMargin(new java.awt.Insets(2, 2, 2, 2));
         jButton16.addActionListener(new java.awt.event.ActionListener() {
@@ -296,7 +296,7 @@ public class Calc extends javax.swing.JFrame {
             }
         });
 
-        jButton17.setText("6");
+        jButton17.setText("5");
         jButton17.setFocusable(false);
         jButton17.setMargin(new java.awt.Insets(2, 2, 2, 2));
         jButton17.addActionListener(new java.awt.event.ActionListener() {
@@ -305,7 +305,7 @@ public class Calc extends javax.swing.JFrame {
             }
         });
 
-        jButton18.setText("4");
+        jButton18.setText("6");
         jButton18.setFocusable(false);
         jButton18.setMargin(new java.awt.Insets(2, 2, 2, 2));
         jButton18.addActionListener(new java.awt.event.ActionListener() {
@@ -314,7 +314,7 @@ public class Calc extends javax.swing.JFrame {
             }
         });
 
-        jButton19.setText("C");
+        jButton19.setText("*");
         jButton19.setFocusable(false);
         jButton19.setMargin(new java.awt.Insets(2, 2, 2, 2));
         jButton19.addActionListener(new java.awt.event.ActionListener() {
@@ -485,7 +485,6 @@ public class Calc extends javax.swing.JFrame {
         jButton38.setFocusable(false);
         jButton38.setMargin(new java.awt.Insets(2, 0, 2, 0));
 
-        jPanel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true));
         jPanel2.setPreferredSize(new java.awt.Dimension(254, 25));
 
         buttonGroup1.add(jRadioButton4);
@@ -515,7 +514,7 @@ public class Calc extends javax.swing.JFrame {
                 .add(jRadioButton5)
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jRadioButton6)
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -524,7 +523,7 @@ public class Calc extends javax.swing.JFrame {
                     .add(jRadioButton4)
                     .add(jRadioButton5)
                     .add(jRadioButton6))
-                .add(0, 4, Short.MAX_VALUE))
+                .add(0, 7, Short.MAX_VALUE))
         );
 
         jButton43.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
@@ -760,7 +759,7 @@ public class Calc extends javax.swing.JFrame {
                             .add(jButton46)
                             .add(jButton47)
                             .add(jButton48))))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 8, Short.MAX_VALUE)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jButton55)
                     .add(jButton56)
@@ -772,7 +771,7 @@ public class Calc extends javax.swing.JFrame {
         jMenu3.setMnemonic('V');
         jMenu3.setText("View");
 
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_1, java.awt.event.InputEvent.ALT_MASK));
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_1, java.awt.event.InputEvent.ALT_DOWN_MASK));
         jMenuItem1.setText("Standard");
         jMenuItem1.setSelected(true);
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -782,7 +781,7 @@ public class Calc extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem1);
 
-        jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_2, java.awt.event.InputEvent.ALT_MASK));
+        jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_2, java.awt.event.InputEvent.ALT_DOWN_MASK));
         jMenuItem5.setText("Scientific");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -796,7 +795,7 @@ public class Calc extends javax.swing.JFrame {
         jMenu4.setMnemonic('E');
         jMenu4.setText("Edit");
 
-        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItem2.setText("Copy");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -805,7 +804,7 @@ public class Calc extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuItem2);
 
-        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         jMenuItem3.setText("Paste");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -840,7 +839,7 @@ public class Calc extends javax.swing.JFrame {
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jScrollPane1)
                     .add(layout.createSequentialGroup()
-                        .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 270, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(layout.createSequentialGroup()
@@ -860,15 +859,15 @@ public class Calc extends javax.swing.JFrame {
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(jButton8, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(jButton9, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .add(jButton17, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(jButton10, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                             .add(layout.createSequentialGroup()
-                                .add(jButton11, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .add(jButton21, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(jButton12, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(jButton13, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .add(jButton23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(jButton14, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
@@ -876,26 +875,26 @@ public class Calc extends javax.swing.JFrame {
                             .add(layout.createSequentialGroup()
                                 .add(jButton16, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(jButton17, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .add(jButton9, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(jButton13, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(jButton18, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(jButton19, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(jButton20, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                             .add(layout.createSequentialGroup()
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
                                     .add(layout.createSequentialGroup()
-                                        .add(jButton21, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                        .add(jButton11, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .add(jButton22, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                         .add(6, 6, 6))
                                     .add(layout.createSequentialGroup()
-                                        .add(jButton26, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .add(jButton26, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 92, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)))
-                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                                    .add(jButton23, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                    .add(jButton27, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                    .add(jButton27, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(jButton19, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                                     .add(jButton24, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 43, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
@@ -923,38 +922,38 @@ public class Calc extends javax.swing.JFrame {
                             .add(jButton6)
                             .add(jButton7)
                             .add(jButton8)
-                            .add(jButton9)
-                            .add(jButton10))
+                            .add(jButton10)
+                            .add(jButton17))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                            .add(jButton11)
                             .add(jButton12)
-                            .add(jButton13)
                             .add(jButton14)
-                            .add(jButton15))
+                            .add(jButton15)
+                            .add(jButton21)
+                            .add(jButton23))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                             .add(jButton16)
-                            .add(jButton17)
+                            .add(jButton20)
+                            .add(jButton13)
                             .add(jButton18)
-                            .add(jButton19)
-                            .add(jButton20))
+                            .add(jButton9))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                            .add(jButton25, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .add(layout.createSequentialGroup()
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                                     .add(jButton24)
-                                    .add(jButton23)
                                     .add(jButton22)
-                                    .add(jButton21))
+                                    .add(jButton11)
+                                    .add(jButton19))
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                                     .add(jButton28)
                                     .add(jButton27)
-                                    .add(jButton26)))
-                            .add(jButton25, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                                    .add(jButton26))
+                                .addContainerGap())))
+                    .add(jPanel1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         pack();

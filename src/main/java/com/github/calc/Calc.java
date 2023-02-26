@@ -1682,8 +1682,8 @@ public class Calc extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         jPanel1.setVisible(false);
-        setSize(new java.awt.Dimension((int) jPanel1.getPreferredSize().getWidth() - 7, getHeight()));
-        setPreferredSize(new java.awt.Dimension((int) jPanel1.getPreferredSize().getWidth() - 7, getHeight()));
+        setSize(new java.awt.Dimension((int) jPanel1.getPreferredSize().getWidth() + 4, getHeight()));
+        setPreferredSize(new java.awt.Dimension((int) jPanel1.getPreferredSize().getWidth() + 4, getHeight()));
 //        jTextField1.setSize(new java.awt.Dimension(jPanel1.getWidth(), getHeight()));
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

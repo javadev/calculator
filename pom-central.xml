@@ -3,9 +3,9 @@
   <modelVersion>4.0.0</modelVersion>
   
   <groupId>com.github.javadev</groupId>
-  <artifactId>calc</artifactId>
+  <artifactId>calculator</artifactId>
   <packaging>jar</packaging>
-  <version>1.1</version>
+  <version>1.2</version>
   <name>Swing calculator application</name>
   <description>The swing calculator application</description>
   <url>https://github.com/javadev/calc</url>
@@ -25,9 +25,9 @@
   </licenses>
 
   <scm>
-    <connection>scm:git:git://github.com/javadev/calc.git</connection>
-    <developerConnection>scm:git:git://github.com/javadev/calc.git</developerConnection>
-    <url>https://github.com/javadev/calc</url>
+    <connection>scm:git:git://github.com/javadev/calculator.git</connection>
+    <developerConnection>scm:git:git://github.com/javadev/calculator.git</developerConnection>
+    <url>https://github.com/javadev/calculator</url>
   </scm>
 
   <properties>
@@ -35,13 +35,13 @@
   </properties>
 
   <ciManagement>
-    <system>Travis CI</system>
-    <url>https://travis-ci.org/javadev/calc</url>
+    <system>GitHub Actions</system>
+    <url>https://github.com/javadev/calculator/actions</url>
   </ciManagement>
 
   <issueManagement>
     <system>GitHub Issues</system>
-    <url>https://github.com/javadev/calc</url>
+    <url>https://github.com/javadev/calculator</url>
   </issueManagement>
 
   <build>
@@ -78,10 +78,20 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.10.0</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+          <encoding>UTF-8</encoding>
+        </configuration>
+      </plugin>
       <plugin>  
         <groupId>org.apache.maven.plugins</groupId>  
         <artifactId>maven-jar-plugin</artifactId>  
-        <version>2.4</version>
+        <version>3.3.0</version>
         <configuration>  
           <archive>  
             <manifest>  
@@ -91,34 +101,42 @@
         </configuration>  
       </plugin> 
       <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-source-plugin</artifactId>
-          <executions>
-              <execution>
-                  <id>attach-sources</id>
-                  <goals>
-                      <goal>jar</goal>
-                  </goals>
-              </execution>
-          </executions>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <version>3.0.1</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar</goal>
+              <goal>test-jar</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>2.10.1</version>
-          <executions>
-              <execution>
-                  <id>attach-sources</id>
-                  <goals>
-                      <goal>jar</goal>
-                  </goals>
-              </execution>
-          </executions>
+        <version>3.1.0</version>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar</goal>
+              <goal>test-jar</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <failOnError>false</failOnError>
+          <useStandardDocletOptions>true</useStandardDocletOptions>
+          <show>private</show>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-gpg-plugin</artifactId>
-          <version>1.4</version>
+          <version>1.6</version>
           <executions>
             <execution>
               <id>sign-artifacts</id>
@@ -133,14 +151,14 @@
   </build>
   <dependencies>
     <dependency>
-        <groupId>net.java.dev.swing-layout</groupId>
+        <groupId>org.swinglabs</groupId>
         <artifactId>swing-layout</artifactId>
-        <version>1.0</version>
+        <version>1.0.3</version>
     </dependency>
     <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
-        <version>4.4</version>
+        <version>4.13.2</version>
         <scope>test</scope>
     </dependency>
   </dependencies>

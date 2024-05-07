@@ -6,5 +6,5 @@ Calculator
 
 The java/swing, javascript, android calculator
 
-[![Screen short](calc.png)](https://github.com/javadev/calc)
-[![Screen short](calc2.png)](http://javadev.github.io/calc)
+[![Screen short](calc.png)](https://github.com/javadev/calculator)
+[![Screen short](calc2.png)](http://javadev.github.io/calculator)
